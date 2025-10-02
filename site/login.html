@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,22 +8,26 @@
   <link rel="stylesheet" href="../CSS/login-regis.css">
   <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG2.png">
 </head>
+
 <body class="auth-page">
 
   <div class="auth-container">
 
     <a href="index.html" class="back-arrow" title="Voltar para a Home">←</a>
-    
+
     <h1>Login</h1>
 
     <form>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Senha" required>
-      <button href="usuario.html">Entrar</button>
+      <input type="email" placeholder="Email" required id="email_input">
+      <input type="password" placeholder="Senha" required id="senha_input">
+      <button href="usuario.html" onclick="entrar()">Entrar</button>
     </form>
 
     <p>Não tem conta? <a href="registrar.html" class="regs-page">Cadastre-se</a></p>
   </div>
 
+  <script src="./JS/login-registro.js"></script>
+
 </body>
+
 </html>

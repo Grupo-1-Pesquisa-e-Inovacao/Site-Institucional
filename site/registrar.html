@@ -13,14 +13,14 @@
     <a href="login.html" class="back-arrow" title="Voltar para login">←</a>
     <h1>Cadastro</h1>
     <form>
-      <input type="text" placeholder="Nome completo" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Senha" required>
-      <input type="password" placeholder="Confirmar senha" required>
-      <button type="submit">Cadastrar</button>
+      <input type="text" placeholder="Nome completo" required id="nome_input">
+      <input type="email" placeholder="Email" required id="email_input">
+      <input type="password" placeholder="Senha" required id="senha_input">
+      <input type="password" placeholder="Confirmar senha" required id="confirmacao_senha_input">
+      <button type="submit" onclick="cadastrar()">Cadastrar</button>
     </form>
     <p>Já tem conta? <a href="login.html">Entrar</a></p>
   </div>
-
+<script src="./JS/login-registro.js"></script>
 </body>
 </html>

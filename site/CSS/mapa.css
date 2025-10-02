@@ -46,7 +46,6 @@ body{
 }
 
 
-
 #svg-map{
     width: 100%;
     height: 100%;
@@ -83,7 +82,7 @@ body{
     flex-direction: row;
     max-width: 98%;
     height: 98%;
-    margin: 40px auto;
+    margin: 0px;
     padding: 20px;
     background: #f0f4ff;
     border-radius: 12px;
@@ -105,9 +104,16 @@ body{
 }
 
 /* Mapa à esquerda */
+
+.continer1{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .mapa-div {
-    width: 30%;
-    height: 101.5%;
+    width: 95%;
+    height:48%;
     background: #1E3A8A;
     padding: 15px;
     border-radius: 12px;
@@ -115,12 +121,24 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 18px;
+}
+
+.map-under{
+  width: 95%;
+  height: 52%;
+  padding: 15px;
+  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  gap: 20px;
 }
 
 /* Área de detalhes / gráficos à direita */
 .detalhes-div {
-    width: 60%;
-    height: 100%;
+    width: 80%;
+    height: 105%;
     background: #ffffff;
     padding: 20px;
     border-radius: 12px;
@@ -128,4 +146,48 @@ body{
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.kpi-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.kpi-card {
+  background-color: #fff;
+  flex: 1;
+  margin: 0 10px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.kpi-card h3 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #555;
+}
+
+.kpi-card p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Gráficos */
+.charts-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chart-box {
+  background-color: #fff;
+  flex: 1;
+  margin: 0 10px;
+  padding: 20px;
+  border-radius: 10px;
+  height: 480px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }

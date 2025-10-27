@@ -1,3 +1,8 @@
+
+window.onload = function() {
+  document.getElementById('login-loading').innerHTML = "";
+};
+
 // FEITO!!!
 function cadastrar() {
     // aguardar();
@@ -95,6 +100,8 @@ function entrar() {
         sessionStorage.EMAIL_USUARIO = json.email;
         sessionStorage.NOME_USUARIO = json.nome;
         sessionStorage.ID_USUARIO = json.id;
+
+        document.getElementById('login-loading').innerHTML = `<img src="./IMGS/loading.gif" height="75px" width="75px">`
 
         setTimeout(() => {
         console.log("REDIRECIONANDO")

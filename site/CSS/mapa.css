@@ -3,6 +3,31 @@ body{
     margin: 0px;
     height: 79vh;
 }
+
+/* MODAL DO LOADING!! */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* fundo escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
 .navbar {
   background: #1E3A8A;
   color: white;
@@ -51,9 +76,7 @@ body{
     height: 100%;
 }
 
-#svg-map path { 
-    fill:#86a6fd
-}
+
 #svg-map text { 
     fill:#fff; 
     font:12px Arial-BoldMT, 
@@ -65,9 +88,6 @@ body{
 #svg-map a:hover { 
     cursor:pointer; 
     text-decoration:none 
-}
-#svg-map a:hover path{ 
-    fill:rgb(0, 153, 255)!important 
 }
 #svg-map .circle { 
     fill:#1E3A8A
@@ -129,6 +149,7 @@ select {
     flex-direction: row;
     gap: 10px;
     width: 570px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.313);
 }
 
 /* Conteúdo principal: mapa + detalhes */
@@ -156,6 +177,44 @@ select {
     justify-content: center;
     align-items: center;
     margin-bottom: 18px;
+
+    display: flex;
+    flex-direction: column;
+}
+.mapa-div .legenda{
+  display: flex;
+  flex-direction: column;
+  height: 15%;
+}
+
+.mapa-div .legenda h2{
+  font-size: 15px;
+  color: white;
+  margin: 0;
+}
+
+.mapa-div p{
+  font-size: 10px;
+  font-weight: bolder;
+  color: white;
+}
+
+.mapa-div .mapa{
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.mapa-div .lista{
+  font-size: 12px;
+  font-weight: bolder;
+  color: white;
+  width: 0px;
+  overflow: visible;
+  white-space: nowrap;
+  height: 90%;
+  align-content: end;
 }
 
 .map-under{
@@ -185,7 +244,7 @@ select {
 .kpi-container {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .kpi-card {
@@ -195,7 +254,8 @@ select {
   padding: 10px;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.293);
+  align-content: center;
 }
 
 .kpi-card h3 {
@@ -222,6 +282,6 @@ select {
   margin: 0 10px;
   padding: 20px;
   border-radius: 10px;
-  height: 100px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  height: 160px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.313);
 }

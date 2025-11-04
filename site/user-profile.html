@@ -14,13 +14,15 @@
     <header class="navbar">
         <div class="logo">GeoEduca</div>
         <nav>
-            <ul>
-                <li><a href="usuario.html">Início</a></li>
-                <li><a href="user-profile.html" style="color: orange;">Meu Perfil</a></li>
-                <li><a href="mapa.html">Gráficos</a></li>
-                <li><a href="configurações.html">Configurações</a></li>
-                <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-            </ul>
+            <nav>
+                <ul>
+                  <li><a href="usuario.html">Início</a></li>
+                  <li><a href="user-profile.html" style="color: orange;">Meu Perfil</a></li>
+                  <li><a href="mapa.html">Gráficos</a></li>
+                  <li><a href="configurações.html">Configurações</a></li>
+                  <li><a href="home.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+                </ul>
+              </nav>
         </nav>
     </header>
 
@@ -40,7 +42,7 @@
                     <div>
 
                         <h2>Email:</h2>
-                        <p> usuario@exemplo.com</p>
+                        <p id="email"></p>
                         <button>Alterar</button>
 
                         
@@ -49,7 +51,7 @@
                     <div>
                         
                         <h2>Nome:</h2>
-                        <p>Teste da Silva</p>
+                        <p id="username2"></p>
                         <button>Alterar</button>
 
                     </div>
@@ -75,63 +77,67 @@
         </div>
 
         <div class="perfil-graficos">
-            <h3>Gráficos e Estatísticas - Estados e Regioes Favoritados </h3>
-            <div class="grafico-placeholder">
-                <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                    <h3>Dashboard - São Paulo</h3>
-                    <div>
-                        <button onclick="prevSlide()">◀</button>
-                        <button onclick="nextSlide()">▶</button>
-                        <button class="button-editar">Editar</button>
-                        <button class="button-deletar">Deletar</button>
-                       
-                    </div>
+            <div class="logo-controls-container">
+                <h3>Gráficos e Estatísticas - Favoritados</h3>
+                        
+                <div class="carrossel-controles">
+                    <button onclick="prevSlide()"> < Anterior</button>
+                    <button onclick="nextSlide()">Proximo > </button>
                 </div>
-                <div class="graphs-box">
+            </div>
+
+            <div class="carrossel-container">
+              <div class="carrossel-track">
+                <!-- Slide 1 -->
+                <div class="grafico-placeholder">
+                    <div class="logo-dash-fav"> 
+                        <h3>Dashboard - Brasil</h3>
+                        <div>
+                            <button class="button-editar">Editar</button> 
+                            <button class="button-deletar">Deletar</button> 
+                        </div>
+                    </div>
+                  <div class="graphs-box">
                     <div id="chart1" class="chart"></div>
                     <div id="chart2" class="chart"></div>
+                  </div>
+                  <div class="kpi-container">
+                    <div class="kpi-card"><h3>Menor média</h3><p style="color: red;">ALAGOAS</p></div>
+                    <div class="kpi-card"><h3>Maior média</h3><p style="color: green;">SÃO PAULO</p></div>
+                    <div class="kpi-card"><h3>Total Notas Maior Que 900</h3><p style="color: green;">4.870</p></div>
+                    <div class="kpi-card"><h3>Total Notas Menor Que 500</h3><p style="color: red;">123.989</p></div>
+                  </div>
                 </div>
-                <div style="display: flex; flex-direction: row;">
-                    <div class="kpi-card" id="KPI1">
-                        <h3>Total de notas <br> acima de 900 pontos </h3>
-                        <p>4.870</p>
+          
+                <!-- Slide 2 -->
+                <div class="grafico-placeholder">
+                    <div class="logo-dash-fav"> 
+                        <h3>Dashboard - São Paulo</h3>
+                        <div>
+                            <button class="button-editar">Editar</button> 
+                            <button class="button-deletar">Deletar</button> 
+                        </div>
                     </div>
-
-                    <div class="kpi-card" id="KPI1">
-                        <h3>Total de notas <br> acima de 900 pontos </h3>
-                        <p>4.870</p>
-                    </div>
-
-                    <div class="kpi-card" id="KPI1">
-                        <h3>Total de notas <br> acima de 900 pontos </h3>
-                        <p>4.870</p>
-                    </div>
-
-                    <div class="kpi-card" id="KPI1">
-                        <h3>Total de notas <br> acima de 900 pontos </h3>
-                        <p>4.870</p>
-                    </div>
+                  <div class="graphs-box">
+                    <div id="chart1-" class="chart"></div>
+                    <div id="chart2-" class="chart"></div>
+                  </div>
+                  <div class="kpi-container" id="kpi-container1-">
+                    <div class="kpi-card"><h3>Menor média</h3><p style="color: red;">ALAGOAS</p></div>
+                    <div class="kpi-card"><h3>Maior média</h3><p style="color: green;">SÃO PAULO</p></div>
+                    <div class="kpi-card"><h3>Total Notas Maior Que 900</h3><p style="color: green;">4.870</p></div>
+                    <div class="kpi-card"><h3>Total Notas Menor Que 500</h3><p style="color: red;">123.989</p></div>
+                  </div>
                 </div>
+          
+                <!-- Slide 3 -->
+                <div class="grafico-placeholder">
+                  <h3>Gráfico 3</h3>
+                  <div class="chart" style="width: 100%; height: 320px;"></div>
+                </div>
+              </div>
             </div>
-            <div class="grafico-placeholder">
-                <p>Gráfico 2</p>
-            </div>
-            <div class="grafico-placeholder">
-                <p>Gráfico 3</p>
-            </div>
-            <div class="grafico-placeholder">
-                <p>Gráfico 4</p>
-            </div>
-            <div class="grafico-placeholder">
-                <p>Gráfico 5</p>
-            </div>
-            <div class="grafico-placeholder">
-                <p>Gráfico 6</p>
-            </div>
-            <div class="grafico-placeholder">
-                <p>Gráfico 7</p>
-            </div>
-        </div>
+          </div>
 
     </div>
 </body>
@@ -143,26 +149,24 @@
 
 <script>
 
-let currentSlide = 0;
-const items = document.querySelectorAll('.carousel-item');
+let slideAtual = 0;
+  const track = document.querySelector(".carrossel-track");
+  const totalSlides = document.querySelectorAll(".grafico-placeholder").length;
 
-function showSlide(index) {
-  items.forEach((item, i) => {
-    item.classList.toggle('active', i === index);
-  });
-}
+  function updateSlide() {
+    const offset = -slideAtual * 102.5;
+    track.style.transform = `translateX(${offset}%)`;
+  }
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % items.length;
-  showSlide(currentSlide);
-}
+  function nextSlide() {
+    slideAtual = (slideAtual + 1) % totalSlides;
+    updateSlide();
+  }
 
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + items.length) % items.length;
-  showSlide(currentSlide);
-}
-
-showSlide(currentSlide);
+  function prevSlide() {
+    slideAtual = (slideAtual - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  }
 
 var dataNotas900 = [600, 580, 484, 455, 436, 391, 372, 267];
 
@@ -187,12 +191,15 @@ var optionsChart1 = {
         data: dataNotas900
     }],
     chart: {
-        height: 250,
+        height: 300,
         type: 'bar',
         FontFace: '10'
     },
     xaxis: {
-        categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF']
+        categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF'],
+        title: {
+            text: 'Estado'
+        },
     },
     yaxis: {
         max: dataNotas900[0] + 100
@@ -253,55 +260,26 @@ var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
 
 chart1.render();
 chart2.render();
-mapaCor();
+
+var estadoUsuario = "São Paulo"
+
+
+var index1 = 1
+var index2 = 1
+
+var chart1X = document.getElementById("chart1-").id += index1
+var chart2X = document.getElementById("chart2-").id += index2
+
+
+filtroEstadoPerfil(estadoUsuario,index1,index2)
 
   // FUNÇÕES PRINCIPAIS !
-  function gerarNumeroAleatorio() {
+function gerarNumeroAleatorio() {
     const min = 500;
     const max = 800;
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function chartKill() {
-    chart1.destroy();
-    chart2.destroy();
-}
-
-function limparKIPs() {
-    for (i = 1; i < 5; i++) {
-        document.getElementById('KPI' + i).innerHTML = '';
-    }
-}
-
-function kpiReset() {
-    document.getElementById('KPI-PRINCIPAL').innerHTML = `
-    <div class="kpi-card" id="KPI1">
-                <h3>Total de notas <br> acima de 900 pontos </h3>
-                <p>4.870</p>
-    </div>
-    <div class="kpi-card" id="KPI2">
-                <h3>Total de notas <br> abaixo de 500 pontos </h3>
-                <p>123.989</p>
-    </div>
-    <div class="kpi-card" id="KPI3">
-                <h3>Total de provas <br> analizadas no ultimo ano </h3>
-                <p>48.760.878</p>
-    </div>
-    <div class="kpi-card" id="KPI4">
-                <h3>Total de provas <br> com 1000 pontos no ultimo ano</h3>
-                <p>230</p>
-    </div>
-    `;
-}
-
-function botaoResetAparecer() {
-    document.getElementById("botao_reset").style.display = "inline";
-}
-
-function botaoResetSumir() {
-    document.getElementById("botao_reset").style.display = "none";
-    ;
-}
 
 function valorMaisAlto(mediaGeral) {
     let valorDaVez = mediaGeral[0]; // Começa com o primeiro valor do array
@@ -327,5 +305,130 @@ function valorMaisBaixo(mediaGeral) {
     return valorDaVez - 100;
 }
 
+function filtroEstadoPerfil(estado , index1 , index2) {
+
+        var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
+        var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
+
+        var optionsChart1 = {
+            chart: {
+                type: 'bar',
+                height: 300,
+                stacked: true
+            },
+            series: [
+                {
+                    name: 'Média por Município',
+                    data: [450.4, 620.1, 700.2, 780.3, 781.5, 560.9, 670.4, 560.1].sort((a,b) => (a < b)) // valores de 0 a 1000
+                }
+            ],
+            xaxis: {
+                categories: ['São Paulo', 'Campinas', 'Santos', 'Ribeirão Preto', 'Sorocaba', 'Bauru', 'Jundiaí','Mogi das Cruzes'],
+                title: {
+                    text: 'Município'
+                },
+            },
+            yaxis: {
+                title: { text: 'Nota' },
+                min: 0,
+            },
+            title: {
+                text: `Municipios com maiores médias em ${estado}`,
+                align: 'center'
+            },
+            tooltip: {
+                shared: true,
+                intersect: false
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '60%'
+                }
+            }
+        };
+        var optionsChart2 = {
+            chart: {
+                type: 'line',
+                height: 300,
+            },
+            series: [{
+                name: 'Média Geral ENEM ',
+                data: mediaTesteRandom
+            }],
+            xaxis: {
+                categories: anos,
+                title: {
+                    text: 'Ano'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Nota Média'
+                },
+                min: 0,
+                max: 1000
+            },
+            title: {
+                text: `Média geral do ENEM por ano (${estado})`,
+                align: 'center'
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            markers: {
+                size: 6
+            },
+            tooltip: {
+                shared: true,
+                intersect: false
+            }
+        };
+
+        var chart1 = new ApexCharts(document.querySelector("#chart1-" + index1), optionsChart1);
+        var chart2 = new ApexCharts(document.querySelector("#chart2-" + index2), optionsChart2);
+
+        chart1.render();
+        chart2.render();
+
+        estadoKPIsPerfil(estado,index1)
+
+        index1 ++
+        index2 ++
+        return 0;
+}
+
+function estadoKPIsPerfil(estado , kpiIndex) {
+  const KipMédia = gerarNumeroAleatorio();
+  document.getElementById("kpi-container1-").id += kpiIndex;
+  console.log(document.getElementById("kpi-container1-"+kpiIndex))
+
+  let corMedia;
+  if (KipMédia < 600) corMedia = "red";
+  else if (KipMédia < 700) corMedia = "orange";
+  else corMedia = "green";
+
+  const totalProvas = (gerarNumeroAleatorio() * 180).toLocaleString("pt-BR");
+  const totalAlunos = (gerarNumeroAleatorio() * 560).toLocaleString("pt-BR");
+
+  document.getElementById("kpi-container1-"+kpiIndex).innerHTML = `
+    <div class="kpi-card">
+      <h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
+      <p style="color:orange;">37%</p>
+    </div>
+    <div class="kpi-card">
+      <h3>Média Geral das Notas (${estado})</h3>
+      <p style="color:${corMedia};">${KipMédia}</p>
+    </div>
+    <div class="kpi-card">
+      <h3>Total de provas analisadas</h3>
+      <p>${totalProvas}</p>
+    </div>
+    <div class="kpi-card">
+      <h3>Total de alunos no estado</h3>
+      <p>${totalAlunos}</p>
+    </div>
+  `;
+}
 
 </script>

@@ -15,10 +15,10 @@
             <ul>
                 <li><a href="usuario.html">Início</a></li>
                 <li><a href="user-profile.html">Meu Perfil</a></li>
-                <li><a href="mapa.html" style="color: orange;">Gráficos</a></li>
+                <li><a href="mapa.html"  style="color: orange;">Gráficos</a></li>
                 <li><a href="configurações.html">Configurações</a></li>
-                <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-            </ul>
+                <li><a href="home.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+              </ul>
         </nav>
     </header>
       
@@ -433,61 +433,57 @@
         <div class="detalhes-div">
 
             <div class="dashboard-filtros">
-                <div>
+                <div class="logo-dash">
                     <h1 id="DASH_NOME">DASHBOARD - BRASIL</h1>
+                    <div>
+                        <button class="button-editar">Favoritar</button>
+                        <button class="button-deletar">Desfavoritar</button>
+                    </div>
                 </div>
 
-                <div class="filtros" id="filtros_espace">
-                    <div>
-                        FILTRAR POR ESTADO
-                        <select name="estado" id="estado-select">
-                            <option value="">Selecione um estado</option>
-                            <option value="AC">Acre</option>
-                            <option value="AL">Alagoas</option>
-                            <option value="AP">Amapá</option>
-                            <option value="AM">Amazonas</option>
-                            <option value="BA">Bahia</option>
-                            <option value="CE">Ceará</option>
-                            <option value="DF">Distrito Federal</option>
-                            <option value="ES">Espírito Santo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="MA">Maranhão</option>
-                            <option value="MT">Mato Grosso</option>
-                            <option value="MS">Mato Grosso do Sul</option>
-                            <option value="MG">Minas Gerais</option>
-                            <option value="PA">Pará</option>
-                            <option value="PB">Paraíba</option>
-                            <option value="PR">Paraná</option>
-                            <option value="PE">Pernambuco</option>
-                            <option value="PI">Piauí</option>
-                            <option value="RJ">Rio de Janeiro</option>
-                            <option value="RN">Rio Grande do Norte</option>
-                            <option value="RS">Rio Grande do Sul</option>
-                            <option value="RO">Rondônia</option>
-                            <option value="RR">Roraima</option>
-                            <option value="SC">Santa Catarina</option>
-                            <option value="SP">São Paulo</option>
-                            <option value="SE">Sergipe</option>
-                            <option value="TO">Tocantins</option>
-                        </select>
-                    </div>
+                        
+                    
 
-                    <div>
-                        FILTRAR POR REGIÃO
-                        <select name="regiao" id="regiao-select">
-                            <option value="">Selecione uma região</option>
-                            <option value="Norte">Norte</option>
-                            <option value="Nordeste">Nordeste</option>
-                            <option value="CentroOeste">Centro-Oeste</option>
-                            <option value="Sudeste">Sudeste</option>
-                            <option value="Sul">Sul</option>
-                        </select>
+                        <div class="filtros" id="filtros_espace">
+                            
+                                    <div>
+                                        FILTRAR POR ESTADO
+                                        <select name="estado" id="estado-select">
+                                            <option value="">Selecione um estado</option>
+                                            <option value="AC">Acre</option>
+                                            <option value="AL">Alagoas</option>
+                                            <option value="AP">Amapá</option>
+                                            <option value="AM">Amazonas</option>
+                                            <option value="BA">Bahia</option>
+                                            <option value="CE">Ceará</option>
+                                            <option value="DF">Distrito Federal</option>
+                                            <option value="ES">Espírito Santo</option>
+                                            <option value="GO">Goiás</option>
+                                            <option value="MA">Maranhão</option>
+                                            <option value="MT">Mato Grosso</option>
+                                            <option value="MS">Mato Grosso do Sul</option>
+                                            <option value="MG">Minas Gerais</option>
+                                            <option value="PA">Pará</option>
+                                            <option value="PB">Paraíba</option>
+                                            <option value="PR">Paraná</option>
+                                            <option value="PE">Pernambuco</option>
+                                            <option value="PI">Piauí</option>
+                                            <option value="RJ">Rio de Janeiro</option>
+                                            <option value="RN">Rio Grande do Norte</option>
+                                            <option value="RS">Rio Grande do Sul</option>
+                                            <option value="RO">Rondônia</option>
+                                            <option value="RR">Roraima</option>
+                                            <option value="SC">Santa Catarina</option>
+                                            <option value="SP">São Paulo</option>
+                                            <option value="SE">Sergipe</option>
+                                            <option value="TO">Tocantins</option>
+                                        </select>
+                                    </div>
 
-                    </div>
 
-                    <button onclick="filtroBrasil()" id="botao_reset" style="display: none;">RESETAR</button>
-
-                </div>
+                            <div onclick="filtroBrasil()" id="botao_reset" style="display: none;" class="botao-reset" ></div>
+                            
+                        </div>
 
             </div>
             <div class="kpi-container" id="KPI-PRINCIPAL">
@@ -500,12 +496,12 @@
                     <p>123.989</p>
                 </div>
                 <div class="kpi-card" id="KPI3">
-                    <h3>Total de provas <br> analizadas no ultimo ano </h3>
-                    <p>48.760.878</p>
+                    <h3>Estado com menor média <br></h3>
+                    <p style="color: red;">ALAGOAS</p>
                 </div>
                 <div class="kpi-card" id="KPI4">
-                    <h3>Total de provas <br> com 1000 pontos no ultimo ano</h3>
-                    <p>230</p>
+                    <h3>Estado com maior média <br></h3>
+                    <p style="color: green;">SÃO PAULO</p>
                 </div>
             </div>
 
@@ -547,14 +543,18 @@
         "São Paulo", "Sergipe", "Tocantins"];
 
     var notasMedia = [610, 620, 630, 590, 570, 550, 650, 690, 565, 625, 670, 665, 695, 600, 4050, 700, 680, 645, 710, 665, 700, 500, 655, 695, 705, 300, 670];
+    var notasMediaRadom = [];
 
+    for (let i = 0; i < notasMedia.length; i++) {
+    notasMediaRadom.push(gerarNumeroAleatorio());
+    }
 
     var anos = ["2018", "2019", "2020", "2021", "2022"];
 
     var mediaGeral = [500.6, 510.2, 520.5, 510.8, 530.0];
 
 
-    var optionsChart1 = {
+    var optionsChart1Frist = {
         series: [{
             name: 'Notas acima de 900 pontos',
             data: dataNotas900
@@ -580,7 +580,7 @@
             fontWeight: 'bold'
         }
     };
-    var optionsChart2 = {
+    var optionsChart2Frist  = {
         chart: {
             type: 'line',
             height: 455
@@ -633,8 +633,8 @@
         }
     };
 
-    var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
+    var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1Frist);
+    var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2Frist);
     var chartConst1 = new ApexCharts(document.querySelector(".map-under"), optionsConst);
 
 
@@ -651,41 +651,25 @@
         debounceTimer = setTimeout(atualizarDashboard, 200);
     }
     document.getElementById("estado-select").addEventListener("change", atualizarDashboardDebounced);
-    document.getElementById("regiao-select").addEventListener("change", atualizarDashboardDebounced);
-
-
     window.addEventListener("hashchange", atualizarEstado);
     
 
     function atualizarDashboard() {
-        console.log("Teste")
-        const estadoSelect = document.getElementById("estado-select");
-        const regiaoSelect = document.getElementById("regiao-select");
-        const titulo = document.querySelector(".dashboard-filtros h1");
+    console.log("Teste");
+    const estadoSelect = document.getElementById("estado-select");
+    const titulo = document.querySelector(".dashboard-filtros h1");
 
-        var estado = estadoSelect.options[estadoSelect.selectedIndex].text;
-        var regiao = regiaoSelect.options[regiaoSelect.selectedIndex].text;
+    const estado = estadoSelect.options[estadoSelect.selectedIndex].text;
 
+    let novoTitulo = "DASHBOARD - BRASIL";
 
-        let novoTitulo = "DASHBOARD - BRASIL";
+    if (estadoSelect.value && estadoSelect.value !== "Selecione um estado") {
+        novoTitulo = `DASHBOARD - ${estado}`;
+        botaoResetAparecer();
+        filtroEstado(estado);
+    }
 
-        if (estadoSelect.value && estadoSelect.value != "Selecione um estado") {
-            novoTitulo = `DASHBOARD - ${estado}`;
-            document.getElementById("regiao-select").selectedIndex = 0
-            botaoResetAparecer()
-           filtroEstado(estado)
-
-        } else if (regiaoSelect.value && regiaoSelect.value != "") {
-            novoTitulo = `DASHBOARD - ${regiao}`;
-            document.getElementById("estado-select").selectedIndex = 0
-            botaoResetAparecer()
-            if(regiao == "Centro-Oeste"){
-                regiao = "CentroOeste"
-            }
-            filtroRegiao(regiao)
-        }
-
-        titulo.textContent = novoTitulo;
+    titulo.textContent = novoTitulo;
     }
 
     function resetEstado() {
@@ -713,12 +697,30 @@
 
     function estadoKPIs(estado) {
 
+        var KipMédia = gerarNumeroAleatorio();
+
         document.getElementById('KPI1').innerHTML =
             `           <h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
-                     <p>37%</p>`;
-        document.getElementById('KPI2').innerHTML =
+                     <p style="color:orange;">37%</p>`;
+
+
+        if(KipMédia < 600){
+            document.getElementById('KPI2').innerHTML =
             `           <h3>Média Geral das Notas (${estado})</h3>
-                     <p>657</p>`;
+                     <p style="color:red;">${KipMédia}</p>`;
+        }
+        else if(KipMédia > 600 && KipMédia < 699){
+            document.getElementById('KPI2').innerHTML =
+            `           <h3>Média Geral das Notas (${estado})</h3>
+                     <p style="color:orange;">${KipMédia}</p>`;
+        }
+        else if(KipMédia > 700){
+            document.getElementById('KPI2').innerHTML =
+            `           <h3>Média Geral das Notas (${estado})</h3>
+                     <p style="color:green;">${KipMédia}</p>`;
+        }
+
+
         document.getElementById('KPI3').innerHTML =
             `           <h3>Total de provas analisadas</h3>
                      <p>${(gerarNumeroAleatorio() * 180).toLocaleString("pt-BR")}</p>`
@@ -749,11 +751,10 @@
         estadoKPIs(estado)
         chartKill();
 
-
         var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
         var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
 
-        var optionsChart1 = {
+        var optionsChart1Estado = {
             chart: {
                 type: 'bar',
                 height: 455,
@@ -787,7 +788,7 @@
                 }
             }
         };
-        var optionsChart2 = {
+        var optionsChart2Estado = {
             chart: {
                 type: 'line',
                 height: 455,
@@ -825,8 +826,8 @@
             }
         };
 
-        var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
-        var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
+        chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1Estado);
+        chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2Estado);
 
         chart1.render();
         chart2.render();
@@ -934,24 +935,28 @@
         return 0;
 
     }
-
+   
     function filtroBrasil() {
-        modalcarregando();
-        kpiReset();
-        graficosBrasil();
-        botaoResetSumir();
+    document.getElementById("estado-select").selectedIndex = 0;
+    modalcarregando();
+    chartKill();
+    console.log("AGUARDANDO 1 - RESETANDO KPIs");
+    kpiReset();
+    console.log("AGUARDANDO 2 - PLOTANDO GRAFICOS");
+    graficosBrasil();
+    console.log("AGUARDANDO 3 - SUMINDO BOTÃO");
+    botaoResetSumir();
     }
 
     function graficosBrasil() {
-        chartKill();
         setTimeout(function() {
-        var optionsChart1 = {
+        var optionsChart1BrasilNew = {
             series: [{
                 name: 'Notas acima de 900 pontos',
                 data: dataNotas900
             }],
             chart: {
-                height: 420,
+                height: 455,
                 type: 'bar',
                 FontFace: '10'
             },
@@ -971,10 +976,10 @@
                 fontWeight: 'bold'
             }
         };
-        var optionsChart2 = {
+        var optionsChart2BrasilNew = {
             chart: {
                 type: 'line',
-                height: 420
+                height: 455
             },
             series: [{
                 name: 'Média Geral ENEM',
@@ -1008,30 +1013,12 @@
                 intersect: false
             }
         };
-        var optionsConst = {
-            series: dataMedia,
-            chart: {
-                height: 330,
-                type: 'pie',
-            },
-            labels: ['Notas entre 800 e 1000 pntos', 'Notas entre 600 e 800 pontos', 'Notas abaixo de 600 pontos'],
-            title: {
-                text: 'Porcentagem de notas abaixo/acima/proximo da média',
-                align: 'center'
-            },
-            legend: {
-                position: 'bottom' // 👈 legenda embaixo
-            }
-        };
-
-        var chart1Brasil = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
-        var chart2Brasil = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
-        var chartConst1 = new ApexCharts(document.querySelector(".map-under"), optionsConst);
-
-
-        chart1Brasil.render();
-        chart2Brasil.render();
-        chartConst1.render();
+        
+        chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1BrasilNew);
+        chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2BrasilNew);
+    
+        chart1.render();
+        chart2.render();
 
         document.getElementById("DASH_NOME").innerHTML = "DASHBOARD - BRASIL"
             
@@ -1055,6 +1042,7 @@
     }
 
     function chartKill() {
+
         chart1.destroy();
         chart2.destroy();
     }
@@ -1067,24 +1055,24 @@
 
     function kpiReset() {
         document.getElementById('KPI-PRINCIPAL').innerHTML = `
-        <div class="kpi-card" id="KPI1">
-                    <h3>Total de notas <br> acima de 900 pontos </h3>
-                    <p>4.870</p>
-        </div>
-        <div class="kpi-card" id="KPI2">
-                    <h3>Total de notas <br> abaixo de 500 pontos </h3>
-                    <p>123.989</p>
-        </div>
-        <div class="kpi-card" id="KPI3">
-                    <h3>Total de provas <br> analizadas no ultimo ano </h3>
-                    <p>48.760.878</p>
-        </div>
-        <div class="kpi-card" id="KPI4">
-                    <h3>Total de provas <br> com 1000 pontos no ultimo ano</h3>
-                    <p>230</p>
-        </div>
+            <div class="kpi-card" id="KPI1">
+            <h3>Total de notas <br> acima de 900 pontos </h3>
+            <p style="color: green;">4.870</p>
+            </div>
+            <div class="kpi-card" id="KPI2">
+            <h3>Total de notas <br> abaixo de 500 pontos </h3>
+            <p style="color: red;">123.989</p>
+            </div>
+            <div class="kpi-card" id="KPI3">
+            <h3>Estado com menor média <br></h3>
+            <p style="color: red;">ALAGOAS</p>
+            </div>
+            <div class="kpi-card" id="KPI4">
+            <h3>Estado com maior média <br></h3>
+            <p style="color: green;">SÃO PAULO</p>
+            </div>
         `;
-    }
+        }
 
     function botaoResetAparecer() {
         document.getElementById("botao_reset").style.display = "inline";
@@ -1119,25 +1107,37 @@
         return valorDaVez - 100;
     }
 
-    function mapaCor(){
-        for(i = 0 ; i < estados.length; i++){
-            var NotaEstado = notasMedia[i];
-            var EstadoID = estados[i];
-            console.log(EstadoID + " " + NotaEstado)
+    function mapaCor() {
+        const listaUl = document.querySelector(".lista ul");
+        listaUl.innerHTML = ""; // limpa a lista atual
 
-            if(NotaEstado < 600){
-                console.log("Pintando De Vermelho" + EstadoID)
-                document.getElementById(EstadoID).style.fill = "#c03113";
-            }
-            else if(NotaEstado >= 600 && NotaEstado < 700){
-                document.getElementById(EstadoID).style.fill = "#c0a213";
-            }
-            else if(NotaEstado >= 700){
-                document.getElementById(EstadoID).style.fill = "#68dd49";
+        const estadosLista = ["Distrito Federal", "Sergipe", "Alagoas", "Rio de Janeiro", "Espírito Santo"];
+
+        for (let i = 0; i < estados.length; i++) {
+            const NotaEstado = notasMediaRadom[i];
+            const EstadoID = estados[i];
+            let emoji = "";
+
+            if (NotaEstado < 600) {
+            document.getElementById(EstadoID).style.fill = "#c03113"; // vermelho
+            emoji = "🟥";
+            } else if (NotaEstado >= 600 && NotaEstado < 700) {
+            document.getElementById(EstadoID).style.fill = "#c0a213"; // amarelo
+            emoji = "🟨";
+            } else {
+            document.getElementById(EstadoID).style.fill = "#68dd49"; // verde
+            emoji = "🟩";
             }
 
+            // Atualiza a lista apenas para os estados desejados
+            if (estadosLista.includes(EstadoID)) {
+            const li = document.createElement("li");
+            li.textContent = `${EstadoID}: ${emoji}`;
+            listaUl.appendChild(li);
+            }
         }
     }
 
 
-</script>
+
+</script>        

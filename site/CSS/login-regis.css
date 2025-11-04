@@ -13,6 +13,22 @@
     text-align: center;
 }
 
+.erro {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.sucesso {
+  display: flex;
+  flex-direction: column;
+  color: green;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: center;
+}
+
 .auth-page {
   display: flex;
   align-items: center;
@@ -82,6 +98,24 @@
   width: 100%;
   max-width: 400px;
   text-align: center;
+}
+
+.senha-container {
+  width: 100%;
+  position: relative;
+}
+
+.senha-container input{
+  width: 93%;
+}
+
+.olho {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 20px;
 }
 
 .back-arrow {

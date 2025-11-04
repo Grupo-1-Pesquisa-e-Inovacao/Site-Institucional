@@ -2,6 +2,7 @@ body{
     font-family: "PT Sans", sans-serif;
     margin: 0px;
     height: 79vh;
+    overflow: hidden;
 }
 .navbar {
   background: #1E3A8A;
@@ -65,7 +66,7 @@ body{
     height: 1000px;
     width: 98%;
     flex: 2;
-    margin: 10px;
+    margin: 0;
     gap: 20px;
     box-shadow: 0 5px 30px rgba(0, 0, 0, 0.195);
     padding: 10px;
@@ -74,7 +75,7 @@ body{
     
     max-height: 100%; 
     overflow-y: auto; 
-    overflow-x: scroll; 
+    overflow: hidden;
 }
 
 .perfil-info {
@@ -83,7 +84,7 @@ body{
     background-color: white;
     padding: 10px;
     padding-left: 20px;
-    margin: 5px;
+    margin: 0;
     border-radius: 8px;
     box-shadow: 0 1px 10px rgba(0,0,0,0.3);
 
@@ -163,7 +164,9 @@ body{
 }
 
 .perfil-graficos h3{
-  margin: 0 0 10px 0;
+  margin: 0;
+  font-size: 25px;
+  margin: 10px;
   color: #1E3A8A;
   display: flex;
   flex-direction: column;
@@ -180,7 +183,7 @@ body{
     margin: 10px;
     background: linear-gradient(135deg, #5e89ff51, #ffffff);
     border-radius: 12px;
-    color: white;
+    color: rgb(9, 9, 9);
     font-weight: bold;
     font-size: 18px;
     padding: 8px;
@@ -221,12 +224,14 @@ body{
   height: 320px;
   border: solid 1px rgba(192, 192, 192, 0.783);
   border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.452);
 }
 
 .grafico-placeholder .graphs-box{
   width: 100%;
   display: flex;
   flex-direction: row;
+  gap: 10px;
 }
 
 .kpi-container {
@@ -236,13 +241,13 @@ body{
 
 .kpi-card {
   background-color: #fff;
-  height: 70px;
+  height: 80px;
   display: flex;
   flex-direction: column;
-  flex: 1;
+  width: 22%;
   border-radius: 10px;
   text-align: center;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.293);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.452);
   margin-top: 10px;
   padding: 10px;
 }
@@ -257,4 +262,61 @@ body{
   font-weight: bold;
   color: #333;
   margin: 0;
+}
+.carrossel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+}
+
+.carrossel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  width: 97%; /* 100% x número de slides */
+  gap: 10px
+}
+
+.grafico-placeholder {
+  flex: 0 0 100%;
+  height: 80%;
+}
+
+.carrossel-controles {
+  text-align: center;
+  margin-top: 0;
+  height: 100%;
+}
+
+.carrossel-controles button {
+  height: 25px;
+  width: 100px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bolder;
+  color: white;
+  background-color: #87a9ff;
+
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+
+  transition: all ease-in-out 0.3s;
+}
+
+.carrossel-controles button:hover{
+  background-color: #1E3A8A;
+}
+
+.logo-dash-fav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo-controls-container{
+  display: flex; 
+  flex-direction: row; 
+  height: 40px; 
+  gap: 10px;
 }

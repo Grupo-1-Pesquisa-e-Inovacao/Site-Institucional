@@ -1,6 +1,7 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function autenticar(req, res) {
+    console.log("ENTREI EM AUTENTICAR")
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
 

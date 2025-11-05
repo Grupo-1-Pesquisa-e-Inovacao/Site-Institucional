@@ -32,15 +32,28 @@ nav {
 }
 
 .logo {
-    background-image: url("../IMGS/LOGO-IMG2.png");
-    background-size: 65px;
-    background-repeat: no-repeat;
-    background-position: left center;
-    font-weight: bold;
-    font-size: 36px;
-    font-family: "PT Sans", sans-serif;
-    text-decoration: underline;
-    padding-left: 70px;
+  position: relative;
+  font-weight: bold;
+  font-size: 36px;
+  font-family: "PT Sans", sans-serif;
+  text-decoration: underline;
+  padding-left: 70px;
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 65px;
+  height: 65px;
+  background-color: #E0E7FF;
+  background-image: url("../IMGS/LOGO-IMG.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* sombra aplicada à imagem */
+  border-radius: 8px
 }
 
 .nav-buttons {

@@ -36,7 +36,7 @@
                 <div class="mapa">
                     <div class="lista">
                         <ul>
-                            <li>Distrito Federal: 🟥</li>
+                            <li>Distrito Federal: 🟥</li> 
                             <li>Sergipe: 🟨</li>
                             <li>Alagoas: 🟨</li>
                             <li>Rio de Janeiro: 🟩</li>
@@ -599,7 +599,11 @@
         style: {
             fontSize: '9px', // tamanho menor
             fontWeight: 'bold'
-        }
+        },
+        fill: {
+            colors: ['#1E3A8A']
+            }
+
     };
     var optionsChart2Frist  = {
         chart: {
@@ -636,6 +640,9 @@
         tooltip: {
             shared: true,
             intersect: false
+        },
+        fill: {
+            colors: ['#1E3A8A']
         }
     };
     var optionsConst = {
@@ -774,6 +781,7 @@
 
         var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
         var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
+        var mediaMunicipio = [378.5 , 388.1, 410.1, 405.5, 401.1 , 510.5 , 450.7 , 459.7 , 339.9 , 459.8]
 
         var optionsChart1Estado = {
             chart: {
@@ -784,18 +792,18 @@
             series: [
                 {
                     name: 'Média por Município',
-                    data: [450, 620, 700, 780, 910, 560, 670, 560].sort((a,b) => (a < b)) // valores de 0 a 1000
+                    data: mediaMunicipio.sort((a,b) => (a - b)) // valores de 0 a 1000
                 }
             ],
             xaxis: {
-                categories: ['São Paulo', 'Campinas', 'Santos', 'Ribeirão Preto', 'Sorocaba', 'Bauru', 'Jundiaí','Mogi das Cruzes']
+                categories: ['Municipio 1', 'Municipio 2', 'Municipio 3', 'Municipio 4', 'Municipio 5', 'Municipio 6', 'Municipio 7','Municipio 8', 'Municipio 9', 'Municipio 10']
             },
             yaxis: {
                 title: { text: 'Nota' },
                 min: 0,
             },
             title: {
-                text: `Municipios com maiores médias em ${estado}`,
+                text: `Municipios com Menores Médias em ${estado} (TOP 10)`,
                 align: 'center'
             },
             tooltip: {
@@ -805,8 +813,11 @@
             plotOptions: {
                 bar: {
                     horizontal: false,
-                    columnWidth: '60%'
+                    columnWidth: '70%'
                 }
+            },
+            fill: {
+            colors: ['#1E3A8A']
             }
         };
         var optionsChart2Estado = {
@@ -844,6 +855,9 @@
             tooltip: {
                 shared: true,
                 intersect: false
+            },
+            fill: {
+            colors: ['#1E3A8A']
             }
         };
 
@@ -995,6 +1009,9 @@
             style: {
                 fontSize: '9px', // tamanho menor
                 fontWeight: 'bold'
+            },
+            fill: {
+            colors: ['#1E3A8A']
             }
         };
         var optionsChart2BrasilNew = {
@@ -1032,6 +1049,9 @@
             tooltip: {
                 shared: true,
                 intersect: false
+            },
+             fill: {
+            colors: ['#1E3A8A']
             }
         };
         

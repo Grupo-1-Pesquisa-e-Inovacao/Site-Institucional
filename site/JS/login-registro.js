@@ -16,48 +16,57 @@ function validar() {
   const emailElement = document.getElementById("email_input");
   const senhaElement = document.getElementById("senha_input");
   const confirmacaoSenhaElement = document.getElementById("confirmacao_senha_input");
+  const estadoElement = document.getElementById("estado_input");
+  const estadoBorder = document.getElementById("estado_border");
 
   const nome = nomeElement.value.trim();
   const email = emailElement.value.trim();
   const senha = senhaElement.value;
   const confirmacaoSenha = confirmacaoSenhaElement.value;
+  const estado = estadoElement.value;
+
+  console.log(estado)
 
   let valido = true;
 
-  if(nome == "" || email == ""){
-      if(email == ""){
-        mostrarErro("erro_email", emailElement, "❌ Campo Obrigatorio");
-      }
-      if(nome == ""){
-        mostrarErro("erro_nome", nomeElement, "❌ Campo Obrigatorio");
-      }
-      valido = false
-    }
-  else{
-      const nomeValido = /^[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)+$/.test(nome);
-      if (!nomeValido) {
-        mostrarErro("erro_nome", nomeElement, "❌ Nome inválido. Use nome completo sem números.");
-        valido = false;
-      }
-      const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-      if (!emailValido) {
-        mostrarErro("erro_email", emailElement, "❌ Email inválido. Use o formato nome@dominio.com");
-        valido = false;
-      }
-    }
+  // Validação do estado
+  if (estado === "0") {
+    mostrarErro("erro_estado", estadoBorder, "❌ Selecione um estado.");
+    valido = false;
+  }
 
-    if(senha == "" || confirmacaoSenha == ""){
-        if(senha == ""){
-          mostrarErro("erro_confirmacao", confirmacaoSenhaElement, "❌ Campo Obrigatorio");
-        }
-        if(confirmacaoSenha == ""){
-          mostrarErro("erro_senha", senhaElement, "❌ Campo Obrigatorio");
-        }
-        valido = false
-      }
-    else{
+  // Validação de nome e email
+  if (nome === "" || email === "") {
+    if (email === "") {
+      mostrarErro("erro_email", emailElement, "❌ Campo Obrigatório");
+    }
+    if (nome === "") {
+      mostrarErro("erro_nome", nomeElement, "❌ Campo Obrigatório");
+    }
+    valido = false;
+  } else {
+    const nomeValido = /^[A-Za-zÀ-ÿ]+(?:\s[A-Za-zÀ-ÿ]+)+$/.test(nome);
+    if (!nomeValido) {
+      mostrarErro("erro_nome", nomeElement, "❌ Nome inválido. Use nome completo sem números.");
+      valido = false;
+    }
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (!emailValido) {
+      mostrarErro("erro_email", emailElement, "❌ Email inválido. Use o formato nome@dominio.com");
+      valido = false;
+    }
+  }
 
-    // Validação da senha
+  // Validação de senha e confirmação
+  if (senha === "" || confirmacaoSenha === "") {
+    if (senha === "") {
+      mostrarErro("erro_senha", senhaElement, "❌ Campo Obrigatório");
+    }
+    if (confirmacaoSenha === "") {
+      mostrarErro("erro_confirmacao", confirmacaoSenhaElement, "❌ Campo Obrigatório");
+    }
+    valido = false;
+  } else {
     const errosSenha = [];
     if (!/[A-Z]/.test(senha)) errosSenha.push(" Pelo menos uma letra maiúscula ");
     if (!/\d/.test(senha)) errosSenha.push(" Pelo menos um número");
@@ -67,18 +76,18 @@ function validar() {
     if (errosSenha.length > 0) {
       const mensagem = "❌ Senha fraca:" + errosSenha.join("|");
       mostrarErro("erro_senha", senhaElement, mensagem);
-      mostrarErro("erro_confirmacao", confirmacaoSenhaElement); // marca os dois campos
+      mostrarErro("erro_confirmacao", confirmacaoSenhaElement);
       valido = false;
     }
 
-    // Verifica se as senhas são iguais
     if (senha !== confirmacaoSenha) {
       mostrarErro("erro_confirmacao", confirmacaoSenhaElement, "❌ As senhas não coincidem.");
-      mostrarErro("erro_senha", senhaElement, "❌ As senhas não coincidem."); // marca os dois campos
+      mostrarErro("erro_senha", senhaElement, "❌ As senhas não coincidem.");
       valido = false;
     }
   }
 
+  // Se tudo estiver válido
   if (valido) {
     document.getElementById("loading_gif").innerHTML = `
       <div><img src="./IMGS/loading.gif" alt="" height="120px" width="120px"></div>
@@ -101,6 +110,11 @@ function limparErros() {
 
   const inputs = document.querySelectorAll("input");
   inputs.forEach(input => input.style.border = "");
+
+  const estadoBorder = document.getElementById("estado_border");
+  if (estadoBorder) {
+    estadoBorder.style.border = "1px solid #ccc"; // restaura a borda padrão
+  }
 }
 
 
@@ -112,13 +126,16 @@ function cadastrar() {
   // Agora vá para o método fetch logo abaixo
   var nomeVar = nome_input.value;
   var emailVar = email_input.value;
+  var estadoVar = document.getElementById("estado_input").value;
   var senhaVar = senha_input.value;
   var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
 
   // Verificando se há algum campo em branco
   if (
     nomeVar == "" ||
     emailVar == "" ||
+    estadoVar == "" ||
     senhaVar == "" ||
     confirmacaoSenhaVar == ""
   ) {
@@ -136,6 +153,7 @@ function cadastrar() {
     body: JSON.stringify({
       nomeServer: nomeVar,
       emailServer: emailVar,
+      estadoServer: estadoVar,
       senhaServer: senhaVar,
     }),
   })
@@ -199,8 +217,11 @@ function entrar() {
         sessionStorage.EMAIL_USUARIO = json.email;
         sessionStorage.NOME_USUARIO = json.nome;
         sessionStorage.ID_USUARIO = json.id;
-        sessionStorage.USUARIO_ADMIM = json.admim;
+        sessionStorage.USUARIO_ADMIN = json.administrador;
+        sessionStorage.USUARIO_ESTADO = json.estado;
 
+        console.log(json.administrador)
+        
         document.getElementById('login-loading').innerHTML = `<img src="./IMGS/loading.gif" height="75px" width="75px">`
 
         setTimeout(() => {

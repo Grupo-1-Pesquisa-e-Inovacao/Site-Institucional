@@ -36,38 +36,26 @@
 
             <div class="infos">
                 <h2>Informações do Usuário</h2>
-
                 <div class="infos-box">
-
                     <div>
-
                         <h2>Email:</h2>
                         <p id="email"></p>
                         <button>Alterar</button>
-
-                        
                     </div>
-
                     <div>
-                        
                         <h2>Nome:</h2>
                         <p id="username2"></p>
                         <button>Alterar</button>
-
                     </div>
                     <div>
-
-                        <h2>Estado de Origem:</h2>
-                        <p>São Paulo</p>
+                        <h2>Estado do Usuario:</h2>
+                        <p id="estado_usuario"></p>
                         <button>Alterar</button>
-
                     </div>
 
                     <div>
-
                         <h2>Data de cadastro:</h2>
                         <p>20/08/2025</p>
-
                     </div>
                     
                 </div>
@@ -152,7 +140,7 @@
 
         // VERIFICANDO VARIÁVEL SE É OU NÃO ADM
         document.addEventListener("DOMContentLoaded", function () {
-        const isAdmin = sessionStorage.USUARIO_ADMIM; // sempre retorna string
+        const isAdmin = sessionStorage.USUARIO_ADMIN;
         console.log(isAdmin)
 
         if (Number(isAdmin) === 1) {

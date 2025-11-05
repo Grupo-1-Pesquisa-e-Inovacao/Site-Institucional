@@ -78,6 +78,14 @@
   font-size: 16px;
 }
 
+.auth-container select {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
 .auth-container button {
   padding: 12px;
   background: #1E3A8A;

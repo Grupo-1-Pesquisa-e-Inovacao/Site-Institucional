@@ -1,71 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Configurações</title>
-  <link rel="stylesheet" href="../CSS/user-area.css">
-  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG2.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações - GeoEduca</title>
+  <link rel="stylesheet" href="./CSS/navbar.css" />
+  <link rel="stylesheet" href="./CSS/admim.css">
+  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG2.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
+  <!-- NAVBAR -->
   <header class="navbar">
-    <div class="logo">GeoEduca</div>
+    <div class="logoGeo">GeoEduca</div>
     <nav>
       <ul>
         <li><a href="usuario.html">Início</a></li>
         <li><a href="user-profile.html">Meu Perfil</a></li>
         <li><a href="mapa.html">Gráficos</a></li>
-        <li><a href="configurações.html"style="color: orange;">Configurações</a></li>
-        <li><a href="home.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+        <li><a href="configurações.html" style="color: orange;">Configurações</a></li>
+        <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
       </ul>
     </nav>
   </header>
 
-
-  <main class="dashboard-container">
-    <h1>⚙️ Configurações da Conta</h1>
-
-    <section class="settings-section">
+  <!-- TOPO VISUAL -->
+  <div class="container-principal">
+    <section class="container-topo">
+      <h1>Configurações da Conta</h1>
+      <h3>Personalize suas informações e preferências no GeoEduca.</h3>
+    </section>
+  
+    <!-- Nome de Usuário -->
+    <section class="funcionalidades">
       <h2>Alterar Nome de Usuário</h2>
-      <form class="settings-form">
-        <label for="username">Novo nome:</label>
-        <input type="text" id="username" name="username" placeholder="Digite seu novo nome">
-        <button type="submit">Salvar</button>
-      </form>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Nome Atual</th>
+            <th>Novo Nome</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>João da Silva</td>
+            <td><input type="text" placeholder="Digite o novo nome" /></td>
+            <td><button class="action-btn">Salvar</button></td>
+          </tr>
+        </tbody>
+      </table>
     </section>
-
-    <section class="settings-section">
+  
+    <!-- E-mail -->
+    <section class="funcionalidades">
       <h2>Alterar E-mail</h2>
-      <form class="settings-form">
-        <label for="email">Novo e-mail:</label>
-        <input type="email" id="email" name="email" placeholder="Digite seu novo e-mail">
-        <button type="submit">Salvar</button>
-      </form>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>E-mail Atual</th>
+            <th>Novo E-mail</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>joao@geoeduca.com</td>
+            <td><input type="email" placeholder="Digite o novo e-mail" /></td>
+            <td><button class="action-btn">Salvar</button></td>
+          </tr>
+        </tbody>
+      </table>
     </section>
-
-    <section class="settings-section">
+  
+    <!-- Senha -->
+    <section class="funcionalidades">
       <h2>Alterar Senha</h2>
-      <form class="settings-form">
-        <label for="old-password">Senha atual:</label>
-        <input type="password" id="old-password" name="old-password" placeholder="Senha atual">
-
-        <label for="new-password">Nova senha:</label>
-        <input type="password" id="new-password" name="new-password" placeholder="Nova senha">
-
-        <label for="confirm-password">Confirmar nova senha:</label>
-        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirme sua nova senha">
-
-        <button type="submit">Salvar</button>
-      </form>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Senha Atual</th>
+            <th>Nova Senha</th>
+            <th>Confirmar Senha</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="password" placeholder="Senha atual" /></td>
+            <td><input type="password" placeholder="Nova senha" /></td>
+            <td><input type="password" placeholder="Confirmar nova senha" /></td>
+            <td><button class="action-btn">Salvar</button></td>
+          </tr>
+        </tbody>
+      </table>
     </section>
-  </main>
-
-  <footer class="site-footer-conf">
-    <div class="footer-bottom">© 2025 GeoEduca - Todos os direitos reservados.</div>
-  </footer>
-
-  <script src="script.js"></script>
+  </div>
 </body>
 </html>
+
+  <!-- SCRIPTS -->
+  <script src="./JS/logout.js"></script>
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const isAdmin = sessionStorage.USUARIO_ADMIN;
+      if (Number(isAdmin) === 1) {
+        const navList = document.querySelector(".navbar nav ul");
+        const adminNavItem = document.createElement("li");
+        adminNavItem.innerHTML = '<a href="admin.html">Administração</a>';
+        navList.insertBefore(adminNavItem, navList.lastElementChild);
+      }
+
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", function (event) {
+          sessionStorage.clear();
+          event.preventDefault();
+          window.location.href = logoutBtn.getAttribute("href");
+        });
+      }
+    });
+  </script>

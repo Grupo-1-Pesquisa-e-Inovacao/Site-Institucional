@@ -13,14 +13,70 @@
     <a href="login.html" class="back-arrow" title="Voltar para login">←</a>
     <h1>Cadastro</h1>
     <form>
-      <input type="text" placeholder="Nome completo" required id="nome_input">
-      <input type="email" placeholder="Email" required id="email_input">
-      <input type="password" placeholder="Senha" required id="senha_input">
-      <input type="password" placeholder="Confirmar senha" required id="confirmacao_senha_input">
-      <button type="submit" onclick="cadastrar()">Cadastrar</button>
+      <input type="text" placeholder="Nome completo" id="nome_input">
+      <span class="erro" id="erro_nome" style="font-size: 15px;"></span>
+    
+      <input type="text" placeholder="Email" id="email_input">
+      <span class="erro" id="erro_email" style="font-size: 15px;"></span>
+      <div id="estado_border" style="border: 1px solid #ccc; border-radius: 8px;" >
+        <select name="estado" id="estado_input">
+          <option value="0">Selecione um estado</option>
+          <option value="1">Acre</option>
+          <option value="2">Alagoas</option>
+          <option value="3">Amapá</option>
+          <option value="4">Amazonas</option>
+          <option value="5">Bahia</option>
+          <option value="6">Ceará</option>
+          <option value="7">Distrito Federal</option>
+          <option value="8">Espírito Santo</option>
+          <option value="9">Goiás</option>
+          <option value="10">Maranhão</option>
+          <option value="11">Mato Grosso</option>
+          <option value="12">Mato Grosso do Sul</option>
+          <option value="13">Minas Gerais</option>
+          <option value="14">Pará</option>
+          <option value="15">Paraíba</option>
+          <option value="16">Paraná</option>
+          <option value="17">Pernambuco</option>
+          <option value="18">Piauí</option>
+          <option value="19">Rio de Janeiro</option>
+          <option value="20">Rio Grande do Norte</option>
+          <option value="21">Rio Grande do Sul</option>
+          <option value="22">Rondônia</option>
+          <option value="23">Roraima</option>
+          <option value="24">Santa Catarina</option>
+          <option value="25">São Paulo</option>
+          <option value="26">Sergipe</option>
+          <option value="27">Tocantins</option>
+        </select>
+      </div>
+      <span class="erro" id="erro_estado" style="font-size: 15px;"></span>
+    
+      <div class="senha-container">
+        <input type="password" placeholder="Senha" id="senha_input">
+        <span onclick="toggleSenha('senha_input')" class="olho">👁️</span>
+      </div>
+
+      <span class="erro" id="erro_senha" style="font-size: 15px;"></span>
+
+      <div class="senha-container">
+        <input type="password" placeholder="Confirme a senha" id="confirmacao_senha_input">
+        <span onclick="toggleSenha('confirmacao_senha_input')" class="olho">👁️</span>
+      </div>
+
+      <span class="erro" id="erro_confirmacao" style="font-size: 15px;"></span>
+      
+    
+      <button type="button" onclick="validar()">Cadastrar</button>
+      <div id="loading_gif" class="sucesso">
+      </div>
+
     </form>
+    
     <p>Já tem conta? <a href="login.html">Entrar</a></p>
   </div>
-<script src="./JS/login-registro.js"></script>
 </body>
 </html>
+<script src="JS/login-registro.js"></script>
+<script>
+</script>

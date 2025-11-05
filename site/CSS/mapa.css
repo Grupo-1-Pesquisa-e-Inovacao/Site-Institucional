@@ -235,6 +235,7 @@ button:hover {
   overflow: visible;
   white-space: nowrap;
   height: 90%;
+  width: 0.5%;
   align-content: end;
 }
 

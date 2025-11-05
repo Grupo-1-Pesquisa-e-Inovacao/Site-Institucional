@@ -1,0 +1,208 @@
+/* RESET & BASE */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PT Sans", sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+.logo {
+  background-image: url("../IMGS/LOGO-IMG2.png");
+  background-repeat: no-repeat;
+  background-size: 60px;
+  background-position: left center;
+  padding-left: 70px;
+  font-size: 32px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-buttons button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.nav-buttons button:hover {
+  background-color: #74b9ff;
+  transform: scale(1.05);
+}
+
+/* CONTAINER PRINCIPAL */
+.container-principal {
+  padding: 80px 40px 60px;
+}
+
+/* TOPO */
+.container-topo {
+  background: linear-gradient(rgba(255, 165, 0, 0.6), rgba(255, 165, 0, 0.6)), url("../IMGS/MAPA_BRASIL.webp");
+  background-size: cover;
+  background-position: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: white;
+  border-radius: 12px;
+  margin-bottom: 40px;
+}
+
+.container-topo h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.container-topo p {
+  font-size: 18px;
+  margin-bottom: 25px;
+}
+
+.cta-btn {
+  background-color: #1E3A8A;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.cta-btn:hover {
+  background-color: #74b9ff;
+  transform: scale(1.05);
+}
+
+/* SEÇÕES DE USUÁRIOS */
+.funcionalidades {
+  margin-bottom: 60px;
+}
+
+.funcionalidades h2 {
+  font-size: 28px;
+  color: #1E3A8A;
+  margin-bottom: 20px;
+}
+
+.action-btn {
+  background-color: #2563EB;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.action-btn:hover {
+  background-color: #1E40AF;
+  transform: scale(1.05);
+}
+
+/* TABELAS */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.user-table th,
+.user-table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+  background-color: #1E3A8A;
+  color: white;
+  font-weight: bold;
+}
+
+.user-table tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* BOTÃO DELETAR */
+.delete-btn {
+  background-color: #f91616;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.edit-btn {
+  background-color: #F97316;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.delete-btn:hover {
+  background-color: #b00000;
+}
+
+.edit-btn:hover {
+  background-color: rgb(204, 204, 0);
+}
+
+
+/* FOOTER */
+.site-footer {
+  background-color: #1E3A8A;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #f8fafc;
+  color: #1E293B;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: "PT Sans", sans-serif;
+}
+
+input::placeholder {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+input:focus {
+  outline: none;
+  border-color: #2563EB;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+}

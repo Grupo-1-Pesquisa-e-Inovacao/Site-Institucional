@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administração - GeoEduca</title>
+  <link rel="stylesheet" href="./CSS/admim.css" />
+  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG2.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="./CSS/navbar.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+    <div class="logoGeo">GeoEduca</div>
+    <nav>
+      <ul>
+        <li><a href="usuario.html">Início</a></li>
+        <li><a href="user-profile.html">Meu Perfil</a></li>
+        <li><a href="mapa.html" >Gráficos</a></li>
+        <li><a href="configurações.html">Configurações</a></li>
+        <li><a href="admin.html" style="color: orange;">Administração</a></li>
+        <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <div class="container-principal">
+    <section class="container-topo">
+      <h1>Painel de Administração</h1>
+      <h3>Gerencie os usuários do sistema GeoEduca.</h3>
+    </section>
+
+    <section class="funcionalidades">
+      <h2>Usuários Administradores</h2>
+      <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Administrador</button>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Cargo</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Maria Silva</td>
+            <td>maria@geoeduca.com</td>
+            <td>Coordenadora Geral</td>
+            <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+          </tr>
+          <tr>
+            <td>João Oliveira</td>
+            <td>joao@geoeduca.com</td>
+            <td>Supervisor Técnico</td>
+            <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="funcionalidades">
+      <h2>Usuários Comuns</h2>
+      <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Usuário</button>
+      <table class="user-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Área</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Lucas Pereira</td>
+            <td>lucas@geoeduca.com</td>
+            <td>Ensino Médio</td>
+            <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+          </tr>
+          <tr>
+            <td>Ana Costa</td>
+            <td>ana@geoeduca.com</td>
+            <td>Ensino Fundamental</td>
+            <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+          </tr>
+          <tr>
+            <td>Rafael Lima</td>
+            <td>rafael@geoeduca.com</td>
+            <td>Geografia</td>
+            <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 GeoEduca - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

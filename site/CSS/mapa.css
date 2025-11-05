@@ -2,6 +2,7 @@ body {
   font-family: "PT Sans", sans-serif;
   margin: 0px;
   height: 79vh;
+  background: linear-gradient(rgba(255,165,0,0.6), rgba(255,165,0,0.6)), url("../IMGS/MAPA_BRASIL.webp");
 }
 
 /* MODAL DO LOADING!! */
@@ -28,49 +29,6 @@ body {
   max-width: 400px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
-
-.navbar {
-  background: #1E3A8A;
-  color: white;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 80px;
-}
-
-.navbar .logo {
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
-.navbar ul li a {
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.navbar ul li a:hover {
-  color: #F97316;
-}
-
-.logout-btn {
-  background: #F97316;
-  padding: 8px 12px;
-  border-radius: 6px;
-}
-
-.logout-btn:hover {
-  background: #e85c00;
-}
-
 
 #svg-map {
   width: 100%;
@@ -110,7 +68,7 @@ body {
   height: 98%;
   margin: 0px;
   padding: 20px;
-  background: #f0f4ff;
+  background: #f0f4ff00;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   gap: 20px;

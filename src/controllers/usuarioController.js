@@ -26,6 +26,7 @@ function autenticar(req, res) {
                             id: resultadoAutenticar[0].id,
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
+                            admim: resultadoAutenticar[0].admim,
                         });
                     }
                     

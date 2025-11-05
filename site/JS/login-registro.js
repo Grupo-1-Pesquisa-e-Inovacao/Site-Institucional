@@ -199,6 +199,7 @@ function entrar() {
         sessionStorage.EMAIL_USUARIO = json.email;
         sessionStorage.NOME_USUARIO = json.nome;
         sessionStorage.ID_USUARIO = json.id;
+        sessionStorage.USUARIO_ADMIM = json.admim;
 
         document.getElementById('login-loading').innerHTML = `<img src="./IMGS/loading.gif" height="75px" width="75px">`
 

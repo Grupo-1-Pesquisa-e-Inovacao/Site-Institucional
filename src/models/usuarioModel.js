@@ -19,7 +19,7 @@ function cadastrar(estado, nome, email, senha) {
 
   var instrucaoSql = `
     INSERT INTO usuario (idSecretaria, idEstado, administrador, nome, email, senha)
-    VALUES (1, ${estado}, false, '${nome}', '${email}', '${senha}');
+    VALUES (1, 999, false, '${nome}', '${email}', '${senha}');
   `;
   
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

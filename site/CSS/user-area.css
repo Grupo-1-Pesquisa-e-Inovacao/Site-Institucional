@@ -174,26 +174,72 @@ body.dashboard {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   transform: scale(1.02);
 }
-
 .site-footer {
   background: #1E3A8A;
   color: #fff;
   padding: 18px 16px;
   border-top: 1px solid rgba(255,255,255,0.2);
+  position: absolute;
+  bottom: 0px;
   width: 100%;
-  position: relative;   /* ou fixed se quiser sempre visível */
-  bottom: 0;
+}
+
+.site-footer-conf {
+  font-size: 12px;
+  background: #1E3A8A;
+  color: #fff;
+  padding: 18px 16px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  text-align: center;
+  position: absolute;
+  bottom: -500px;
+  width: 100%;
 }
 
 .site-footer .footer-bottom {
   text-align: center;
   font-size: 13px;
   opacity: 0.95;
-  margin: 0 auto;       /* garante centralização */
 }
 
-.site-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
+
+.site-footer a {
+  color: #F97316;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.site-footer a:hover {
+  color: #ffd2b0;
+}
+
+
+.site-footer .footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.site-footer .footer-col {
+  flex: 1;
+  min-width: 220px;
+}
+.site-footer .footer-col h2,
+.site-footer .footer-col h3 {
+  color: #F97316;
+  margin: 0 0 12px;
+}
+.site-footer .footer-col p,
+.site-footer .footer-col li {
+  font-size: 14px;
+  line-height: 1.6;
+}
+.site-footer .footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-footer .footer-col ul li + li {
+  margin-top: 8px;
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>GeoEduca - Dashboard </title>
     <link rel="stylesheet" href="../CSS/mapa.css">
-    <link rel="stylesheet" href="../CSS/navbar.css">
+    <link rel="stylesheet" href="./CSS/navbar.css">
     <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -16,10 +16,10 @@
         <nav>
           <ul>
             <li><a href="usuario.html">Início</a></li>
-            <li><a href="perfil.html">Meu Perfil</a></li>
-            <li><a href="dashboard.html" style="color: orange;">Dashboard</a></li>
+            <li><a href="user-profile.html">Meu Perfil</a></li>
+            <li><a href="mapa.html" style="color: orange;">Gráficos</a></li>
             <li><a href="configurações.html">Configurações</a></li>
-            <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+            <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
           </ul>
         </nav>
       </header>
@@ -547,7 +547,7 @@
         function adicionarAbaAdministracao() {
         const navList = document.querySelector(".navbar nav ul");
         const adminNavItem = document.createElement("li");
-        adminNavItem.innerHTML = '<a href="../ADM-PAGES/admin.html">Administração</a>';
+        adminNavItem.innerHTML = '<a href="admin.html">Administração</a>';
         navList.insertBefore(adminNavItem, navList.lastElementChild); // insere antes do botão "Sair"
         }
 

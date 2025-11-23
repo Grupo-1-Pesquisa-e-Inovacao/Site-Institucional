@@ -1,78 +1,440 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Usuário</title>
+    <title>GeoEduca - Perfil do Usuário</title>
     <link rel="stylesheet" href="perfil.css">
-    <link rel="stylesheet" href="../CSS/user-profile.css">
+    <link rel="stylesheet" href="./CSS/navbar.css">
+    <link rel="stylesheet" href="./CSS/user-profile.css">
+    <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body>
-   <header class="navbar">
-    <div class="logo">GeoEduca</div>
-    <nav>
-      <ul>
-        <li><a href="usuario.html">Início</a></li>
-        <li><a href="user-profile.html" style="color: orange;">Meu Perfil</a></li>
-        <li><a href="mapa.html">Gráficos</a></li>
-        <li><a href="configurações.html">Configurações</a></li>
-        <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-      </ul>
-    </nav>
-  </header>
-
+    <header class="navbar">
+        <div class="logo"></div>
+        <nav>
+          <ul>
+            <li><a href="usuario.html">Início</a></li>
+            <li><a href="user-profile.html" style="color: orange;">Meu Perfil</a></li>
+            <li><a href="mapa.html">Gráficos</a></li>
+            <li><a href="configurações.html">Configurações</a></li>
+            <li><a href="index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+          </ul>
+        </nav>
+      </header>
+    
     <div class="perfil-container">
+        <div class="perfil-info">
+            <div class="logo">
+                <h1 id="username">Bem vindo!,<br></h1>
+            </div>
+            <div class="infos">
+                <h2>Informações do Usuário</h2>
+                <div class="infos-box">
+                    <div>
+                        <h2>Email:</h2>
+                        <p id="email"></p>
+                        <button>Alterar</button>
+                    </div>
+                    <div>
+                        <h2>Nome:</h2>
+                        <p id="username2"></p>
+                        <button>Alterar</button>
+                    </div>
+                    <div>
+                        <h2>Estado do Usuario:</h2>
+                        <p id="estado_usuario"></p>
+                        <button>Alterar</button>
+                    </div>
 
-    <div class="perfil-info">
-        <h1 id="username">Bem vindo!,<br></h1>
-        <p>Email: usuario@exemplo.com</p>
-        <p>Data de cadastro: 20/08/2025</p>
-        <a href="configurações.html">Editar informações</a>
+                    <div>
+                        <h2>Data de cadastro:</h2>
+                        <p>20/08/2025</p>
+                    </div>
+                    
+                </div>
 
-        <div class="perfil-notificacoes">
-            <h2>Notificações</h2>
-            <ul>
-                <li>Exemplo de notificação 1 </li>
-                <li>Exemplo de notificação 2</li>
-                <li>Exemplo de notificação 3</li>
-            </ul>
+            </div>
+
         </div>
-        
+
+        <div class="perfil-graficos">
+            <div class="logo-controls-container">
+                <h3>Gráficos e Estatísticas - Favoritados</h3>
+                        
+                <div class="carrossel-controles">
+                    <button onclick="prevSlide()"> < Anterior</button>
+                    <button onclick="nextSlide()">Proximo > </button>
+                </div>
+            </div>
+
+            <div class="carrossel-container">
+              <div class="carrossel-track">
+                <!-- Slide 1 -->
+                <div class="grafico-placeholder">
+                    <div class="logo-dash-fav"> 
+                        <h3>Dashboard - Brasil</h3>
+                        <div>
+                            <button class="button-editar">Editar</button> 
+                            <button class="button-deletar">Deletar</button> 
+                        </div>
+                    </div>
+                  <div class="graphs-box">
+                    <div id="chart1" class="chart"></div>
+                    <div id="chart2" class="chart"></div>
+                  </div>
+                  <div class="kpi-container">
+                    <div class="kpi-card"><h3>Menor média</h3><p style="color: red;">ALAGOAS</p></div>
+                    <div class="kpi-card"><h3>Maior média</h3><p style="color: green;">SÃO PAULO</p></div>
+                    <div class="kpi-card"><h3>Total Notas Maior Que 900</h3><p style="color: green;">4.870</p></div>
+                    <div class="kpi-card"><h3>Total Notas Menor Que 500</h3><p style="color: red;">123.989</p></div>
+                  </div>
+                </div>
+          
+                <!-- Slide 2 -->
+                <div class="grafico-placeholder">
+                    <div class="logo-dash-fav"> 
+                        <h3>Dashboard - São Paulo</h3>
+                        <div>
+                            <button class="button-editar">Editar</button> 
+                            <button class="button-deletar">Deletar</button> 
+                        </div>
+                    </div>
+                  <div class="graphs-box">
+                    <div id="chart1-" class="chart"></div>
+                    <div id="chart2-" class="chart"></div>
+                  </div>
+                  <div class="kpi-container" id="kpi-container1-">
+                    <div class="kpi-card"><h3>Menor média</h3><p style="color: red;">ALAGOAS</p></div>
+                    <div class="kpi-card"><h3>Maior média</h3><p style="color: green;">SÃO PAULO</p></div>
+                    <div class="kpi-card"><h3>Total Notas Maior Que 900</h3><p style="color: green;">4.870</p></div>
+                    <div class="kpi-card"><h3>Total Notas Menor Que 500</h3><p style="color: red;">123.989</p></div>
+                  </div>
+                </div>
+          
+                <!-- Slide 3 -->
+                <div class="grafico-placeholder">
+                  <h3>Gráfico 3</h3>
+                  <div class="chart" style="width: 100%; height: 320px;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
-
-    <div class="perfil-graficos">
-        <h2>Gráficos e Estatísticas - Estados Favoritados </h2>
-        <div class="grafico-placeholder">
-            <div id="FAV_001"></div>
-            <div id="FAV_002"></div>
-        </div>
-        <div class="grafico-placeholder">
-            <p>Gráfico 2</p>
-        </div>
-        <div class="grafico-placeholder">
-            <p>Gráfico 3</p>
-        </div>
-        <div class="grafico-placeholder">
-            <p>Gráfico 4</p>
-        </div>
-        <div class="grafico-placeholder">
-            <p>Gráfico 5</p>
-        </div>
-        <div class="grafico-placeholder">
-            <p>Gráfico 6</p>
-        </div>
-        <div class="grafico-placeholder">
-            <p>Gráfico 7</p>
-        </div>
-    </div>
-
-</div>
 </body>
+
 </html>
 
+<script src="./JS/logout.js"></script>
 <script src="./JS/user-conf.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 <script>
 
-    
+        // VERIFICANDO VARIÁVEL SE É OU NÃO ADM
+        document.addEventListener("DOMContentLoaded", function () {
+        const isAdmin = sessionStorage.USUARIO_ADMIN;
+        console.log(isAdmin)
+
+        if (Number(isAdmin) === 1) {
+            adicionarAbaAdministracao();
+        }
+        });
+
+        function adicionarAbaAdministracao() {
+        const navList = document.querySelector(".navbar nav ul");
+        const adminNavItem = document.createElement("li");
+        adminNavItem.innerHTML = '<a href="admin.html">Administração</a>';
+        navList.insertBefore(adminNavItem, navList.lastElementChild); // insere antes do botão "Sair"
+        }
+
+
+
+
+let slideAtual = 0;
+  const track = document.querySelector(".carrossel-track");
+  const totalSlides = document.querySelectorAll(".grafico-placeholder").length;
+
+  function updateSlide() {
+    const offset = -slideAtual * 102.5;
+    track.style.transform = `translateX(${offset}%)`;
+  }
+
+  function nextSlide() {
+    slideAtual = (slideAtual + 1) % totalSlides;
+    updateSlide();
+  }
+
+  function prevSlide() {
+    slideAtual = (slideAtual - 1 + totalSlides) % totalSlides;
+    updateSlide();
+  }
+
+var dataNotas900 = [600, 580, 484, 455, 436, 391, 372, 267];
+
+var dataMedia = [1789098, 8906143, 14876450];
+
+var estados = ["Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
+    "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco",
+    "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina",
+    "São Paulo", "Sergipe", "Tocantins"];
+
+var notasMedia = [610, 620, 630, 615, 640, 635, 650, 690, 685, 625, 670, 665, 695, 660, 655, 700, 680, 645, 710, 665, 700, 650, 655, 695, 705, 660, 670];
+
+
+var anos = ["2018", "2019", "2020", "2021", "2022"];
+
+var mediaGeral = [500.6, 510.2, 520.5, 510.8, 530.0];
+
+
+var optionsChart1 = {
+    series: [{
+        name: 'Notas acima de 900 pontos',
+        data: dataNotas900
+    }],
+    chart: {
+        height: 300,
+        type: 'bar',
+        FontFace: '10'
+    },
+    xaxis: {
+        categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF'],
+        title: {
+            text: 'Estado'
+        },
+    },
+    yaxis: {
+        max: dataNotas900[0] + 100
+    },
+    title: {
+        text: 'Estados com mais nota acima de 900 pontos (TOP 10)',
+        align: 'center'
+
+    },
+    style: {
+        fontSize: '9px', // tamanho menor
+        fontWeight: 'bold'
+    }
+};
+var optionsChart2 = {
+    chart: {
+        type: 'line',
+        height: 300,
+    },
+    series: [{
+        name: 'Média Geral ENEM',
+        data: mediaGeral
+    }],
+    xaxis: {
+        categories: anos,
+        title: {
+            text: 'Ano'
+        }
+    },
+    yaxis: {
+        title: {
+            text: 'Nota Média'
+        },
+        min: valorMaisBaixo(mediaGeral),
+        max: valorMaisAlto(mediaGeral),
+    },
+    title: {
+        text: 'Média geral do ENEM por ano',
+        align: 'center'
+    },
+    stroke: {
+        curve: 'smooth'
+    },
+    markers: {
+        size: 6
+    },
+    tooltip: {
+        shared: true,
+        intersect: false
+    }
+};
+
+
+var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
+var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
+
+
+
+chart1.render();
+chart2.render();
+
+var estadoUsuario = "São Paulo"
+
+
+var index1 = 1
+var index2 = 1
+
+var chart1X = document.getElementById("chart1-").id += index1
+var chart2X = document.getElementById("chart2-").id += index2
+
+
+filtroEstadoPerfil(estadoUsuario,index1,index2)
+
+  // FUNÇÕES PRINCIPAIS !
+function gerarNumeroAleatorio() {
+    const min = 500;
+    const max = 800;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function valorMaisAlto(mediaGeral) {
+    let valorDaVez = mediaGeral[0]; // Começa com o primeiro valor do array
+
+    for (let i = 1; i < mediaGeral.length; i++) {
+        if (mediaGeral[i] > valorDaVez) {
+            valorDaVez = mediaGeral[i];
+        }
+    }
+
+    return valorDaVez + 100;
+}
+
+function valorMaisBaixo(mediaGeral) {
+    let valorDaVez = mediaGeral[0]; // Começa com o primeiro valor do array
+
+    for (let i = 1; i < mediaGeral.length; i++) {
+        if (mediaGeral[i] < valorDaVez) {
+            valorDaVez = mediaGeral[i];
+        }
+    }
+
+    return valorDaVez - 100;
+}
+
+function filtroEstadoPerfil(estado , index1 , index2) {
+
+        var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
+        var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
+
+        var optionsChart1 = {
+            chart: {
+                type: 'bar',
+                height: 300,
+                stacked: true
+            },
+            series: [
+                {
+                    name: 'Média por Município',
+                    data: [450.4, 620.1, 700.2, 780.3, 781.5, 560.9, 670.4, 560.1].sort((a,b) => (a < b)) // valores de 0 a 1000
+                }
+            ],
+            xaxis: {
+                categories: ['São Paulo', 'Campinas', 'Santos', 'Ribeirão Preto', 'Sorocaba', 'Bauru', 'Jundiaí','Mogi das Cruzes'],
+                title: {
+                    text: 'Município'
+                },
+            },
+            yaxis: {
+                title: { text: 'Nota' },
+                min: 0,
+            },
+            title: {
+                text: `Municipios com maiores médias em ${estado}`,
+                align: 'center'
+            },
+            tooltip: {
+                shared: true,
+                intersect: false
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '60%'
+                }
+            }
+        };
+        var optionsChart2 = {
+            chart: {
+                type: 'line',
+                height: 300,
+            },
+            series: [{
+                name: 'Média Geral ENEM ',
+                data: mediaTesteRandom
+            }],
+            xaxis: {
+                categories: anos,
+                title: {
+                    text: 'Ano'
+                }
+            },
+            yaxis: {
+                title: {
+                    text: 'Nota Média'
+                },
+                min: 0,
+                max: 1000
+            },
+            title: {
+                text: `Média geral do ENEM por ano (${estado})`,
+                align: 'center'
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            markers: {
+                size: 6
+            },
+            tooltip: {
+                shared: true,
+                intersect: false
+            }
+        };
+
+        var chart1 = new ApexCharts(document.querySelector("#chart1-" + index1), optionsChart1);
+        var chart2 = new ApexCharts(document.querySelector("#chart2-" + index2), optionsChart2);
+
+        chart1.render();
+        chart2.render();
+
+        estadoKPIsPerfil(estado,index1)
+
+        index1 ++
+        index2 ++
+        return 0;
+}
+
+function estadoKPIsPerfil(estado , kpiIndex) {
+  const KipMédia = gerarNumeroAleatorio();
+  document.getElementById("kpi-container1-").id += kpiIndex;
+  console.log(document.getElementById("kpi-container1-"+kpiIndex))
+
+  let corMedia;
+  if (KipMédia < 600) corMedia = "red";
+  else if (KipMédia < 700) corMedia = "orange";
+  else corMedia = "green";
+
+  const totalProvas = (gerarNumeroAleatorio() * 180).toLocaleString("pt-BR");
+  const totalAlunos = (gerarNumeroAleatorio() * 560).toLocaleString("pt-BR");
+
+  document.getElementById("kpi-container1-"+kpiIndex).innerHTML = `
+    <div class="kpi-card">
+      <h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
+      <p style="color:orange;">37%</p>
+    </div>
+    <div class="kpi-card">
+      <h3>Média Geral das Notas (${estado})</h3>
+      <p style="color:${corMedia};">${KipMédia}</p>
+    </div>
+    <div class="kpi-card">
+      <h3>Total de provas analisadas</h3>
+      <p>${totalProvas}</p>
+    </div>
+    <div class="kpi-card">
+      <h3>Total de alunos no estado</h3>
+      <p>${totalAlunos}</p>
+    </div>
+  `;
+}
+
 </script>

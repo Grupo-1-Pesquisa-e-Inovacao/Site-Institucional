@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - GeoEduca</title>
   <link rel="stylesheet" href="../CSS/login-regis.css">
-  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG2.png">
+  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG.png">
 </head>
 
 <body class="auth-page">
@@ -18,9 +18,13 @@
     <h1>Login</h1>
 
     <form>
-      <input type="email" placeholder="Email" required id="email_input">
-      <input type="password" placeholder="Senha" required id="senha_input">
-      <button href="usuario.html" onclick="entrar()">Entrar</button>
+      <input type="text" placeholder="Email"  id="email_input">
+      <div class="senha-container">
+        <input type="password" placeholder="Senha" id="senha_input">
+        <span onclick="toggleSenha('senha_input')" class="olho">👁️</span>
+      </div>
+      <button type="button" onclick="entrar()">Entrar</button>
+      <div id="erro_login"></div>
       <div id="login-loading"></div>
     </form>
 

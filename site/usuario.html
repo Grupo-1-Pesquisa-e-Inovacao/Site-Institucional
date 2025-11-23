@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Painel do Cliente - GeoEduca</title>
   <link rel="stylesheet" href="../CSS/user-area.css">
-  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG2.png">
+  <link rel="stylesheet" href="./CSS/navbar.css">
+  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
   <!-- NAVBAR -->
   <header class="navbar">
-    <div class="logo">GeoEduca</div>
+    <div class="logo"></div>
     <nav>
       <ul>
         <li><a href="usuario.html" style="color: orange;">Início</a></li>
@@ -23,6 +24,8 @@
       </ul>
     </nav>
   </header>
+  
+  
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="dashboard-container">
@@ -61,5 +64,34 @@
 
 </body>
 </html>
-
+<script src="./JS/logout.js"></script>
 <script src="./JS/user-conf.js"></script>
+<script>
+      document.addEventListener("DOMContentLoaded", function () {
+      // Simulação de verificação de administrador (0 = não admin, 1 = admin)
+      const isAdmin = sessionStorage.USUARIO_ADMIN; // Altere para 0 para testar como usuário comum
+      console.log(isAdmin)
+
+
+      if (isAdmin == "1") {
+        // Adiciona aba "Administração" na navbar
+        const navList = document.querySelector(".navbar nav ul");
+        const adminNavItem = document.createElement("li");
+        adminNavItem.innerHTML = '<a href="admin.html">Administração</a>';
+        navList.insertBefore(adminNavItem, navList.lastElementChild); // insere antes do botão "Sair"
+
+        // Adiciona card "Administração" na dashboard
+        const cardsContainer = document.querySelector(".cards-container");
+        const adminCard = document.createElement("div");
+        adminCard.classList.add("card");
+        adminCard.innerHTML = `
+          <i class="fa-solid fa-lock"></i>
+          <h3>Administração</h3>
+          <p>Gerencie usuários e configurações avançadas.</p>
+          <a href="admin.html">Acessar</a>
+        `;
+        cardsContainer.appendChild(adminCard);
+      }
+    });
+
+</script>

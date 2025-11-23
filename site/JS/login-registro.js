@@ -226,7 +226,7 @@ function entrar() {
 
         setTimeout(() => {
           console.log("REDIRECIONANDO")
-          window.location.href = "usuario.html";
+          window.location.href = "./USER-PAGES/usuario.html";
         }, "2000");
       });
 

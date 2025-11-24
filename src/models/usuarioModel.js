@@ -21,12 +21,50 @@ function cadastrar(estado, nome, email, senha) {
     INSERT INTO usuario (idSecretaria, idEstado, administrador, nome, email, senha)
     VALUES (1, 999, false, '${nome}', '${email}', '${senha}');
   `;
-  
+
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
+function findAllCommonUsers() {
+  var instrucaoSql = `
+    select 
+      usuario.idUsuario,
+      usuario.nome as nomeUsuario, 
+      usuario.email,
+      secretaria.nome as nomeSecretaria 
+    from usuario 
+    join secretaria on secretaria.idSecretaria = usuario.idSecretaria
+    where administrador = false;
+  `;
+  return database.executar(instrucaoSql);
+}
+
+function findAllAdminUsers() {
+  var instrucaoSql = `
+    select 
+      usuario.idUsuario,
+      usuario.nome as nomeUsuario, 
+      usuario.email,
+      secretaria.nome as nomeSecretaria 
+    from usuario 
+    join secretaria on secretaria.idSecretaria = usuario.idSecretaria
+    where administrador = true;
+  `;
+  return database.executar(instrucaoSql);
+}
+
+
+function deleteById(id){
+  var instrucaoSql = `delete from usuario where idUsuario = ${id};`
+  return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
-    autenticar,
-    cadastrar
+  autenticar,
+  cadastrar,
+  findAllCommonUsers,
+  findAllAdminUsers,
+  deleteById
 };

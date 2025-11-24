@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Administradores - GeoEduca</title>
+  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG.png">
+  <link rel="stylesheet" href="../CSS/navbar.css">
+  <link rel="stylesheet" href="../CSS/user-area.css">
+  <link rel="stylesheet" href="../CSS/admim.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo"></div>
+    <nav>
+      <ul>
+        <li><a href="admin.html">Início</a></li>
+        <li><a href="administradores.html" style="color: orange;">Administradores</a></li>
+        <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="dashboard-container">
+    <h1>Usuários Administradores</h1>
+    <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Administrador</button>
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Cargo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Maria Silva</td>
+          <td>maria@geoeduca.com</td>
+          <td>Coordenadora Geral</td>
+          <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+        </tr>
+        <tr>
+          <td>João Oliveira</td>
+          <td>joao@geoeduca.com</td>
+          <td>Supervisor Técnico</td>
+          <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 GeoEduca - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+</body>
+</html>

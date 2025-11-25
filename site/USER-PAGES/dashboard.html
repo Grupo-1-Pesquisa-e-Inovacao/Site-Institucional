@@ -427,7 +427,7 @@
                 <div><p> 🟩 Média Acima de 700 | 🟨 Média entre 700 - 600 | 🟥 Média abaixo de 600 </p></div>
             </div>
 
-            <div class="map-under">
+            <div class="map-under" id="chartPizza">
             </div>
 
         </div>
@@ -552,122 +552,111 @@
         }
 
 
-    // INICIANDO GRAFICOS E VARIAVEIS
-
-    var dataNotas900 = [600, 580, 484, 455, 436, 391, 372, 267];
-
-    var dataMedia = [1789098, 8906143, 14876450];
-
-    var estados = [ "Alagoas",  "Acre", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
-        "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco",
-        "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina",
-        "São Paulo", "Sergipe", "Tocantins"];
-
-    var notasMedia = [610, 620, 630, 590, 570, 550, 650, 690, 565, 625, 670, 665, 695, 600, 4050, 700, 680, 645, 710, 665, 700, 500, 655, 695, 705, 300, 670];
-    var notasMediaRadom = [];
-
-    for (let i = 0; i < notasMedia.length; i++) {
-    notasMediaRadom.push(gerarNumeroAleatorio());
-    }
-
-    var anos = ["2018", "2019", "2020", "2021", "2022"];
-
-    var mediaGeral = [500.6, 510.2, 520.5, 510.8, 530.0];
-
-
-    var optionsChart1Frist = {
-        series: [{
-            name: 'Notas acima de 900 pontos',
-            data: dataNotas900
-        }],
-        chart: {
-            height: 455,
-            type: 'bar',
-            FontFace: '10'
-        },
-        xaxis: {
-            categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF']
-        },
-        yaxis: {
-            max: dataNotas900[0] + 100
-        },
-        title: {
-            text: 'Estados com mais nota acima de 900 pontos (TOP 10)',
-            align: 'center'
-
-        },
-        style: {
-            fontSize: '9px', // tamanho menor
-            fontWeight: 'bold'
-        },
-        fill: {
-            colors: ['#1E3A8A']
-            }
-
-    };
-    var optionsChart2Frist  = {
-        chart: {
-            type: 'line',
-            height: 455
-        },
-        series: [{
-            name: 'Média Geral ENEM',
-            data: mediaGeral
-        }],
-        xaxis: {
-            categories: anos,
-            title: {
-                text: 'Ano'
-            }
-        },
-        yaxis: {
-            title: {
-                text: 'Nota Média'
-            },
-            min: valorMaisBaixo(mediaGeral),
-            max: valorMaisAlto(mediaGeral),
-        },
-        title: {
-            text: 'Média geral do ENEM por ano',
-            align: 'center'
-        },
-        stroke: {
-            curve: 'smooth'
-        },
-        markers: {
-            size: 6
-        },
-        tooltip: {
-            shared: true,
-            intersect: false
-        },
-        fill: {
-            colors: ['#1E3A8A']
+        function carregarKPIs() {
+            console.log("BUSCANDO KPIS"); 
+            fetch("/dashboard/kpis")
+                .then(response => response.json())
+                .then(dados => {
+                    document.querySelector("#KPI1 p").textContent = dados.totalAcima900;
+                    document.querySelector("#KPI2 p").textContent = dados.totalAbaixo500;
+                    document.querySelector("#KPI3 p").textContent = dados.estadoMenorMedia;
+                    document.querySelector("#KPI4 p").textContent = dados.estadoMaiorMedia;
+                });
         }
-    };
-    var optionsConst = {
-        series: dataMedia,
-        chart: {
-            height: 330,
-            type: 'pie',
-        },
-        labels: ['Notas entre 800 e 1000 pontos', 'Notas entre 600 e 800 pontos', 'Notas abaixo de 600 pontos'],
-        title: {
-            text: 'Porcentagem de notas abaixo/acima/proximo da média',
-            align: 'center'
-        },
-        legend: {
-            position: 'bottom' // 👈 legenda embaixo
-        }
-    };
 
-    var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1Frist);
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2Frist);
-    var chartConst1 = new ApexCharts(document.querySelector(".map-under"), optionsConst);
+        function carregarGraficos() {
+
+            console.log("GERANDO GRAFICOS PRINCIPAIS")
+
+            // Gráfico 1: Notas acima de 900
+            fetch("/dashboard/chart1")
+                .then(res => res.json())
+                .then(dados => {
+                    var optionsChart1Frist = {
+                        series: [{
+                            name: 'Notas acima de 900 pontos',
+                            data: dados.valores
+                        }],
+                        chart: { height: 455, type: 'bar' },
+                        xaxis: { categories: dados.estados },
+                        yaxis: { max: dados.valores[0] + 100 },
+                        title: { text: 'Estados com mais nota acima de 900 pontos (TOP 10)', align: 'center' },
+                        fill: { colors: ['#1E3A8A'] }
+                    };
+                    new ApexCharts(document.querySelector("#chart1"), optionsChart1Frist).render();
+                });
 
 
-    chart1.render();
-    chart2.render();
+             // Gráfico 2: Média geral ENEM por ano
+            fetch("/dashboard/chart2")
+                .then(res => res.json())
+                .then(dados => {
+                    var optionsChart2Frist = {
+                        chart: { type: 'line', height: 455 },
+                        series: [{
+                            name: 'Média Geral ENEM',
+                            data: dados.medias
+                        }],
+                        xaxis: { categories: dados.anos, title: { text: 'Ano' } },
+                        yaxis: {
+                            title: { text: 'Nota Média' },
+                            min: Math.min(...dados.medias) - 50,
+                            max: Math.max(...dados.medias) + 50
+                        },
+                        title: { text: 'Média geral do ENEM por ano', align: 'center' },
+                        stroke: { curve: 'smooth' },
+                        markers: { size: 6 },
+                        fill: { colors: ['#1E3A8A'] }
+                    };
+                    new ApexCharts(document.querySelector("#chart2"), optionsChart2Frist).render();
+                });
+            }
+            
+
+         function carregarGraficoPizza() {
+                fetch("/dashboard/distribuicao")
+                    .then(res => res.json())
+                    .then(dados => {
+                    // Se o backend retorna [ { acima800: '3', entre600e800: '5', abaixo600: '1' } ]
+                    const valores = [
+                        Number(dados.acima800),
+                        Number(dados.entre600e800),
+                        Number(dados.abaixo600)
+                    ];
+
+                    var optionsConst = {
+                        series: valores, // 👈 agora é um array de números
+                        chart: {
+                        height: 365,
+                        type: 'pie'
+                        },
+                        labels: [
+                        'Notas entre 800 e 1000 pontos',
+                        'Notas entre 600 e 800 pontos',
+                        'Notas abaixo de 600 pontos'
+                        ],
+                        title: {
+                        text: 'Porcentagem de notas abaixo/acima/próximo da média',
+                        align: 'center'
+                        },
+                        legend: {
+                        position: 'bottom'
+                        }
+                    };
+
+                    new ApexCharts(document.querySelector("#chartPizza"), optionsConst).render();
+                    });
+                }
+
+
+
+            // Chama a função assim que a página carregar
+            window.addEventListener("DOMContentLoaded", carregarKPIs);
+            window.addEventListener("DOMContentLoaded", carregarGraficos);
+            window.addEventListener("DOMContentLoaded", carregarGraficoPizza);
+
+
+
     chartConst1.render();
     mapaCor();
 

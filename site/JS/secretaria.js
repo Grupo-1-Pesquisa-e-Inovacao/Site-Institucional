@@ -1,7 +1,7 @@
 let secretariaIdToHandle = null; 
 
 function readSecretaria() {
-    fetch('/secretarias', {
+    fetch('/secretarias/listar', {
         method: 'GET'
     })
     .then(response => {
@@ -107,7 +107,7 @@ function createSecretaria() {
 function openEditModal(idSecretaria) {
     secretariaIdToHandle = idSecretaria;
 
-    fetch(`/secretarias/${idSecretaria}`, {
+        fetch(`/secretarias/buscarPorId/${idSecretaria}`, {
         method: 'GET'
     })
     .then(response => {

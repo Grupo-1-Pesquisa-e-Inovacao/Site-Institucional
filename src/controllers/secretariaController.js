@@ -2,23 +2,17 @@ var secretariaModel = require("../models/secretariaModel");
 
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var estado = req.body.estadoServer;
-    var senha = req.body.senhaServer;
+    var tipo = req.body.tipoServer;
 
     if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (estado == undefined) {
-        res.status(400).send("Seu estado está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+        res.status(400).send("O nome está undefined!");
+    } else if (tipo == undefined) {
+        res.status(400).send("O tipo está undefined!");
     } else {
-        secretariaModel.cadastrar(estado, nome, email, senha)
+        secretariaModel.cadastrar(nome, tipo)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.status(201).json(resultado);
                 }
             ).catch(
                 function (erro) {
@@ -69,22 +63,26 @@ function buscarPorId(req, res) {
 
 function atualizar(req, res) {
     var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var estado = req.body.estadoServer;
+    var tipo = req.body.tipoServer;
     var idSecretaria = req.params.idSecretaria;
 
-    if (nome == undefined && email == undefined && estado == undefined) {
-        res.status(400).send("Nenhum dado para atualização foi enviado!");
+    if (idSecretaria == undefined) {
+        res.status(400).send("O ID da Secretaria é obrigatório para atualização!");
         return;
     }
 
-    secretariaModel.atualizar(idSecretaria, nome, email, estado)
+    if (nome == undefined && tipo == undefined) {
+        res.status(400).send("Pelo menos um dado (nome ou tipo) deve ser enviado para atualização!");
+        return;
+    }
+
+    secretariaModel.atualizar(idSecretaria, nome, tipo)
         .then(
             function (resultado) {
                 if (resultado.affectedRows > 0) {
                     res.json(resultado);
                 } else {
-                    res.status(404).send("Nenhum registro atualizado. ID não encontrado ou dados idênticos.");
+                    res.status(404).send("Nenhum registro atualizado. ID não encontrado.");
                 }
             }
         ).catch(

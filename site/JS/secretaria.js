@@ -6,13 +6,20 @@ function readSecretaria() {
     })
     .then(response => {
         if (!response.ok) {
+            if (response.status === 204) {
+                 console.log('Nenhuma secretaria encontrada.');
+                 fillSecretariaTable([]);
+                 return null;
+            }
             throw new Error('Erro na requisição: ' + response.status);
         }
         return response.json();
     })
     .then(data => {
-        console.log('Secretarias encontradas:', data);
-        fillSecretariaTable(data);
+        if (data) {
+            console.log('Secretarias encontradas:', data);
+            fillSecretariaTable(data);
+        }
     })
     .catch(error => {
         console.error('Erro ao buscar secretarias:', error);
@@ -25,14 +32,14 @@ function fillSecretariaTable(data) {
 
     data.forEach(secretaria => {
         const actualElement = `
-            <tr id="secretaria_${secretaria.id}">
-                <td>${secretaria.id}</td>
+            <tr id="secretaria_${secretaria.idSecretaria}">
+                <td>${secretaria.idSecretaria}</td>
                 <td>${secretaria.nome}</td>
-                <td>${secretaria.email}</td>
-                <td>${secretaria.estado}</td>
+                <td>${secretaria.tipo}</td> 
+                <td>${new Date(secretaria.data_criacao).toLocaleDateString()}</td>
                 <td>
-                    <button class="delete-btn" onclick="openDeleteModal('${secretaria.id}')">Deletar</button>
-                    <button class="edit-btn" onclick="openEditModal('${secretaria.id}')">Editar</button>
+                    <button class="delete-btn" onclick="openDeleteModal('${secretaria.idSecretaria}')">Deletar</button>
+                    <button class="edit-btn" onclick="openEditModal('${secretaria.idSecretaria}')">Editar</button>
                 </td>
             </tr>
         `;
@@ -62,12 +69,10 @@ function deleteSecretaria(idSecretaria) {
 
 function createSecretaria() {
     const nome = document.getElementById('inputNomeSecretaria').value;
-    const email = document.getElementById('inputEmailSecretaria').value;
-    const estado = document.getElementById('inputEstadoSecretaria').value;
-    const senha = document.getElementById('inputSenhaSecretaria').value;
+    const tipo = document.getElementById('inputTipoSecretaria').value;
 
-    if (!nome || !email || !estado || !senha) {
-        alert("Preencha todos os campos para cadastrar a secretaria.");
+    if (!nome || !tipo) {
+        alert("Preencha todos os campos (Nome e Tipo) para cadastrar a secretaria.");
         return;
     }
 
@@ -78,9 +83,7 @@ function createSecretaria() {
         },
         body: JSON.stringify({
             nomeServer: nome,
-            emailServer: email,
-            estadoServer: estado,
-            senhaServer: senha 
+            tipoServer: tipo
         })
     })
     .then(response => {
@@ -115,8 +118,7 @@ function openEditModal(idSecretaria) {
     })
     .then(secretaria => {
         document.getElementById('editInputNomeSecretaria').value = secretaria.nome;
-        document.getElementById('editInputEmailSecretaria').value = secretaria.email;
-        document.getElementById('editInputEstadoSecretaria').value = secretaria.estado;
+        document.getElementById('editInputTipoSecretaria').value = secretaria.tipo;
         
         document.getElementById("editSecretariaModal").style.display = "flex";
     })
@@ -130,11 +132,10 @@ function updateSecretaria() {
     const idSecretaria = secretariaIdToHandle;
 
     const novoNome = document.getElementById('editInputNomeSecretaria').value;
-    const novoEmail = document.getElementById('editInputEmailSecretaria').value;
-    const novoEstado = document.getElementById('editInputEstadoSecretaria').value;
+    const novoTipo = document.getElementById('editInputTipoSecretaria').value;
     
-    if (!idSecretaria || !novoNome || !novoEmail || !novoEstado) {
-        alert("Dados incompletos para atualização.");
+    if (!idSecretaria || !novoNome || !novoTipo) {
+        alert("Dados incompletos para atualização (Nome e Tipo são obrigatórios).");
         return;
     }
 
@@ -145,8 +146,7 @@ function updateSecretaria() {
         },
         body: JSON.stringify({
             nomeServer: novoNome,
-            emailServer: novoEmail,
-            estadoServer: novoEstado
+            tipoServer: novoTipo
         })
     })
     .then(response => {
@@ -180,6 +180,14 @@ function confirmDelete() {
         deleteSecretaria(secretariaIdToHandle);
     }
     closeDeleteModal();
+}
+
+function openCreateModal() {
+    document.getElementById("createSecretariaModal").style.display = "flex";
+}
+
+function closeCreateModal() {
+    document.getElementById("createSecretariaModal").style.display = "none";
 }
 
 function closeEditModal() {

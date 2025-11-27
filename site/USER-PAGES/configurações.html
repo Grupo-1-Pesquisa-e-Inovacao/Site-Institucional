@@ -83,62 +83,42 @@
     </tbody>
   </table> 
 <br>  
-    <!-- Nome de Usuário -->
     <section class="funcionalidades">
-      <h2>Alterar Nome de Usuário</h2>
+      <h2>Alterar dados do usuário</h2>
+
       <table class="user-table">
         <thead>
           <tr>
-            <th>Nome Atual</th>
-            <th>Novo Nome</th>
+            <th>Campo</th>
+            <th>Atual</th>
+            <th>Novo</th>
+            <th>Confirmar novo</th>
             <th>Ações</th>
           </tr>
         </thead>
+
         <tbody>
+          <!-- Nome -->
           <tr>
+            <td>Nome</td>
             <td>João da Silva</td>
             <td><input type="text" placeholder="Digite o novo nome" /></td>
+            <td></td>
             <td><button class="action-btn">Salvar</button></td>
           </tr>
-        </tbody>
-      </table>
-    </section>
-  
-    <!-- E-mail -->
-    <section class="funcionalidades">
-      <h2>Alterar E-mail</h2>
-      <table class="user-table">
-        <thead>
+
+          <!-- E-mail -->
           <tr>
-            <th>E-mail Atual</th>
-            <th>Novo E-mail</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+            <td>E-mail</td>
             <td>joao@geoeduca.com</td>
             <td><input type="email" placeholder="Digite o novo e-mail" /></td>
+            <td></td>
             <td><button class="action-btn">Salvar</button></td>
           </tr>
-        </tbody>
-      </table>
-    </section>
-  
-    <!-- Senha -->
-    <section class="funcionalidades">
-      <h2>Alterar Senha</h2>
-      <table class="user-table">
-        <thead>
+
+          <!-- Senha -->
           <tr>
-            <th>Senha Atual</th>
-            <th>Nova Senha</th>
-            <th>Confirmar Senha</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
+            <td>Senha</td>
             <td><input type="password" placeholder="Senha atual" /></td>
             <td><input type="password" placeholder="Nova senha" /></td>
             <td><input type="password" placeholder="Confirmar nova senha" /></td>

@@ -4,3 +4,4 @@ package-lock.json
 commit.sh
 
 .github
+.env.dev

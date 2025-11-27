@@ -77,7 +77,7 @@ body{
   border-radius: 6px;
   transition: 0.3s;
 }
-
+ 
 .card a:hover {
   background: #14275e;
 }
@@ -173,6 +173,126 @@ body.dashboard {
 .settings-form button:hover {
   background: linear-gradient(135deg, #2563eb, #1d4ed8);
   transform: scale(1.02);
+}
+
+/* OVERLAY */
+.modal-generico {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  text-align: center;
+}
+
+.modal-generico h3{
+  margin: 0;
+}
+
+/* CAIXA DO MODAL */
+.modal-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 800px;
+  max-height: 800px;
+  padding: 30px ;
+  border-radius: 8px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  animation: modalIn 0.25s ease-out;
+}
+
+/* TÍTULO */
+.modal-box h3 {
+  margin: 0px;
+  text-align: center;
+  color: #1E3A8A;
+  font-size: 22px;
+}
+
+/* CONTEÚDO */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0px ;
+  margin: 40px 100px;
+}
+
+/* INPUTS */
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  background: #f8fafc;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* AÇÕES */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+/* BOTÕES */
+.modal-btn {
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-btn:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+.modal-btn.cancel {
+  background: #ff5e00;
+  color: #ffffff;
+}
+
+.modal-btn.confirm {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #ffffff;
+}
+
+/* ANIMAÇÃO */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  .modal-box {
+    margin: 20px;
+    padding: 24px;
+  }
 }
 
 .site-footer {

@@ -63,9 +63,22 @@ function getDistribuicaoNotas(req, res) {
         });
 }
 
+function buscarEstados(req, res) {
+    dashboardModel.buscarEstados()
+        .then(estados => {
+            res.json(estados);
+        })
+        .catch(erro => {
+            console.error("Erro ao buscar estados:", erro);
+            res.status(500).json({ erro: "Erro ao buscar estados" });
+        });
+}
+
 module.exports = { 
     getKPIs, 
     getChart1,
-     getChart2, 
-     getDistribuicaoNotas 
+    getChart2, 
+    getDistribuicaoNotas,
+    buscarEstados
+
 };

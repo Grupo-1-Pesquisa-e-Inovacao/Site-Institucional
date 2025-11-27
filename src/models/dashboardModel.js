@@ -53,10 +53,10 @@ function buscarNotas900() {
 
 function buscarMediaGeral() {
     const instrucaoSql = `
-        SELECT inscricao_enem AS ano, AVG(nota_candidato) AS media
+        SELECT ano, AVG(nota_candidato) AS media
         FROM media_aluno_enem
-        GROUP BY inscricao_enem
-        ORDER BY inscricao_enem ASC;
+        GROUP BY ano
+        ORDER BY ano ASC;
     `;
     return database.executar(instrucaoSql);
 }
@@ -72,9 +72,21 @@ function buscarDistribuicaoNotas() {
     return database.executar(instrucaoSql);
 }
 
+function buscarEstados() {
+    const instrucaoSql = `
+        SELECT e.nomeUf AS estado, AVG(m.nota_candidato) AS notaMedia
+        FROM media_aluno_enem m
+        JOIN estado e ON m.idEstado = e.idUF
+        GROUP BY e.idUF, e.nomeUf
+        ORDER BY e.idUF;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarKPIs,
     buscarNotas900,
     buscarMediaGeral,
-    buscarDistribuicaoNotas
+    buscarDistribuicaoNotas,
+    buscarEstados
 };

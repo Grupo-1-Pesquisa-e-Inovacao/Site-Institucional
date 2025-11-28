@@ -427,7 +427,7 @@
                 <div><p> 🟩 Média Acima de 700 | 🟨 Média entre 700 - 600 | 🟥 Média abaixo de 600 </p></div>
             </div>
 
-            <div class="map-under">
+            <div class="map-under" id="chartPizza">
             </div>
 
         </div>
@@ -552,122 +552,161 @@
         }
 
 
-    // INICIANDO GRAFICOS E VARIAVEIS
+        function carregarKPIs() {
+            console.log("BUSCANDO KPIS"); 
+            fetch("/dashboard/kpis")
+                .then(response => response.json())
+                .then(dados => {
+                    document.querySelector("#KPI1 p").textContent = dados.totalAcima900;
+                    document.querySelector("#KPI2 p").textContent = dados.totalAbaixo500;
+                    document.querySelector("#KPI3 p").textContent = dados.estadoMenorMedia;
+                    document.querySelector("#KPI4 p").textContent = dados.estadoMaiorMedia;
+                });
+        }
 
-    var dataNotas900 = [600, 580, 484, 455, 436, 391, 372, 267];
+        function carregarGraficos() {
 
-    var dataMedia = [1789098, 8906143, 14876450];
+            console.log("GERANDO GRAFICOS PRINCIPAIS")
 
-    var estados = [ "Alagoas",  "Acre", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
-        "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco",
-        "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina",
-        "São Paulo", "Sergipe", "Tocantins"];
+            // Gráfico 1: Notas acima de 900
+            fetch("/dashboard/chart1")
+                .then(res => res.json())
+                .then(dados => {
+                    var optionsChart1Frist = {
+                        series: [{
+                            name: 'Notas acima de 900 pontos',
+                            data: dados.valores
+                        }],
+                        chart: { height: 455, type: 'bar' },
+                        xaxis: { categories: dados.estados },
+                        yaxis: { max: dados.valores[0] + 100 },
+                        title: { text: 'Estados com mais nota acima de 900 pontos (TOP 10)', align: 'center' },
+                        fill: { colors: ['#1E3A8A'] }
+                    };
+                    new ApexCharts(document.querySelector("#chart1"), optionsChart1Frist).render();
+                });
 
-    var notasMedia = [610, 620, 630, 590, 570, 550, 650, 690, 565, 625, 670, 665, 695, 600, 4050, 700, 680, 645, 710, 665, 700, 500, 655, 695, 705, 300, 670];
-    var notasMediaRadom = [];
 
-    for (let i = 0; i < notasMedia.length; i++) {
-    notasMediaRadom.push(gerarNumeroAleatorio());
-    }
+             // Gráfico 2: Média geral ENEM por ano
+            fetch("/dashboard/chart2")
+                .then(res => res.json())
+                .then(dados => {
+                    var optionsChart2Frist = {
+                        chart: { type: 'line', height: 455 },
+                        series: [{
+                            name: 'Média Geral ENEM',
+                            data: dados.medias
+                        }],
+                        xaxis: { categories: dados.anos, title: { text: 'Ano' } },
+                        yaxis: {
+                            title: { text: 'Nota Média' },
+                            min: Math.min(...dados.medias) - 50,
+                            max: Math.max(...dados.medias) + 50
+                        },
+                        title: { text: 'Média geral do ENEM por ano', align: 'center' },
+                        stroke: { curve: 'smooth' },
+                        markers: { size: 6 },
+                        fill: { colors: ['#1E3A8A'] }
+                    };
+                    new ApexCharts(document.querySelector("#chart2"), optionsChart2Frist).render();
+                });
+            }
+            
 
-    var anos = ["2018", "2019", "2020", "2021", "2022"];
+         function carregarGraficoPizza() {
+                fetch("/dashboard/distribuicao")
+                    .then(res => res.json())
+                    .then(dados => {
+                    // Se o backend retorna [ { acima800: '3', entre600e800: '5', abaixo600: '1' } ]
+                    const valores = [
+                        Number(dados.acima800),
+                        Number(dados.entre600e800),
+                        Number(dados.abaixo600)
+                    ];
 
-    var mediaGeral = [500.6, 510.2, 520.5, 510.8, 530.0];
+                    var optionsConst = {
+                        series: valores, // 👈 agora é um array de números
+                        chart: {
+                        height: 365,
+                        type: 'pie'
+                        },
+                        labels: [
+                        'Notas entre 800 e 1000 pontos',
+                        'Notas entre 600 e 800 pontos',
+                        'Notas abaixo de 600 pontos'
+                        ],
+                        title: {
+                        text: 'Porcentagem de notas abaixo/acima/próximo da média',
+                        align: 'center'
+                        },
+                        legend: {
+                        position: 'bottom'
+                        }
+                    };
+
+                    new ApexCharts(document.querySelector("#chartPizza"), optionsConst).render();
+                    });
+                }
 
 
-    var optionsChart1Frist = {
-        series: [{
-            name: 'Notas acima de 900 pontos',
-            data: dataNotas900
-        }],
-        chart: {
-            height: 455,
-            type: 'bar',
-            FontFace: '10'
-        },
-        xaxis: {
-            categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF']
-        },
-        yaxis: {
-            max: dataNotas900[0] + 100
-        },
-        title: {
-            text: 'Estados com mais nota acima de 900 pontos (TOP 10)',
-            align: 'center'
+         function mapaCor() {
 
-        },
-        style: {
-            fontSize: '9px', // tamanho menor
-            fontWeight: 'bold'
-        },
-        fill: {
-            colors: ['#1E3A8A']
+                fetch("/dashboard/buscarEstados")
+                    .then(res => res.json())
+                    .then(estados => {
+
+                        const listaUl = document.querySelector(".lista ul");
+                        listaUl.innerHTML = "";
+
+                        const estadosLista = [
+                            "Distrito Federal",
+                            "Sergipe",
+                            "Alagoas",
+                            "Rio de Janeiro",
+                            "Espírito Santo"
+                        ];
+
+                        console.log("INICIANDO LISTAGEM");
+
+                      for (let i = 0; i < estados.length; i++) {
+
+                            const NotaEstado = Number(estados[i].notaMedia);
+                            const EstadoID = estados[i].estado;
+                            console.log("NOME DO ESTADO: ", EstadoID)
+
+                            let emoji = "";
+
+                            if (NotaEstado < 600) {
+                                document.getElementById(EstadoID).style.fill = "#c03113";
+                                emoji = "🟥";
+                            } else if (NotaEstado >= 600 && NotaEstado < 700) {
+                                document.getElementById(EstadoID).style.fill = "#c0a213";
+                                emoji = "🟨";
+                            } else {
+                                document.getElementById(EstadoID).style.fill = "#68dd49";
+                                emoji = "🟩";
+                            }
+
+                            if (estadosLista.includes(EstadoID)) {
+                                const li = document.createElement("li");
+                                li.textContent = `${EstadoID}: ${emoji}`;
+                                listaUl.appendChild(li);
+                            }
+                        }
+                    })
+                    .catch(err => console.error(err));
             }
 
-    };
-    var optionsChart2Frist  = {
-        chart: {
-            type: 'line',
-            height: 455
-        },
-        series: [{
-            name: 'Média Geral ENEM',
-            data: mediaGeral
-        }],
-        xaxis: {
-            categories: anos,
-            title: {
-                text: 'Ano'
-            }
-        },
-        yaxis: {
-            title: {
-                text: 'Nota Média'
-            },
-            min: valorMaisBaixo(mediaGeral),
-            max: valorMaisAlto(mediaGeral),
-        },
-        title: {
-            text: 'Média geral do ENEM por ano',
-            align: 'center'
-        },
-        stroke: {
-            curve: 'smooth'
-        },
-        markers: {
-            size: 6
-        },
-        tooltip: {
-            shared: true,
-            intersect: false
-        },
-        fill: {
-            colors: ['#1E3A8A']
-        }
-    };
-    var optionsConst = {
-        series: dataMedia,
-        chart: {
-            height: 330,
-            type: 'pie',
-        },
-        labels: ['Notas entre 800 e 1000 pontos', 'Notas entre 600 e 800 pontos', 'Notas abaixo de 600 pontos'],
-        title: {
-            text: 'Porcentagem de notas abaixo/acima/proximo da média',
-            align: 'center'
-        },
-        legend: {
-            position: 'bottom' // 👈 legenda embaixo
-        }
-    };
-
-    var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1Frist);
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2Frist);
-    var chartConst1 = new ApexCharts(document.querySelector(".map-under"), optionsConst);
 
 
-    chart1.render();
-    chart2.render();
+            // Chama a função assim que a página carregar
+            window.addEventListener("DOMContentLoaded", carregarKPIs);
+            window.addEventListener("DOMContentLoaded", carregarGraficos);
+            window.addEventListener("DOMContentLoaded", carregarGraficoPizza);
+            window.addEventListener("DOMContentLoaded", mapaCor);
+
+
+
     chartConst1.render();
     mapaCor();
 
@@ -681,7 +720,6 @@
     document.getElementById("estado-select").addEventListener("change", atualizarDashboardDebounced);
     window.addEventListener("hashchange", atualizarEstado);
     
-
     function atualizarDashboard() {
     console.log("Teste");
     const estadoSelect = document.getElementById("estado-select");
@@ -705,11 +743,6 @@
         atualizarDashboard();
     }
 
-    function resetRegiao() {
-        document.getElementById("regiao-select").selectedIndex = 0;
-        atualizarDashboard();
-    }
-
     function atualizarEstado() {
         var estado = window.location.hash.substring(1);
 
@@ -720,8 +753,6 @@
             var mapaElement = document.getElementById("mapa");// ← CORRIGIDO
         }
     }
-
-    // FILTROS DE ESTADO E REGIAO
 
     function estadoKPIs(estado) {
 
@@ -755,22 +786,6 @@
         document.getElementById('KPI4').innerHTML =
             `           <h3>Total de alunos no estado</h3>
                      <p>${(gerarNumeroAleatorio() * 560).toLocaleString("pt-BR")}</p>`;
-    }
-
-    function regiaoKPIs(regiao) {
-
-        document.getElementById('KPI1').innerHTML =
-            `           <h3>EU SOU UMA KPI DE REGIAO KKK</h3>
-                     <p>9.999,99</p>`;
-        document.getElementById('KPI2').innerHTML =
-            `           <h3>EU SOU UMA KPI DE REGIAO KKK!</h3>
-                     <p>9.999,99</p>`;
-        document.getElementById('KPI3').innerHTML =
-            `           <h3>Total de provas analisadas</h3>
-                     <p>${(gerarNumeroAleatorio() * 120).toLocaleString("pt-BR")}</p>`
-        document.getElementById('KPI4').innerHTML =
-            `           <h3>Total de alunos na região</h3>
-                     <p>${(gerarNumeroAleatorio() * 1134).toLocaleString("pt-BR")}</p>`;
     }
 
     function filtroEstado(estado) {
@@ -866,110 +881,8 @@
 
         chart1.render();
         chart2.render();
-
-        return 0;
     }
 
-    function filtroRegiao(regiao) {
-        const regioes = {
-            Norte: ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins'],
-            Nordeste: ['Alagoas', 'Bahia', 'Ceará', 'Maranhão', 'Paraíba', 'Pernambuco', 'Piauí', 'Rio Grande do Norte', 'Sergipe'],
-            CentroOeste: ['Distrito Federal', 'Goiás', 'Mato Grosso', 'Mato Grosso do Sul'],
-            Sudeste: ['Espírito Santo', 'Minas Gerais', 'Rio de Janeiro', 'São Paulo'],
-            Sul: ['Paraná', 'Rio Grande do Sul', 'Santa Catarina']
-        };
-
-        var regiaoArray = regioes[regiao]
-        console.log(regiaoArray)
-        
-        modalcarregando();
-        limparKIPs();
-        regiaoKPIs(regiao);
-        chartKill();
-
-        var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
-        var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
-
-        var optionsChart1 = {
-            chart: {
-                type: 'bar',
-                height: 460,
-                stacked: true
-            },
-            series: [
-                {
-                    name: ` Estados com maiores médias em ${regiao} `,
-                    data: regiaoArray.map(() => gerarNumeroAleatorio()).sort((a,b) => (a<b))
-                }
-            ],
-            xaxis: {
-                categories: regiaoArray,
-            },
-            yaxis: {
-                title: { text: 'Nota' },
-                min: 0,
-            },
-            title: {
-                text: ` Estados com maiores médias em ${regiao} `,
-                align: 'center'
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '60%'
-                }
-            }
-        };
-        var optionsChart2 = {
-            chart: {
-                type: 'line',
-                height: 460,
-            },
-            series: [{
-                name: 'Média Geral ENEM ',
-                data: mediaTesteRandom
-            }],
-            xaxis: {
-                categories: anos,
-                title: {
-                    text: 'Ano'
-                }
-            },
-            yaxis: {
-                title: {
-                    text: 'Nota Média'
-                },
-                min: 0,
-                max: 1000
-            },
-            title: {
-                text: `Média geral do ENEM por ano (${regiao})`,
-                align: 'center'
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            markers: {
-                size: 6
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            }
-        };
-
-        var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
-        var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
-
-        chart1.render();
-        chart2.render();
-        return 0;
-
-    }
    
     function filtroBrasil() {
     document.getElementById("estado-select").selectedIndex = 0;
@@ -1076,12 +989,6 @@
         }, 2500);
     }
 
-    function gerarNumeroAleatorio() {
-        const min = 500;
-        const max = 800;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
     function chartKill() {
 
         chart1.destroy();
@@ -1093,27 +1000,6 @@
             document.getElementById('KPI' + i).innerHTML = '';
         }
     }
-
-    function kpiReset() {
-        document.getElementById('KPI-PRINCIPAL').innerHTML = `
-            <div class="kpi-card" id="KPI1">
-            <h3>Total de notas <br> acima de 900 pontos </h3>
-            <p style="color: green;">4.870</p>
-            </div>
-            <div class="kpi-card" id="KPI2">
-            <h3>Total de notas <br> abaixo de 500 pontos </h3>
-            <p style="color: red;">123.989</p>
-            </div>
-            <div class="kpi-card" id="KPI3">
-            <h3>Estado com menor média <br></h3>
-            <p style="color: red;">ALAGOAS</p>
-            </div>
-            <div class="kpi-card" id="KPI4">
-            <h3>Estado com maior média <br></h3>
-            <p style="color: green;">SÃO PAULO</p>
-            </div>
-        `;
-        }
 
     function botaoResetAparecer() {
         document.getElementById("botao_reset").style.display = "inline";
@@ -1146,37 +1032,6 @@
         }
 
         return valorDaVez - 100;
-    }
-
-    function mapaCor() {
-        const listaUl = document.querySelector(".lista ul");
-        listaUl.innerHTML = ""; // limpa a lista atual
-
-        const estadosLista = ["Distrito Federal", "Sergipe", "Alagoas", "Rio de Janeiro", "Espírito Santo"];
-
-        for (let i = 0; i < estados.length; i++) {
-            const NotaEstado = notasMediaRadom[i];
-            const EstadoID = estados[i];
-            let emoji = "";
-
-            if (NotaEstado < 600) {
-            document.getElementById(EstadoID).style.fill = "#c03113"; // vermelho
-            emoji = "🟥";
-            } else if (NotaEstado >= 600 && NotaEstado < 700) {
-            document.getElementById(EstadoID).style.fill = "#c0a213"; // amarelo
-            emoji = "🟨";
-            } else {
-            document.getElementById(EstadoID).style.fill = "#68dd49"; // verde
-            emoji = "🟩";
-            }
-
-            // Atualiza a lista apenas para os estados desejados
-            if (estadosLista.includes(EstadoID)) {
-            const li = document.createElement("li");
-            li.textContent = `${EstadoID}: ${emoji}`;
-            listaUl.appendChild(li);
-            }
-        }
     }
 
 

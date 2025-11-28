@@ -27,7 +27,7 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="dashboard-container">
     <h1>Usuários Administradores</h1>
-    <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Administrador</button>
+    <button class="action-btn" onclick="abrirModal()"><i class="fa-solid fa-user-plus"></i>Adicionar Administrador</button>
     <table class="user-table">
       <thead>
         <tr>
@@ -42,17 +42,56 @@
     </table>
   </main>
 
-  <!-- MODAL DE CONFIRMAÇÃO DE DELETE -->
-<div id="deleteModal" class="modal">
-  <div class="modal-content">
-    <h2>Você tem certeza que gostaria de deletar?</h2>
 
-    <div class="modal-actions">
-      <button class="cancel-btn" onclick="closeDeleteModal()">Não</button>
-      <button class="confirm-btn" onclick="confirmDelete('admin')">Sim</button>
+
+    <!-- MODAL DE CONFIRMAÇÃO DE DELETE -->
+  <div id="deleteModal" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Você tem certeza que gostaria de deletar?</h2>
+
+      <div class="modal-content">
+        <button class="modal-btn cancel" onclick="closeDeleteModal()">Não
+        </button>
+        <button class="modal-btn confirm" onclick="confirmDelete('admin')">Sim</button>
+      </div>
     </div>
   </div>
-</div>
+
+    <!-- MODAL DE CONFIRMAÇÃO DE CRIAÇÃO -->
+  <div id="modalCriacaoConfirm" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Você tem certeza que gostaria de criar o novo administrador?</h2>
+
+      <div class="modal-content">
+        <button class="modal-btn confirm" onclick="confirmDelete('admin')">Sim</button>
+        <button class="modal-btn cancel" onclick="fecharModalDefinitivo()">Não</button>
+      </div>
+    </div>
+  </div>
+
+     <!-- MODAL DE CRIAÇÃO -->
+  <div id="modalCriacao" class="modal-generico">
+    <div class="modal-box">
+
+      <h2>Criação de Usuários Administradores</h2>
+
+      <div class="modal-content">
+        <h3>Nome do Administrador</h3>
+        <input placeholder="Nome">
+        <h3>Email</h3>
+        <input placeholder="Email">
+        <h3>Senha</h3>
+        <input placeholder="Senha" type="password">
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="fecharModalDefinitivo()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="fecharModal()">Confirmar</button>
+      </div>
+
+    </div>
+  </div>
+
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -61,6 +100,22 @@
     </div>
   </footer>
 
+
+  
+
   <script src="../JS/users.js"></script>
 </body>
 </html>
+<script>
+  function abrirModal() {
+    document.getElementById("modalCriacao").style.display = "flex";
+  }
+  function fecharModalDefinitivo() {
+    document.getElementById("modalCriacao").style.display = "none";
+    document.getElementById("modalCriacaoConfirm").style.display = "none";
+  }
+  function fecharModal() {
+    document.getElementById("modalCriacaoConfirm").style.display = "flex";
+    document.getElementById("modalCriacao").style.display = "none";
+  }
+</script>

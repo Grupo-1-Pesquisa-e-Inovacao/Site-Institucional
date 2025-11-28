@@ -165,15 +165,15 @@ function updateSecretaria() {
     });
 }
 
-function openDeleteModal(id) {
-    secretariaIdToHandle = id;
-    document.getElementById("deleteModal").style.display = "flex"; 
-}
+// function openDeleteModal(id) {
+//     secretariaIdToHandle = id;
+//     document.getElementById("deleteModal").style.display = "flex"; 
+// }
 
-function closeDeleteModal() {
-    document.getElementById("deleteModal").style.display = "none";
-    secretariaIdToHandle = null;
-}
+// function closeDeleteModal() {
+//     document.getElementById("deleteModal").style.display = "none";
+//     secretariaIdToHandle = null;
+// }
 
 function confirmDelete() {
     if (secretariaIdToHandle !== null) {
@@ -182,15 +182,15 @@ function confirmDelete() {
     closeDeleteModal();
 }
 
-function openCreateModal() {
-    document.getElementById("createSecretariaModal").style.display = "flex";
-}
+// function openCreateModal() {
+//     document.getElementById("createSecretariaModal").style.display = "flex";
+// }
 
-function closeCreateModal() {
-    document.getElementById("createSecretariaModal").style.display = "none";
-}
+// function closeCreateModal() {
+//     document.getElementById("createSecretariaModal").style.display = "none";
+// }
 
-function closeEditModal() {
-    document.getElementById("editSecretariaModal").style.display = "none";
-    secretariaIdToHandle = null;
-}
+// function closeEditModal() {
+//     document.getElementById("editSecretariaModal").style.display = "none";
+//     secretariaIdToHandle = null;
+// }

@@ -86,28 +86,67 @@ function buscarEstados() {
     return database.executar(instrucaoSql);
 }
 
-
 function buscarKPIsPorEstado(estado) {
-    const instrucaoSql = `
-    SELECT 
-        ROUND((COUNT(CASE WHEN mae.nota_candidato > 700 THEN 1 END) * 100.0 / COUNT(*)), 2) AS percentualAcima700,
-        ROUND(AVG(mae.nota_candidato), 2) AS mediaGeral,
-        COUNT(*) AS totalProvas,
-        COUNT(DISTINCT mae.inscricao_enem) AS totalAlunos
-    FROM media_aluno_enem mae
-    JOIN estado e ON mae.idEstado = e.idUF
-    WHERE e.nomeUf = '${estado}';
-    `;
-    return database.executar(instrucaoSql);
+    const sqls = {
+
+        percentualAcima700: `
+            SELECT 
+            ROUND(
+            (COUNT(CASE WHEN mae.nota_candidato > 700 THEN 1 END) * 100.0 / COUNT(*)), 2) 
+            AS percentualAcima700
+            FROM media_aluno_enem mae
+            JOIN estado e ON mae.idEstado = e.idUF
+            WHERE e.nomeUf = '${estado}';
+        `,
+
+        mediaGeral: `
+            SELECT 
+            ROUND(AVG(mae.nota_candidato), 2) AS mediaGeral
+            FROM media_aluno_enem mae
+            JOIN estado e ON mae.idEstado = e.idUF
+            WHERE e.nomeUf = '${estado}';
+        `,
+        totalProvas: `
+            SELECT 
+            COUNT(*) AS totalProvas
+            FROM media_aluno_enem mae
+            JOIN estado e ON mae.idEstado = e.idUF
+            WHERE e.nomeUf = '${estado}';
+        `,
+        percentualMunicipiosAbaixo500: `
+            SELECT 
+            ROUND((COUNT(CASE WHEN medias.media_municipio < 500 THEN 1 END) * 100.0 / COUNT(*)),2) 
+            AS percentualMunicipiosAbaixo500
+            FROM (
+            SELECT 
+            m.idMunicipio,
+            AVG(mae.nota_candidato) AS media_municipio
+            FROM media_aluno_enem mae
+            JOIN municipio m 
+            ON mae.idMunicipio = m.idMunicipio
+            AND mae.idEstado = m.idEstado
+            JOIN estado e 
+            ON m.idEstado = e.idUF
+            WHERE e.nomeUf = '${estado}'
+            GROUP BY m.idMunicipio
+            ) AS medias;
+        `
+    };
+
+    return Promise.all([
+        database.executar(sqls.percentualAcima700),
+        database.executar(sqls.mediaGeral),
+        database.executar(sqls.totalProvas),
+        database.executar(sqls.percentualMunicipiosAbaixo500)
+    ]);
 }
 
 function buscarMunicipiosMenoresMedias(estado) {
-
     console.log("MODEL DE MINICIPIOS")
     const instrucaoSql = `    
     SELECT 
         m.nome_municipio,
-        ROUND(AVG(mae.nota_candidato), 2) AS media_notas
+        ROUND(AVG(mae.nota_candidato), 2)AS media_notas
     FROM media_aluno_enem mae
     JOIN municipio m 
         ON mae.idMunicipio = m.idMunicipio 

@@ -762,6 +762,8 @@
         console.log('RESETANDO')
         document.getElementById("estado-select").selectedIndex = 0;
         document.getElementById('DASH_NOME').innerHTML = "DASHBOARD - BRASIL"
+
+        modalcarregando();
         
         limparKIPs()
         chartKill()
@@ -806,34 +808,55 @@
             .then(res => res.json())
             .then(dados => {
                 console.log("DADOS ESTADO:", dados)
-                // KPI 1 - Percentual acima de 700
-                document.getElementById('KPI1').innerHTML =
-                    `<h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
-                    <p style="color:orange;">${dados.percentualAcima700 ?? 0}%</p>`;
 
-            // KPI 2 - Média geral
+
+
+            document.getElementById('KPI1').innerHTML =
+                `<h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
+                <p style="color:orange;">${dados.percentualAcima700}%</p>`;
+
             var media = dados.mediaGeral;
             let corMedia;
             if (media < 600) corMedia = "red";
             else if (media < 700) corMedia = "orange";
             else corMedia = "green";
 
-            document.getElementById('KPI2').innerHTML =
+            const percentual = dados.percentualMunicipiosAbaixo500;
+            const cor = corPorPercentual(percentual);
+
+            document.getElementById('KPI2').innerHTML = `
+                <h3>Porcentagem de Municípios com média inferior a 500</h3>
+                <p style="color: ${cor}; font-weight: bold;">
+                    ${percentual.toLocaleString("pt-BR")}%</p>
+            `;
+
+            document.getElementById('KPI3').innerHTML =
+                `<h3>Total de provas analisadas</h3>
+                <p>${(dados.totalProvas).toLocaleString("pt-BR")}</p>`;
+            
+
+            document.getElementById('KPI4').innerHTML =
                 `<h3>Média Geral das Notas (${estado})</h3>
                  <p style="color:${corMedia};">${media}</p>`;
 
-            // KPI 3 - Total de provas
-            document.getElementById('KPI3').innerHTML =
-                `<h3>Total de provas analisadas</h3>
-                 <p>${(dados.totalProvas).toLocaleString("pt-BR")}</p>`;
 
-            // KPI 4 - Total de alunos
-            document.getElementById('KPI4').innerHTML =
-                `<h3>Total de alunos no estado</h3>
-                 <p>${(dados.totalAlunos).toLocaleString("pt-BR")}</p>`;
+         
+
         })
         .catch(err => console.error("Erro ao buscar KPIs:", err));
 }
+
+    function corPorPercentual(percentual) {
+        if (percentual >= 50) {
+            return "#e74c3c"; // vermelho
+        } else if (percentual >= 30) {
+            return "#e67e22"; // laranja
+        } else if (percentual >= 15) {
+            return "#f1c40f"; // amarelo
+        } else {
+            return "#2ecc71"; // verde
+        }
+    }
 
     function filtroEstado(estado) {
         botaoResetAparecer();
@@ -873,7 +896,7 @@
     const options = {
         chart: { type: 'bar', height: 455 },
         title: {
-            text: "Médias do ENEM por Município",
+            text: "Médias do ENEM por Município (10 PIORES)",
             align: "center"
         },
         series: [{
@@ -886,7 +909,7 @@
         xaxis: {
             type: 'category',
             labels: {
-                show: false   
+                show: true   
             }
         },
         fill: { colors: ['#1E3A8A'] }
@@ -944,7 +967,7 @@
         document.getElementById("modalTelaCheia").style.display = "flex";
         setTimeout(() => {
             document.getElementById("modalTelaCheia").style.display = "none";
-        }, 2500);
+        }, 500);
     }
 
     function chartKill() {

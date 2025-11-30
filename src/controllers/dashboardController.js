@@ -76,32 +76,30 @@ function buscarEstados(req, res) {
 
 function getKPIsPorEstado(req, res) {
   const estado = req.query.estado;
-
   dashboardModel.buscarKPIsPorEstado(estado)
-    .then(dados => {
-      if (dados.length > 0) {
-        const row = dados[0];
-        res.json({
-          percentualAcima700: row.percentualAcima700,
-          mediaGeral: row.mediaGeral,
-          totalProvas: row.totalProvas,
-          totalAlunos: row.totalAlunos
-        });
-      } else {
-        // Se não houver dados, devolve zeros
-        res.json({
-          percentualAcima700: 0,
-          mediaGeral: 0,
-          totalProvas: 0,
-          totalAlunos: 0
-        });
-      }
+    .then((
+      [
+        acima700,
+        mediaGeral,
+        totalProvas,
+        percentualMunicipiosAbaixo500
+      ]
+    ) => {
+      res.json({
+        percentualAcima700: acima700[0].percentualAcima700,
+        mediaGeral: mediaGeral[0].mediaGeral,
+        totalProvas: totalProvas[0].totalProvas,
+        percentualMunicipiosAbaixo500: percentualMunicipiosAbaixo500[0].percentualMunicipiosAbaixo500
+      });
     })
     .catch(erro => {
-      console.error("Erro ao buscar KPIs:", erro);
-      res.status(500).json({ erro: "Erro ao buscar KPIs" });
+      console.error("Erro ao buscar KPIs por estado:", erro);
+      res.status(500).json({
+        erro: "Erro ao buscar KPIs por estado"
+      });
     });
 }
+
 
 function getMunicipiosMenoresMedias(req, res) {
   const estado = req.query.estado;

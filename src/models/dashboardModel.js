@@ -53,7 +53,7 @@ function buscarNotas900() {
 
 function buscarMediaGeral() {
     const instrucaoSql = `
-        SELECT ano, AVG(nota_candidato) AS media
+        SELECT ano, ROUND(AVG(nota_candidato), 2) AS media
         FROM media_aluno_enem
         GROUP BY ano
         ORDER BY ano ASC;
@@ -63,30 +63,90 @@ function buscarMediaGeral() {
 
 function buscarDistribuicaoNotas() {
     const instrucaoSql = `
-        SELECT 
-            SUM(CASE WHEN nota_candidato >= 800 THEN 1 ELSE 0 END) AS acima800,
-            SUM(CASE WHEN nota_candidato >= 600 AND nota_candidato < 800 THEN 1 ELSE 0 END) AS entre600e800,
-            SUM(CASE WHEN nota_candidato < 600 THEN 1 ELSE 0 END) AS abaixo600
-        FROM media_aluno_enem;
+    SELECT 
+        CAST(SUM(CASE WHEN nota_candidato >= 700 THEN 1 ELSE 0 END) AS UNSIGNED) AS acima700,
+        CAST(SUM(CASE WHEN nota_candidato >= 600 AND nota_candidato < 700 THEN 1 ELSE 0 END) AS UNSIGNED) AS entre600e700,
+        CAST(SUM(CASE WHEN nota_candidato < 600 THEN 1 ELSE 0 END) AS UNSIGNED) AS abaixo600
+    FROM media_aluno_enem;
     `;
     return database.executar(instrucaoSql);
 }
 
 function buscarEstados() {
     const instrucaoSql = `
-        SELECT e.nomeUf AS estado, AVG(m.nota_candidato) AS notaMedia
-        FROM media_aluno_enem m
+    SELECT 
+        e.nomeUf AS estado,
+        COUNT(*) AS qtd_abaixo500
+    FROM media_aluno_enem m
         JOIN estado e ON m.idEstado = e.idUF
-        GROUP BY e.idUF, e.nomeUf
-        ORDER BY e.idUF;
+        WHERE m.nota_candidato < 500
+        GROUP BY e.nomeUf
+    ORDER BY qtd_abaixo500 DESC;
     `;
     return database.executar(instrucaoSql);
 }
+
+
+function buscarKPIsPorEstado(estado) {
+    const instrucaoSql = `
+    SELECT 
+        ROUND((COUNT(CASE WHEN mae.nota_candidato > 700 THEN 1 END) * 100.0 / COUNT(*)), 2) AS percentualAcima700,
+        ROUND(AVG(mae.nota_candidato), 2) AS mediaGeral,
+        COUNT(*) AS totalProvas,
+        COUNT(DISTINCT mae.inscricao_enem) AS totalAlunos
+    FROM media_aluno_enem mae
+    JOIN estado e ON mae.idEstado = e.idUF
+    WHERE e.nomeUf = '${estado}';
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function buscarMunicipiosMenoresMedias(estado) {
+
+    console.log("MODEL DE MINICIPIOS")
+    const instrucaoSql = `    
+    SELECT 
+        m.nome_municipio,
+        ROUND(AVG(mae.nota_candidato), 2) AS media_notas
+    FROM media_aluno_enem mae
+    JOIN municipio m 
+        ON mae.idMunicipio = m.idMunicipio 
+       AND mae.idEstado = m.idEstado
+    JOIN estado e 
+        ON m.idEstado = e.idUF
+    WHERE e.nomeUf = '${estado}'
+    GROUP BY m.nome_municipio
+    ORDER BY media_notas ASC
+    LIMIT 10;
+    `;
+    return database.executar(instrucaoSql);
+
+}
+
+function buscarMediaAnoPorEstado(estado) {
+
+    console.log('MODEL DE MEDIAS ANO MUNICIPIO')
+    const instrucaoSql = `
+        SELECT 
+            mae.ano,
+            ROUND(AVG(mae.nota_candidato), 2) AS media
+        FROM media_aluno_enem mae
+        JOIN estado e ON mae.idEstado = e.idUF
+        WHERE e.nomeUf = '${estado}'
+        GROUP BY mae.ano
+        ORDER BY mae.ano ASC;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarKPIs,
     buscarNotas900,
     buscarMediaGeral,
     buscarDistribuicaoNotas,
-    buscarEstados
+    buscarEstados,
+    buscarKPIsPorEstado,
+    buscarMunicipiosMenoresMedias,
+    buscarMediaAnoPorEstado
 };

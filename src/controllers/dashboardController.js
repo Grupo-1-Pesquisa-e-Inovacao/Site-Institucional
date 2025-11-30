@@ -52,8 +52,8 @@ function getDistribuicaoNotas(req, res) {
         .then(resultado => {
             const dados = resultado[0];
             res.json({
-                acima800: dados.acima800,
-                entre600e800: dados.entre600e800,
+                acima700: dados.acima700,
+                entre600e700: dados.entre600e700,
                 abaixo600: dados.abaixo600
             });
         })
@@ -74,11 +74,67 @@ function buscarEstados(req, res) {
         });
 }
 
+function getKPIsPorEstado(req, res) {
+  const estado = req.query.estado;
+
+  dashboardModel.buscarKPIsPorEstado(estado)
+    .then(dados => {
+      if (dados.length > 0) {
+        const row = dados[0];
+        res.json({
+          percentualAcima700: row.percentualAcima700,
+          mediaGeral: row.mediaGeral,
+          totalProvas: row.totalProvas,
+          totalAlunos: row.totalAlunos
+        });
+      } else {
+        // Se não houver dados, devolve zeros
+        res.json({
+          percentualAcima700: 0,
+          mediaGeral: 0,
+          totalProvas: 0,
+          totalAlunos: 0
+        });
+      }
+    })
+    .catch(erro => {
+      console.error("Erro ao buscar KPIs:", erro);
+      res.status(500).json({ erro: "Erro ao buscar KPIs" });
+    });
+}
+
+function getMunicipiosMenoresMedias(req, res) {
+  const estado = req.query.estado;
+  dashboardModel.buscarMunicipiosMenoresMedias(estado)
+    .then(dados => {
+      res.json(dados);
+    })
+    .catch(erro => {
+      console.error("Erro ao buscar municípios:", erro);
+      res.status(500).json({ erro: "Erro ao buscar municípios" });
+    });
+}
+
+function getMediaAnoPorEstado(req, res) {
+  const estado = req.query.estado;
+
+  dashboardModel.buscarMediaAnoPorEstado(estado)
+    .then(dados => {
+      res.json(dados);
+    })
+    .catch(erro => {
+      console.error("Erro ao buscar médias por ano:", erro);
+      res.status(500).json({ erro: "Erro ao buscar médias por ano" });
+    });
+}
+
 module.exports = { 
     getKPIs, 
     getChart1,
     getChart2, 
     getDistribuicaoNotas,
-    buscarEstados
-
+    buscarEstados,
+    getMunicipiosMenoresMedias,
+    getMediaAnoPorEstado,
+    getKPIsPorEstado
 };

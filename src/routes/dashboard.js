@@ -23,4 +23,19 @@ router.get("/buscarEstados", (req, res) => {
     dashboardController.buscarEstados(req, res);
 });
 
+router.get("/getKPIsPorEstado", function (req, res) {
+  dashboardController.getKPIsPorEstado(req, res);
+});
+
+router.get("/municipios", function (req, res) {
+  dashboardController.getMunicipiosMenoresMedias(req, res);
+});
+
+router.get("/mediaAno", function (req, res) {
+  dashboardController.getMediaAnoPorEstado(req, res);
+});
+
+
+
+
 module.exports = router;

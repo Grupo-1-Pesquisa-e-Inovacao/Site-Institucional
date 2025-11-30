@@ -61,10 +61,11 @@ function deleteById(id){
 }
 
 
+
 module.exports = {
   autenticar,
   cadastrar,
   findAllCommonUsers,
   findAllAdminUsers,
-  deleteById
+  deleteById,
 };

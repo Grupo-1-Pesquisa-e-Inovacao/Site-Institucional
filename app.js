@@ -17,6 +17,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
+var secretariaRouter = require("./src/routes/secretariaRoutes"); 
 var dashboardRouter = require("./src/routes/dashboard");
 var slackRouter = require("./src/routes/slack");
 var secretariaRouter = require("./src/routes/secretariaRoutes");
@@ -30,6 +31,7 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/secretarias", secretariaRouter); 
 app.use("/dashboard", dashboardRouter);
 app.use("/slack", slackRouter);
 app.use("/secretaria", secretariaRouter);

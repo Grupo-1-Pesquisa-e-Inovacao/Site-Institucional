@@ -15,7 +15,7 @@ router.get("/buscarPorId/:idSecretaria", function (req, res) {
     secretariaController.buscarPorId(req, res);
 });
 
-router.patch("/atualizar/:idSecretaria", function (req, res) {
+router.put("/atualizar/:idSecretaria", function (req, res) {
     secretariaController.atualizar(req, res);
 });
 

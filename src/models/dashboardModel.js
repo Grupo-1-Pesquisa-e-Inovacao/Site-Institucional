@@ -86,6 +86,15 @@ function buscarEstados() {
     return database.executar(instrucaoSql);
 }
 
+function findAllEstados() {
+    const instrucaoSql = `
+        SELECT idUF, nomeUf
+        FROM estado
+        ORDER BY nomeUf ASC;
+    `;
+    return database.executar(instrucaoSql);
+}
+
 function buscarKPIsPorEstado(estado) {
     const sqls = {
 
@@ -187,5 +196,6 @@ module.exports = {
     buscarEstados,
     buscarKPIsPorEstado,
     buscarMunicipiosMenoresMedias,
-    buscarMediaAnoPorEstado
+    buscarMediaAnoPorEstado,
+    findAllEstados
 };

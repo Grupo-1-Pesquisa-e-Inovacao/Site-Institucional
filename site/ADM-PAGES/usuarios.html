@@ -29,7 +29,7 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="dashboard-container">
     <h1>Usuários Comuns</h1>
-    <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Usuário</button>
+    <button class="action-btn" onclick="abrirModalUser()"><i class="fa-solid fa-user-plus"></i> Adicionar Usuário</button>
     <table class="user-table">
       <thead>
         <tr>
@@ -45,16 +45,62 @@
   </main>
 
   <!-- MODAL DE CONFIRMAÇÃO DE DELETE -->
-<div id="deleteModal" class="modal">
-  <div class="modal-content">
-    <h2>Você tem certeza que gostaria de deletar?</h2>
-
-    <div class="modal-actions">
-      <button class="cancel-btn" onclick="closeDeleteModal()">Não</button>
-      <button class="confirm-btn" onclick="confirmDelete('user')">Sim</button>
+  <div id="deleteModal" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Você tem certeza que gostaria de deletar?</h2>
+      <div class="modal-content">
+        <button class="modal-btn cancel" onclick="closeDeleteModal()">Não</button>
+        <button class="modal-btn confirm" onclick="confirmDelete('user')">Sim</button>
+      </div>
     </div>
   </div>
-</div>
+
+  <!-- MODAL DE CRIAÇÃO DE USUÁRIO COMUM -->
+  <div id="modalCriacaoUser" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Criação de Usuário</h2>
+      <div class="modal-content">
+        <h3>Nome</h3>
+        <input id="userNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="userEmail" placeholder="Email">
+        <h3>Senha</h3>
+        <input id="userSenha" placeholder="Senha" type="password">
+        <h3>Secretaria</h3>
+        <select id="userSecretaria"><option value="">Carregando...</option></select>
+        <h3>Estado</h3>
+        <select id="userEstado"><option value="">Carregando...</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="fecharModalUser()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="createCommonUser()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE EDIÇÃO DE USUÁRIO (reaproveita os ids usados pelo users.js) -->
+  <div id="modalEditar" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Editar Usuário</h2>
+      <div class="modal-content">
+        <input type="hidden" id="editId">
+        <h3>Nome</h3>
+        <input id="editNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="editEmail" placeholder="Email">
+        <h3>Senha (deixe em branco para manter)</h3>
+        <input id="editSenha" placeholder="Senha" type="password">
+        <h3>Secretaria</h3>
+        <select id="editSecretaria"><option value="">Carregando...</option></select>
+        <h3>Estado</h3>
+        <select id="editEstado"><option value="">Carregando...</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeEditModal()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="updateUser()">Salvar</button>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">

@@ -37,7 +37,7 @@
   <h2><i class="fa-brands fa-slack"></i> Configurar Canais do Slack</h2>
   
   <!-- Adicionar novo canal -->
-  <table class="user-table">
+  <!-- <table class="user-table">
     <thead>
       <tr>
         <th>Novo Canal</th>
@@ -50,7 +50,7 @@
         <td><button class="action-btn" id="btnAdicionarSlack">Adicionar</button></td>
       </tr>
     </tbody>
-  </table>
+  </table> -->
 
   <!-- Lista de canais existentes -->
   <h3 style="margin-top:20px;">Canais Configurados</h3>
@@ -101,28 +101,28 @@
           <!-- Nome -->
           <tr>
             <td>Nome</td>
-            <td>João da Silva</td>
-            <td><input type="text" placeholder="Digite o novo nome" /></td>
+            <td id="atualNome">Carregando...</td>
+            <td><input id="novoNome" type="text" placeholder="Digite o novo nome" /></td>
             <td></td>
-            <td><button class="action-btn">Salvar</button></td>
+            <td><button class="action-btn" id="salvarNome">Salvar</button></td>
           </tr>
 
           <!-- E-mail -->
           <tr>
             <td>E-mail</td>
-            <td>joao@geoeduca.com</td>
-            <td><input type="email" placeholder="Digite o novo e-mail" /></td>
+            <td id="atualEmail">Carregando...</td>
+            <td><input id="novoEmail" type="email" placeholder="Digite o novo e-mail" /></td>
             <td></td>
-            <td><button class="action-btn">Salvar</button></td>
+            <td><button class="action-btn" id="salvarEmail">Salvar</button></td>
           </tr>
 
           <!-- Senha -->
           <tr>
             <td>Senha</td>
-            <td><input type="password" placeholder="Senha atual" /></td>
-            <td><input type="password" placeholder="Nova senha" /></td>
-            <td><input type="password" placeholder="Confirmar nova senha" /></td>
-            <td><button class="action-btn">Salvar</button></td>
+            <td><input id="senhaAtual" type="password" placeholder="Senha atual" /></td>
+            <td><input id="novaSenha" type="password" placeholder="Nova senha" /></td>
+            <td><input id="confirmarSenha" type="password" placeholder="Confirmar nova senha" /></td>
+            <td><button class="action-btn" id="salvarSenha">Salvar</button></td>
           </tr>
         </tbody>
       </table>
@@ -153,18 +153,161 @@
         window.location.href = logoutBtn.getAttribute("href");
       });
     }
+
+    const userId = sessionStorage.ID_USUARIO;
+    let currentUser = null;
+    if (userId) {
+      fetch(`/usuarios/findById/${userId}`)
+        .then((resp) => {
+          if (!resp.ok) throw new Error('Erro ao buscar usuário');
+          return resp.json();
+        })
+        .then((data) => {
+          const user = Array.isArray(data) ? data[0] : data;
+          if (!user) return;
+          currentUser = user;
+          const atualNome = document.getElementById('atualNome');
+          const atualEmail = document.getElementById('atualEmail');
+          const novoNome = document.getElementById('novoNome');
+          const novoEmail = document.getElementById('novoEmail');
+          if (atualNome) atualNome.textContent = user.nome || '';
+          if (atualEmail) atualEmail.textContent = user.email || '';
+          if (novoNome) novoNome.value = user.nome || '';
+          if (novoEmail) novoEmail.value = user.email || '';
+        })
+        .catch((err) => {
+          console.error('Não foi possível carregar dados do usuário:', err);
+          const atualNome = document.getElementById('atualNome');
+          const atualEmail = document.getElementById('atualEmail');
+          if (atualNome) atualNome.textContent = 'Erro ao carregar';
+          if (atualEmail) atualEmail.textContent = 'Erro ao carregar';
+        });
+    }
+
+    const salvarNomeBtn = document.getElementById('salvarNome');
+    if (salvarNomeBtn) {
+      salvarNomeBtn.addEventListener('click', () => {
+        if (!userId) return alert('Usuário não identificado. Faça login.');
+        if (!currentUser) return alert('Dados do usuário ainda não carregados. Aguarde.');
+        const novo = document.getElementById('novoNome').value.trim();
+        if (!novo) return alert('Digite um nome válido.');
+
+        const payload = {
+          nome: novo,
+          email: currentUser.email,
+          senha: currentUser.senha
+        };
+
+        fetch(`/usuarios/update/${userId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then((resp) => {
+            if (!resp.ok) throw new Error('Falha ao atualizar nome');
+            return resp.json();
+          })
+          .then(() => {
+            currentUser.nome = novo;
+            const atualNome = document.getElementById('atualNome');
+            if (atualNome) atualNome.textContent = novo;
+            alert('Nome atualizado com sucesso.');
+          })
+          .catch((err) => {
+            console.error(err);
+            alert('Erro ao atualizar nome. Veja o console.');
+          });
+      });
+    }
+
+    const salvarEmailBtn = document.getElementById('salvarEmail');
+    if (salvarEmailBtn) {
+      salvarEmailBtn.addEventListener('click', () => {
+        if (!userId) return alert('Usuário não identificado. Faça login.');
+        if (!currentUser) return alert('Dados do usuário ainda não carregados. Aguarde.');
+        const novo = document.getElementById('novoEmail').value.trim();
+        if (!novo) return alert('Digite um e-mail válido.');
+
+        const payload = {
+          nome: currentUser.nome,
+          email: novo,
+          senha: currentUser.senha
+        };
+
+        fetch(`/usuarios/update/${userId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then((resp) => {
+            if (!resp.ok) throw new Error('Falha ao atualizar e-mail');
+            return resp.json();
+          })
+          .then(() => {
+            currentUser.email = novo;
+            const atualEmail = document.getElementById('atualEmail');
+            if (atualEmail) atualEmail.textContent = novo;
+            alert('E-mail atualizado com sucesso.');
+          })
+          .catch((err) => {
+            console.error(err);
+            alert('Erro ao atualizar e-mail. Veja o console.');
+          });
+      });
+    }
+
+    const salvarSenhaBtn = document.getElementById('salvarSenha');
+    if (salvarSenhaBtn) {
+      salvarSenhaBtn.addEventListener('click', () => {
+        if (!userId) return alert('Usuário não identificado. Faça login.');
+        if (!currentUser) return alert('Dados do usuário ainda não carregados. Aguarde.');
+
+        const senhaAtualInput = document.getElementById('senhaAtual').value;
+        const novaSenhaInput = document.getElementById('novaSenha').value.trim();
+        const confirmarSenhaInput = document.getElementById('confirmarSenha').value.trim();
+
+        if (!senhaAtualInput || !novaSenhaInput || !confirmarSenhaInput) return alert('Preencha todos os campos de senha.');
+        if (novaSenhaInput !== confirmarSenhaInput) return alert('A nova senha e a confirmação não coincidem.');
+
+        if (currentUser.senha && senhaAtualInput !== currentUser.senha) return alert('Senha atual incorreta.');
+
+        const payload = {
+          nome: currentUser.nome,
+          email: currentUser.email,
+          senha: novaSenhaInput
+        };
+
+        fetch(`/usuarios/update/${userId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then((resp) => {
+            if (!resp.ok) throw new Error('Falha ao atualizar senha');
+            return resp.json();
+          })
+          .then(() => {
+            currentUser.senha = novaSenhaInput;
+            document.getElementById('senhaAtual').value = '';
+            document.getElementById('novaSenha').value = '';
+            document.getElementById('confirmarSenha').value = '';
+            alert('Senha atualizada com sucesso.');
+          })
+          .catch((err) => {
+            console.error(err);
+            alert('Erro ao atualizar senha. Veja o console.');
+          });
+      });
+    }
   });
 
-  // Lista mocada de canais Slack
-let canaisSlack = [
-  { nome: "#geoeduca-info", ativo: true },
-  { nome: "#alertas", ativo: false }
-];
+let canaisSlack = [];
 
-// Função para renderizar a tabela
 function renderSlackTable() {
-  const tabela = document.getElementById("tabelaSlack").querySelector("tbody");
-  tabela.innerHTML = ""; // limpa antes de renderizar
+  const tabela = document.getElementById("tabelaSlack");
+  if (!tabela) return;
+  const tbody = tabela.querySelector("tbody");
+  tbody.innerHTML = "";
 
   canaisSlack.forEach((canal, index) => {
     const row = document.createElement("tr");
@@ -180,51 +323,106 @@ function renderSlackTable() {
         <button class="action-btn btnDelete" data-index="${index}">Deletar</button>
       </td>
     `;
-    tabela.appendChild(row);
+    tbody.appendChild(row);
   });
 }
 
-// Função para adicionar canal
-function adicionarCanal(nome) {
-  canaisSlack.push({ nome: `#${nome}`, ativo: true });
-  renderSlackTable();
-}
-
-// Função para alternar status (ligar/desligar)
 function toggleCanal(index) {
-  canaisSlack[index].ativo = !canaisSlack[index].ativo;
-  renderSlackTable();
+  if (typeof index === 'undefined' || !canaisSlack[index]) return;
+  const canal = canaisSlack[index];
+  const novoEstado = canal.ativo ? 0 : 1; // 1 = ligado, 0 = desligado
+
+  if (canal.id) {
+    fetch(`/slack/update/${canal.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ligado: novoEstado })
+    })
+      .then((resp) => {
+        if (!resp.ok) throw new Error('Falha ao atualizar status no servidor');
+        return resp.json();
+      })
+      .then(() => {
+        canal.ativo = !canal.ativo;
+        renderSlackTable();
+      })
+      .catch((err) => {
+        console.error('Erro ao atualizar status:', err);
+        alert('Não foi possível atualizar o status no servidor.');
+      });
+  } else {
+    canal.ativo = !canal.ativo;
+    renderSlackTable();
+  }
 }
 
-// Função para deletar canal
 function deletarCanal(index) {
-  canaisSlack.splice(index, 1);
-  renderSlackTable();
+  if (typeof index === 'undefined' || !canaisSlack[index]) return;
+  const canal = canaisSlack[index];
+  if (!confirm(`Deseja realmente deletar o canal ${canal.nome}?`)) return;
+
+  if (canal.id) {
+    fetch(`/slack/delete/${canal.id}`, { method: 'DELETE' })
+      .then((resp) => {
+        if (!resp.ok) throw new Error('Falha ao deletar no servidor');
+        return resp.json();
+      })
+      .then(() => {
+        canaisSlack.splice(index, 1);
+        renderSlackTable();
+      })
+      .catch((err) => {
+        console.error('Erro ao deletar canal:', err);
+        alert('Não foi possível deletar o canal no servidor.');
+      });
+  } else {
+    canaisSlack.splice(index, 1);
+    renderSlackTable();
+  }
 }
 
-// Inicialização
-document.addEventListener("DOMContentLoaded", () => {
-  renderSlackTable();
+function loadSlackCanais() {
+  fetch('/slack/findAll')
+    .then((resp) => {
+      if (!resp.ok) throw new Error('Falha ao buscar canais Slack');
+      return resp.json();
+    })
+    .then((data) => {
+      canaisSlack = Array.isArray(data)
+        ? data.map((row) => ({
+            id: row.idSlackEvento || row.id || null,
+            nome: row.canal_padrao || row.canal || '#desconhecido',
+            ativo: Number(row.ligado) === 1 || row.ligado === true
+          }))
+        : [];
+      renderSlackTable();
+    })
+    .catch((err) => {
+      console.error('Erro ao carregar canais Slack:', err);
+      const tabela = document.getElementById('tabelaSlack');
+      if (tabela) {
+        tabela.querySelector('tbody').innerHTML = '<tr><td colspan="3">Erro ao carregar canais.</td></tr>';
+      }
+    });
+}
 
-  // Adicionar novo canal
-  document.getElementById("btnAdicionarSlack").addEventListener("click", () => {
-    const novoCanal = document.getElementById("novoCanalSlack").value.trim();
-    if (novoCanal) {
-      adicionarCanal(novoCanal);
-      document.getElementById("novoCanalSlack").value = "";
-    }
-  });
 
-  // Delegação de eventos para toggle e delete
-  document.getElementById("tabelaSlack").addEventListener("click", (event) => {
-    if (event.target.classList.contains("btnToggle")) {
-      const index = event.target.getAttribute("data-index");
-      toggleCanal(index);
-    }
-    if (event.target.classList.contains("btnDelete")) {
-      const index = event.target.getAttribute("data-index");
-      deletarCanal(index);
-    }
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  loadSlackCanais();
+
+  const tabela = document.getElementById('tabelaSlack');
+  if (tabela) {
+    tabela.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target.classList.contains('btnToggle')) {
+        const index = Number(target.getAttribute('data-index'));
+        toggleCanal(index);
+      }
+      if (target.classList.contains('btnDelete')) {
+        const index = Number(target.getAttribute('data-index'));
+        deletarCanal(index);
+      }
+    });
+  }
 });
 </script>

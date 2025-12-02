@@ -63,7 +63,7 @@
       <h2>Você tem certeza que gostaria de criar o novo administrador?</h2>
 
       <div class="modal-content">
-        <button class="modal-btn confirm" onclick="confirmDelete('admin')">Sim</button>
+        <button class="modal-btn confirm" onclick="createUser()">Sim</button>
         <button class="modal-btn cancel" onclick="fecharModalDefinitivo()">Não</button>
       </div>
     </div>
@@ -77,11 +77,11 @@
 
       <div class="modal-content">
         <h3>Nome do Administrador</h3>
-        <input placeholder="Nome">
+        <input id="adminNome" placeholder="Nome">
         <h3>Email</h3>
-        <input placeholder="Email">
+        <input id="adminEmail" placeholder="Email">
         <h3>Senha</h3>
-        <input placeholder="Senha" type="password">
+        <input id="adminSenha" placeholder="Senha" type="password">
       </div>
 
       <div class="modal-actions">
@@ -99,6 +99,30 @@
       <p>&copy; 2025 GeoEduca - Todos os direitos reservados</p>
     </div>
   </footer>
+
+  <!-- MODAL DE EDIÇÃO -->
+  <div id="modalEditar" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Editar Administrador</h2>
+      <div class="modal-content">
+        <input type="hidden" id="editId">
+        <h3>Nome</h3>
+        <input id="editNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="editEmail" placeholder="Email">
+        <h3>Senha (deixe em branco para manter)</h3>
+        <input id="editSenha" placeholder="Senha" type="password">
+        <h3>Secretaria</h3>
+        <select id="editSecretaria"><option value="">Carregando...</option></select>
+        <h3>Estado</h3>
+        <select id="editEstado"><option value="">Carregando...</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeEditModal()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="updateUser()">Salvar</button>
+      </div>
+    </div>
+  </div>
 
 
   

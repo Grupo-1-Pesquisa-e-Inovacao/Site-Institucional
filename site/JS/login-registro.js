@@ -191,9 +191,6 @@ function entrar() {
     console.log("ERRO")
   }
 
-  console.log("FORM SENHA: ", senhaVar);
-  console.log("FORM LOGIN: ", emailVar);
-
   fetch("/usuarios/autenticar", {
     method: "POST",
     headers: {
@@ -208,19 +205,14 @@ function entrar() {
 
     if (resposta.ok) {
       document.getElementById("erro_login").innerHTML = ""
-      console.log(resposta);
 
       resposta.json().then(json => {
-        console.log(json);
-        console.log(JSON.stringify(json));
 
         sessionStorage.EMAIL_USUARIO = json.email;
         sessionStorage.NOME_USUARIO = json.nome;
         sessionStorage.ID_USUARIO = json.id;
         sessionStorage.USUARIO_ADMIN = json.administrador;
         sessionStorage.USUARIO_ESTADO = json.estado;
-
-        console.log(json.administrador)
         
         document.getElementById('login-loading').innerHTML = `<img src="./IMGS/loading.gif" height="75px" width="75px">`
 

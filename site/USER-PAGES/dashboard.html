@@ -17,7 +17,6 @@
         <nav>
             <ul>
                 <li><a href="usuario.html">Início</a></li>
-                <li><a href="perfil.html">Meu Perfil</a></li>
                 <li><a href="dashboard.html" style="color: orange;">Dashboard</a></li>
                 <li><a href="configurações.html">Configurações</a></li>
                 <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
@@ -52,7 +51,7 @@
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="450px" height="460px"
                         viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
                         <g>
-                            <a xlink:href="#Tocantins">
+                            <a onclick="atualizarEstado('Tocantins')">
                                 <title>Tocantins</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Tocantins" d="M289.558,235.641
@@ -60,9 +59,9 @@
                             S234.852,233.695,289.558,235.641z"></path>
                                 <text transform="matrix(1 0 0 1 287.0137 188.3208)" fill="#FFFFFF">TO</text>
                             </a>
-                            <a xlink:href="#Bahia">
-                                <title>Bahia</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                            <a onclick="atualizarEstado('Bahia')">
+                                <title>Bahia</title >
+                                <path  stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Bahia"
                                     d="M313.276,197.775
                             c2.084-2.739,3.506-7.012,6.464-8.764c1.641-0.973,3.232-4.684,4.271-5.163c2.304-1.014,12.161-25.143,20.706-22.513
@@ -75,7 +74,7 @@
                                     .</path>
                                 <text transform="matrix(1 0 0 1 359.7324 210.1221)" fill="#FFFFFF">BA</text>
                             </a>
-                            <a xlink:href="#Sergipe">
+                            <a onclick="atualizarEstado('Sergipe')">
                                 <title>Sergipe</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Sergipe" d="M408.561,191.735
@@ -87,7 +86,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 408.9121 198.6689)" fill="#FFFFFF">SE</text>
                             </a>
-                            <a xlink:href="#Pernambuco">
+                            <a onclick="atualizarEstado('Pernambuco')">
                                 <title>Pernambuco</title>
                                 .<path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Pernambuco" d="M373.011,167.238
@@ -100,7 +99,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 401.3984 165.8003)" fill="#FFFFFF">PE</text>
                             </a>
-                            <a xlink:href="#Alagoas">
+                            <a onclick="atualizarEstado('Alagoas')">
                                 <title>Alagoas</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Alagoas" d="M413.953,169.018
@@ -113,7 +112,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 429.7891 183.895)" fill="#FFFFFF">AL</text>
                             </a>
-                            <a xlink:href="#Rio Grande Do Norte">
+                            <a onclick="atualizarEstado('Rio Grande Do Norte')">
                                 <title>Rio Grande do Norte</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Rio Grande do Norte"
@@ -127,7 +126,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 422.541 123.9009)" fill="#FFFFFF">RN</text>
                             </a>
-                            <a xlink:href="#Ceara">
+                            <a onclick="atualizarEstado('Ceara')">
                                 <title>Ceará</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Ceará" d="M372.379,104.409
@@ -139,7 +138,7 @@
                             C373.035,102.314,374.815,105.971,372.379,104.409z">.</path>
                                 <text transform="matrix(1 0 0 1 386.8379 129.0347)" fill="#FFFFFF">CE</text>
                             </a>
-                            <a xlink:href="#Piaui">
+                            <a onclick="atualizarEstado('Piauí')">
                                 <title>Piauí</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Piauí" d="M320.781,185.478
@@ -151,7 +150,7 @@
                             C328.176,198.748,327.409,180.727,320.781,185.478z">.</path>
                                 <text transform="matrix(1 0 0 1 355.127 158.1045)" fill="#FFFFFF">PI</text>
                             </a>
-                            <a xlink:href="#Maranhao">
+                            <a onclick="atualizarEstado('Maranhão')">
                                 <title>Maranhão</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Maranhão" d="M288.845,127.827
@@ -168,7 +167,7 @@
                             C290.983,125.675,290.983,128.044,288.845,127.827z">.</path>
                                 <text transform="matrix(1 0 0 1 318.2754 126.7036)" fill="#FFFFFF">MA</text>
                             </a>
-                            <a xlink:href="#Amapa">
+                            <a onclick="atualizarEstado('Amapa')">
                                 <title>Amapá</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Amapá" d="M225.198,39.089
@@ -178,7 +177,7 @@
                             C221.814,36.458,223.334,38.417,225.198,39.089z">.</path>
                                 <text transform="matrix(1 0 0 1 245.9023 52.6099)" fill="#FFFFFF">AP</text>
                             </a>
-                            <a xlink:href="#Para">
+                            <a onclick="atualizarEstado('Pará')">
                                 <title>Pará</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Pará" d="M173.378,50.619
@@ -197,7 +196,7 @@
                             C319.302,76.912,319.74,78.76,319.139,77.664z">.</path>
                                 <text transform="matrix(1 0 0 1 232.7725 122.5137)" fill="#FFFFFF">PA</text>
                             </a>
-                            <a xlink:href="#Roraima">
+                            <a onclick="atualizarEstado('Roraima')">
                                 <title>Roraima</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Roraima" d="M113.18,24.107
@@ -210,7 +209,7 @@
                             s-12.517-52.736-20.335-54.063C115.261,36.417,111.523,25.682,113.18,24.107z">.</path>
                                 <text transform="matrix(1 0 0 1 136.2939 42.3862)" fill="#FFFFFF">RR</text>
                             </a>
-                            <a xlink:href="#Amazonas">
+                            <a onclick="atualizarEstado('Amazonas')">
                                 <title>Amazonas</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Amazonas"
@@ -234,7 +233,7 @@
                                     .</path>
                                 <text transform="matrix(1 0 0 1 98.1406 119.0591)" fill="#FFFFFF">AM</text>
                             </a>
-                            <a xlink:href="#Acre">
+                            <a onclick="atualizarEstado('Acre')">
                                 <title>Acre</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Acre"
@@ -246,7 +245,8 @@
                             c6.299-3.41-3.107-11.9-5.216-15.679c-0.52-0.918-3.588-4.655-3.629-5.957C1.642,150.174,6.612,151.968,3.656,148.545z">
                                     .</path>
                                 <text transform="matrix(1 0 0 1 47.7017 184.9355)" fill="#FFFFFF">AC</text>
-                            </a><a xlink:href="#rondonia">
+                            </a>
+                            <a onclick="atualizarEstado('Rondônia')">
                                 <title>Rondônia</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Rondônia" d="M83.34,180.232
@@ -260,7 +260,7 @@
                             c-0.384-6.081-1.028-1.986-3.382-1.903C94.336,180.686,85.957,181.671,83.34,180.232z"></path>
                                 <text transform="matrix(1 0 0 1 118.1299 195.3193)" fill="#FFFFFF">RO</text>
                             </a>
-                            <a xlink:href="#matogrosso">
+                            <a onclick="atualizarEstado('Mato Grosoo')">
                                 <title>Mato Grosso</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Mato Grosso" d="M142.237,173.962
@@ -277,7 +277,7 @@
                             C143.581,176.618,141.937,174.714,142.237,173.962z"></path>
                                 <text transform="matrix(1 0 0 1 200.0244 218.4175)" fill="#FFFFFF">MT</text>
                             </a>
-                            <a xlink:href="#matogrossodosul">
+                            <a onclick="atualizarEstado('Mato Grosso do Sul')">
                                 <title>Mato Grosso do Sul</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Mato Grosso do Sul"
@@ -293,7 +293,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 213.2939 306.7236)" fill="#FFFFFF">MS</text>
                             </a>
-                            <a xlink:href="#goias">
+                            <a onclick="atualizarEstado('Goiás')">
                                 <title>Goiás</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Goiás"
@@ -313,7 +313,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 266.9111 254.2139)" fill="#FFFFFF">GO</text>
                             </a>
-                            <a xlink:href="#parana">
+                            <a onclick="atualizarEstado('Paraná')">
                                 <title>Paraná</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Paraná" d="M222.225,363.694
@@ -324,7 +324,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 248.4453 356.1045)" fill="#FFFFFF">PR</text>
                             </a>
-                            <a xlink:href="#santacatarina">
+                            <a onclick="atualizarEstado('Santa Catarina')">
                                 <title>Santa Catarina</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Santa Catarina" d="M231.029,383.959
@@ -334,7 +334,7 @@
                             C276.085,411.866,233.534,382.918,231.029,383.959z"></path>
                                 <text transform="matrix(1 0 0 1 266.9111 387.7646)" fill="#FFFFFF">SC</text>
                             </a>
-                            <a xlink:href="#riograndedosul">
+                            <a onclick="atualizarEstado('Rio Grande do Sul')">
                                 <title>Rio Grande do Sul</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Rio Grande do Sul"
@@ -349,7 +349,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 231.0313 414.4658)" fill="#FFFFFF">RS</text>
                             </a>
-                            <a onclick="filtroEstado(SãoPaulo)">
+                            <a onclick="atualizarEstado('São Paulo')">
                                 <title>São Paulo</title>
                                 <path id="São Paulo" stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" d="M239.3,330.554
@@ -363,7 +363,7 @@
                             C247.982,330.386,239.876,331.21,239.3,330.554z"></path>
                                 <text transform="matrix(1 0 0 1 280.6816 327.3193)" fill="#FFFFFF">SP</text>
                             </a>
-                            <a xlink:href="#minasgerais">
+                            <a onclick="atualizarEstado('Minas Gerais')">
                                 <title>Minas Gerais</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Minas Gerais" d="M262.881,297.305
@@ -385,7 +385,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 328.4063 286.4561)" fill="#FFFFFF">MG</text>
                             </a>
-                            <a xlink:href="#riodejaneiro">
+                            <a onclick="atualizarEstado('Rio De Janiero')">
                                 <title>Rio de Janeiro</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Rio de Janeiro" d="M332.886,337.429
@@ -401,7 +401,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 347.4648 334.6807)" fill="#FFFFFF">RJ</text>
                             </a>
-                            <a xlink:href="#espiritosanto">
+                            <a onclick="atualizarEstado('Espirito Santo')">
                                 <title>Espírito Santo</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Espírito Santo" d="M367.119,308.834
@@ -416,7 +416,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 373.3047 300.4971)" fill="#FFFFFF">ES</text>
                             </a>
-                            <a xlink:href="#distritofederal">
+                            <a onclick="atualizarEstado('Distrito Federal')">
                                 <title>Distrito Federal</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Distrito Federal" d="M292.461,246.197
@@ -427,7 +427,7 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 292.4141 254.2139)" fill="#FFFFFF">DF</text>
                             </a>
-                            <a xlink:href="#paraiba" id="#paraiba">
+                            <a onclick="atualizarEstado('Paraíba')">
                                 <title>Paraíba</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Paraíba" d="M401.575,141.096
@@ -462,8 +462,7 @@
                 <div class="logo-dash">
                     <h1 id="DASH_NOME">DASHBOARD - BRASIL</h1>
                     <div>
-                        <button class="button-editar">Favoritar</button>
-                        <button class="button-deletar">Desfavoritar</button>
+
                     </div>
                 </div>
 
@@ -558,7 +557,9 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
 
+    modalcarregando()
     let mediaGeral = 0;
+
     // VERIFICANDO VARIÁVEL SE É OU NÃO ADM
     document.addEventListener("DOMContentLoaded", function () {
         const isAdmin = sessionStorage.USUARIO_ADMIN;
@@ -781,8 +782,6 @@
     window.addEventListener("DOMContentLoaded", carregarGraficoHorizontal);
     window.addEventListener("DOMContentLoaded", mapaCor);
 
-    // Atualiza o título sempre que o usuário muda a seleção
-
     let debounceTimer;
 
     //SEPARAÇÃO
@@ -791,7 +790,7 @@
     //SEPARAÇÃO
     //SEPARAÇÃO
 
-    // Eventos
+    // Atualiza o título sempre que o usuário muda a seleção
     document.getElementById("estado-select").addEventListener("change", function () {
         atualizarEstado(this.value); 
     });
@@ -947,18 +946,6 @@
         };
 
         new ApexCharts(document.querySelector("#chart2"), options).render();
-    }
-
-    function filtroBrasil() {
-        document.getElementById("estado-select").selectedIndex = 0;
-        modalcarregando();
-        chartKill();
-        console.log("AGUARDANDO 1 - RESETANDO KPIs");
-        kpiReset();
-        console.log("AGUARDANDO 2 - PLOTANDO GRAFICOS");
-        graficosBrasil();
-        console.log("AGUARDANDO 3 - SUMINDO BOTÃO");
-        botaoResetSumir();
     }
 
     // FUNÇÕES PRINCIPAIS !

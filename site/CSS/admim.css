@@ -74,6 +74,7 @@ body {
 .cta-btn {
   background-color: #1E3A8A;
   color: white;
+  width: 100px;
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -144,6 +145,8 @@ body {
 
 /* BOTÃO DELETAR */
 .delete-btn {
+  margin-top: 5px;
+  width: 100px;
   background-color: #f91616;
   color: white;
   border: none;
@@ -153,6 +156,8 @@ body {
   transition: background 0.3s ease;
 }
 .edit-btn {
+  margin-top: 5px;
+  width: 100px;
   background-color: #F97316;
   color: white;
   border: none;

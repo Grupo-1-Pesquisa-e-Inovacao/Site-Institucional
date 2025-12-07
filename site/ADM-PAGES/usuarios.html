@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../CSS/navbar.css">
   <link rel="stylesheet" href="../CSS/user-area.css">
   <link rel="stylesheet" href="../CSS/admim.css">
+  <link rel="stylesheet" href="../CSS/toast.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
@@ -20,7 +21,7 @@
     <nav>
       <ul>
         <li><a href="admin.html">Início</a></li>
-        <li><a href="usuarios.html" style="color: orange;">Administração</a></li>
+        <li><a href="usuarios.html" style="color: orange;">Usuarios</a></li>
         <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
       </ul>
     </nav>
@@ -109,7 +110,11 @@
     </div>
   </footer>
 
+    <div id="toast"></div>
+    <div id="toastErro"></div>
+    <script src="../JS/toast.js"></script>
   <script src="../JS/users.js"></script>
+
 </body>
 
 </html>

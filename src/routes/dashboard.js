@@ -19,6 +19,10 @@ router.get("/distribuicao", (req, res) => {
     dashboardController.getDistribuicaoNotas(req, res);
 });
 
+router.get("/buscarEstados", (req, res) => {
+    dashboardController.buscarEstados(req, res);
+});
+
 router.get("/findAllEstados", (req, res) => {
   dashboardController.findAllEstados(req, res);
 });

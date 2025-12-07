@@ -1,52 +1,42 @@
+const e = require("express");
 var slackModel = require("../models/slackModel");
 
-function findAll(req, res) {
-    slackModel.findAll()
+function findStatus(req, res) {
+    slackModel.findStatus()
         .then(response => {
             if (!response || response.length === 0) {
-                return res.status(200).json([]);
+                // Se não houver nada, retorna desligado
+                return res.status(200).json({ ligado: false });
             }
-            return res.status(200).json(response);
+            // Supondo que o model retorne algo como [{ ligado: 1 }]
+            const ligado = response[0].ligado === 1 || response[0].ligado === true;
+            return res.status(200).json({ ligado });
         })
         .catch(erro => {
-            console.log("Houve um erro ao encontrar canais slack", erro);
-            res.status(500).send("Erro ao buscar canais slack.");
+            console.log("Houve um erro ao encontrar status do Slack", erro);
+            res.status(500).send("Erro ao buscar status do Slack.");
         });
 }
 
 function updateStatus(req, res) {
-    var id = req.params.id;
-    var ligado = req.body.ligado;
+    const id = req.params.id;
+    let estado = req.params.estado;
 
-    if (typeof id === 'undefined' || typeof ligado === 'undefined') {
-        return res.status(400).send('Parâmetros inválidos.');
-    }
+    // Converte string para boolean se vier "true"/"false"
+    if (estado === 'true') estado = true;
+    else if (estado === 'false') estado = false;
 
-    slackModel.updateStatus(id, ligado)
-        .then(result => {
-            return res.status(200).json({ message: 'Status atualizado.' });
+    slackModel.updateStatus(id , estado)
+        .then(() => {
+            res.status(200).json({ message: 'Status atualizado.' });
         })
         .catch(err => {
-            console.log('Erro ao atualizar status Slack:', err);
-            return res.status(500).send('Erro ao atualizar status Slack.');
+            console.error('Erro ao atualizar status Slack:', err);
+            res.status(500).json({ erro: 'Erro ao atualizar status Slack.' });
         });
 }
 
-function deleteById(req, res) {
-    var id = req.params.id;
-    if (typeof id === 'undefined') return res.status(400).send('ID inválido.');
-
-    slackModel.deleteById(id)
-        .then(result => {
-            return res.status(200).json({ message: 'Canal deletado.' });
-        })
-        .catch(err => {
-            console.log('Erro ao deletar canal Slack:', err);
-            return res.status(500).send('Erro ao deletar canal Slack.');
-        });
-}
 module.exports = {
-    findAll,
+    findStatus,
     updateStatus,
-    deleteById
 }

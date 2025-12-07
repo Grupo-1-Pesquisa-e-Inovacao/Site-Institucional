@@ -23,27 +23,6 @@ body {
   text-decoration: underline;
 }
 
-.nav-buttons {
-  display: flex;
-  gap: 15px;
-}
-
-.nav-buttons button {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.nav-buttons button:hover {
-  background-color: #74b9ff;
-  transform: scale(1.05);
-}
-
 /* CONTAINER PRINCIPAL */
 .container-principal {
   padding: 80px 40px 60px;
@@ -74,6 +53,7 @@ body {
 .cta-btn {
   background-color: #1E3A8A;
   color: white;
+  width: 100px;
   padding: 12px 24px;
   border: none;
   border-radius: 8px;
@@ -127,8 +107,9 @@ body {
 
 .user-table th,
 .user-table td {
+  width: 20%;
   padding: 14px 18px;
-  text-align: left;
+  text-align: center;
   border-bottom: 1px solid #ddd;
 }
 
@@ -144,6 +125,8 @@ body {
 
 /* BOTÃO DELETAR */
 .delete-btn {
+  margin-top: 5px;
+  width: 100px;
   background-color: #f91616;
   color: white;
   border: none;
@@ -153,6 +136,8 @@ body {
   transition: background 0.3s ease;
 }
 .edit-btn {
+  margin-top: 5px;
+  width: 100px;
   background-color: #F97316;
   color: white;
   border: none;

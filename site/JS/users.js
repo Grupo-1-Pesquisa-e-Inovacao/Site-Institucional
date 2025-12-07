@@ -13,6 +13,7 @@ function deleteUser(id, pageName){
       throw new Error('Erro na requisição: ' + response.status);
     }
     console.log("Usuário deletado com sucesso.")
+    showToast("Usuario Deletado Com Sucesso")
     if(pageName == 'user'){
       readUser();
     } else{
@@ -32,7 +33,7 @@ function createUser(){
   const senha = document.getElementById('adminSenha') ? document.getElementById('adminSenha').value.trim() : '';
 
   if (!nome || !email || !senha) {
-    alert('Preencha nome, email e senha para criar o administrador.');
+    showToastErro('Preencha nome, email e senha para criar o administrador.');
     return;
   }
 
@@ -51,11 +52,11 @@ function createUser(){
       if (document.getElementById('adminNome')) document.getElementById('adminNome').value = '';
       if (document.getElementById('adminEmail')) document.getElementById('adminEmail').value = '';
       if (document.getElementById('adminSenha')) document.getElementById('adminSenha').value = '';
-      alert('Administrador criado com sucesso.');
+      showToast('Administrador criado com sucesso.');
     })
     .catch(error => {
       console.error('Erro:', error);
-      alert('Erro ao criar administrador. Veja o console.');
+      showToast('Erro ao criar administrador. Veja o console.');
     });
 }
 
@@ -92,7 +93,7 @@ function abrirModalUser() {
     document.getElementById('modalCriacaoUser').style.display = 'flex';
   }).catch(err => {
     console.error('Erro ao carregar selects:', err);
-    alert('Erro ao carregar dados auxiliares. Veja o console.');
+    showToastErro('Erro ao carregar dados auxiliares. Veja o console.');
   });
 }
 
@@ -107,9 +108,9 @@ function createCommonUser() {
   const idSecretaria = document.getElementById('userSecretaria').value || null;
   const idEstado = document.getElementById('userEstado').value || null;
 
-  if (!nome || !email || !senha) return alert('Preencha nome, email e senha.');
+  if (!nome || !email || !senha) return showToastErro('Preencha nome, email e senha.');
 
-  if (!idEstado) return alert('Selecione um estado antes de criar o usuário.');
+  if (!idEstado) return showToastErro('Selecione um estado antes de criar o usuário.');
 
   const payload = {
     nomeServer: nome,
@@ -131,11 +132,11 @@ function createCommonUser() {
     .then(() => {
       fecharModalUser();
       readUser();
-      alert('Usuário criado com sucesso.');
+      showToast('Usuário criado com sucesso.');
     })
     .catch(err => {
       console.error('Erro ao criar usuário:', err);
-      alert('Erro ao criar usuário. Veja o console.');
+      showToastErro('Erro ao criar usuário. Veja o console.');
     });
 }
 
@@ -143,7 +144,7 @@ function createCommonUser() {
 
 function updateUser(){
   const id = document.getElementById('editId') ? document.getElementById('editId').value : null;
-  if (!id) return alert('ID do usuário não informado.');
+  if (!id) return showToastErro('ID do usuário não informado.');
 
   const nome = document.getElementById('editNome').value.trim();
   const email = document.getElementById('editEmail').value.trim();
@@ -173,11 +174,11 @@ function updateUser(){
       if (document.getElementById('common-user-table')) {
         readUser();
       }
-      alert('Usuário atualizado com sucesso.');
+      showToast('Usuário atualizado com sucesso.');
     })
     .catch(error => {
       console.error('Erro:', error);
-      alert('Erro ao atualizar usuário. Veja o console.');
+      showToastErro('Erro ao atualizar usuário. Veja o console.');
     });
 }
 
@@ -260,7 +261,7 @@ function openEditModal(id) {
     })
     .then(data => {
       const user = Array.isArray(data) ? data[0] : data;
-      if (!user) return alert('Usuário não encontrado.');
+      if (!user) return showToastErro('Usuário não encontrado.');
 
       document.getElementById('editId').value = user.idUsuario;
       document.getElementById('editNome').value = user.nome || '';
@@ -302,12 +303,12 @@ function openEditModal(id) {
       })
       .catch(err => {
         console.error('Erro ao carregar secretarias/estados:', err);
-        alert('Erro ao carregar dados auxiliares. Veja o console.');
+        showToastErro('Erro ao carregar dados auxiliares. Veja o console.');
       });
     })
     .catch(err => {
       console.error('Erro ao buscar usuário:', err);
-      alert('Erro ao buscar usuário. Veja o console.');
+      showToastErro('Erro ao buscar usuário. Veja o console.');
     });
 }
 

@@ -1,31 +1,25 @@
 var database = require("../database/config")
 
-function findAll() {
+function findStatus() {
   var instrucaoSql = `
-  select fkSlackConfig, idSlackEvento, canal_padrao, ligado from slack_evento join slack_config on fkSlackConfig = idSlackConfig;
+    SELECT s.idSlackConfig, s.canal_padrao, e.ligado
+    FROM slack_config s
+    JOIN slack_evento e ON e.fkSlackConfig = s.idSlackConfig
+    WHERE e.idSlackEvento = 1;
   `;
   return database.executar(instrucaoSql);
 }
 
-function updateStatus(id, ligado) {
+function updateStatus(id, estado) {
   var instrucaoSql = `
     UPDATE slack_evento
-    SET ligado = ${ligado}
-    WHERE idSlackEvento = ${id};
-  `;
-  return database.executar(instrucaoSql);
-}
-
-function deleteById(id) {
-  var instrucaoSql = `
-    DELETE FROM slack_evento
-    WHERE idSlackEvento = ${id};
+    SET ligado = ${estado}
+    WHERE idSlackEvento= ${id};
   `;
   return database.executar(instrucaoSql);
 }
 
 module.exports = {
-  findAll,
+  findStatus,
   updateStatus,
-  deleteById
 };

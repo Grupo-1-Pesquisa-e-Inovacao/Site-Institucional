@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuração Slack - GeoEduca</title>
+  <link rel="icon" type="image/png" href="../IMGS/LOGO-IMG.png">
+  <link rel="stylesheet" href="../CSS/navbar.css">
+  <link rel="stylesheet" href="../CSS/user-area.css">
+  <link rel="stylesheet" href="../CSS/admim.css">
+  <link rel="stylesheet" href="../CSS/toast.css">
+  <link rel="stylesheet" href="../CSS/slack.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="logo"></div>
+    <nav>
+      <ul>
+        <li><a href="admin.html">Início</a></li>
+        <li><a href="slack.html" style="color: orange;">Slack</a></li>
+        <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- CONTEÚDO PRINCIPAL -->
+<main class="dashboard-container">
+  <h1><i class="fa-brands fa-slack"></i> Configuração Slack</h1>
+  <p>Ative ou desative as notificações que os usuários recebem no Slack.</p>
+
+  <section class="settings-section">
+    <h2>Canal Principal</h2>
+
+    <!-- Linha única com status à esquerda e botão à direita -->
+    <div class="channel-row">
+      <div class="status-container">
+        <div class="light-indicator light-off" id="slackLight"></div>
+        <span id="statusText">Desligado</span>
+      </div>
+      <button id="toggleSlackBtn" onclick="toggleSlack()">Ligar</button>
+    </div>
+
+    <div id="toast"></div>
+    <div id="toastErro"></div>
+  </section>
+</main>
+
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <p>&copy; 2025 GeoEduca - Todos os direitos reservados</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
+
+<script>
+  let slackLigado = false;
+
+  verificarEstadoSlack(1)
+
+  // Função para consultar o estado do Slack no backend
+  function verificarEstadoSlack(id) {
+    fetch("/slack/status/" + id)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        slackLigado = data.ligado;
+        ajustarInterfaceSlack();
+      })
+      .catch(err => {
+        console.error("Erro ao consultar estado do Slack:", err);
+        showToastErro("Erro ao carregar estado do Slack.", true);
+      });
+  }
+
+  // Função que ajusta a interface conforme o estado
+  function ajustarInterfaceSlack() {
+    const luz = document.getElementById("slackLight");
+    const botao = document.getElementById("toggleSlackBtn");
+    const statusText = document.getElementById("statusText");
+
+    if (slackLigado) {
+      luz.className = "light-indicator light-on";
+      botao.textContent = "Desligar";
+      botao.className = "btn-on";
+      statusText.textContent = "Ligado";
+    } else {
+      luz.className = "light-indicator light-off";
+      botao.textContent = "Ligar";
+      botao.className = "btn-off";
+      statusText.textContent = "Desligado";
+    }
+  }
+
+  function atualizarSlack(id, estado) {
+    console.log(id, estado);
+    fetch("/slack/update/" + id + "/" + estado, {
+      method: "PUT"
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.erro) {
+        console.error("Erro:", data.erro);
+        showToast("Falha ao atualizar Slack: " + data.erro, true);
+      } else {
+        console.log("Resposta:", data);
+        showToast("Slack atualizado com sucesso!");
+      }
+    })
+    .catch(err => {
+      console.error("Erro na requisição:", err);
+      showToast("Erro de conexão com o servidor.", true);
+    });
+  }
+
+
+
+  function toggleSlack() {
+    slackLigado = !slackLigado;
+
+    const luz = document.getElementById("slackLight");
+    const botao = document.getElementById("toggleSlackBtn");
+    const statusText = document.getElementById("statusText");
+
+    if (slackLigado) {
+      luz.className = "light-indicator light-on";
+      botao.textContent = "Desligar";
+      botao.className = "btn-on";
+      statusText.textContent = "Ligado";
+      atualizarSlack(1, true);
+    } else {
+      luz.className = "light-indicator light-off";
+      botao.textContent = "Ligar";
+      botao.className = "btn-off";
+      statusText.textContent = "Desligado";
+      atualizarSlack(1, false);
+    }
+  }
+</script>
+
+<div id="toast"></div>
+<div id="toastErro"></div>
+<script src="../JS/toast.js"></script>

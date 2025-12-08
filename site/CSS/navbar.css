@@ -1,73 +1,31 @@
+/* ===== NAVBAR ===== */
 .navbar {
-    top: 0;
-    width: 100%;
-    height: 90px;
-    background-color: #1E3A8A;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    gap: 35%;
-    align-items: center;
-    padding: 0 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+  position: relative;        /* ocupa espaço no fluxo normal */
+  width: 100%;
+  height: 90px;
+  background: #1E3A8A;
+  color: #fff;
+  display: flex;
+  justify-content: flex-start; /* logo à esquerda */
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 900px;
 }
 
-/* LOGO */
-.navbar .logoGeo {
-    background-image: url("../IMGS/LOGO-IMG2.png");
-    background-repeat: no-repeat;
-    background-size: 60px;
-    background-position: left center;
-    padding-left: 70px;
-    font-size: 32px;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* NAV LINKS */
-.navbar nav ul {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 10px 16px;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-}
-
-.navbar nav ul li a:hover {
-    background-color: #74b9ff;
-    color: white;
-}
-
-/* BOTÃO DE SAIR */
-.logout-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 10px 16px;
-    border-radius: 6px;
-    transition: background 0.3s ease;
-}
-
-.logout-btn:hover {
-    background-color: #e85c00;
-    color: white;
-}
-
+/* ===== LOGO ===== */
 .logo {
   position: relative;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 28px;
   font-family: "PT Sans", sans-serif;
   text-decoration: underline;
-  padding-left: 70px;
+  padding-left: 85px; /* espaço para a imagem */
+  color: #fff;
+  margin-right: 40px; /* separa logo dos links */
 }
 
 .logo::before {
@@ -76,13 +34,49 @@
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  width: 75px;
-  height: 75px;
-  background-color: #E0E7FF;
-  background-image: url("../IMGS/LOGO-IMG.png");
-  background-size: 90px;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* sombra aplicada à imagem */
-  border-radius: 8px
+  width: 70px;
+  height: 70px;
+  background: #E0E7FF url("../IMGS/LOGO-IMG.png") no-repeat center;
+  background-size: 80px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* ===== NAV LINKS ===== */
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;   /* espaçamento entre botões */
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap; /* evita sair da tela em telas menores */
+  width: fit-content;
+}
+
+.navbar nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+  background: #74b9ff;
+  color: #fff;
+}
+
+/* ===== BOTÃO SAIR ===== */
+.logout-btn {
+  background: #F97316;
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: #F97316;
+  color: #fff;
 }

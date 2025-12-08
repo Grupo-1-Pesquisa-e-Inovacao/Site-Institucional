@@ -260,7 +260,7 @@
                             c-0.384-6.081-1.028-1.986-3.382-1.903C94.336,180.686,85.957,181.671,83.34,180.232z"></path>
                                 <text transform="matrix(1 0 0 1 118.1299 195.3193)" fill="#FFFFFF">RO</text>
                             </a>
-                            <a onclick="atualizarEstado('Mato Grosoo')">
+                            <a onclick="atualizarEstado('Mato Grosso')">
                                 <title>Mato Grosso</title>
                                 <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
                                     stroke-linejoin="round" id="Mato Grosso" d="M142.237,173.962
@@ -919,35 +919,38 @@
     }
 
     function renderChartMediaAnual(estado, mediasAno) {
-        console.log("PLOTANDO GRAFICO 2 MUNICIPIOS")
-        console.log(estado,mediasAno)
-        const options = {
-            chart: { type: 'line', height: 455 },
-            series: [{
-                name: 'Média Geral ENEM',
-                data: mediasAno.map(m => m.media)
-            }],
-            xaxis: {
-                categories: mediasAno.map(m => m.ano),
-                title: { text: 'Ano' }
-            },
-            yaxis: {
-                title: { text: 'Nota Média' },
-                min: 0,
-                max: 1000
-            },
-            title: {
-                text: `Média geral do ENEM por ano (${estado})`,
-                align: 'center'
-            },
-            stroke: { curve: 'smooth' },
-            markers: { size: 6 },
-            fill: { colors: ['#1E3A8A'] }
-        };
-
-        new ApexCharts(document.querySelector("#chart2"), options).render();
-    }
-
+    console.log("PLOTANDO GRAFICO 2 MUNICIPIOS")
+    console.log(estado, mediasAno)
+    
+    const options = {
+        chart: { 
+            type: 'line', 
+            height: 455 
+        },
+        series: [{
+            name: 'Média Geral ENEM',
+            data: mediasAno.map(m => m.media)
+        }],
+        xaxis: {
+            categories: mediasAno.map(m => m.ano),
+            title: { text: 'Ano' }
+        },
+        yaxis: {
+            title: { text: 'Nota Média' },
+            min: Math.min(...mediasAno.map(m => m.media)) - 50,
+            max: Math.max(...mediasAno.map(m => m.media)) + 50
+        },
+        title: {
+            text: `Média geral do ENEM por ano (${estado})`,
+            align: 'center'
+        },
+        stroke: { curve: 'smooth' },
+        markers: { size: 6 },
+        colors: ['#1E3A8A']  // Mudei de 'fill' para 'colors'
+    };
+    
+    new ApexCharts(document.querySelector("#chart2"), options).render();
+}
     // FUNÇÕES PRINCIPAIS !
 
     function modalcarregando() {

@@ -225,7 +225,7 @@ function entrar() {
 
     } else {
       console.log("Houve um erro ao tentar realizar o login!");
-      document.getElementById("erro_login").innerHTML = `<h3 style="color:red;margin:0">❌ Email ou Senha Invalidos<h3>`
+      document.getElementById("erro_login").innerHTML = `<h3 style="color:red;margin:0">❌ Houve um erro ao realizar login<h3>`
       resposta.text().then(texto => {
         console.error(texto);
       });

@@ -1,0 +1,182 @@
+body {
+  font-family: "PT Sans", sans-serif;
+  margin: 0;
+  background: linear-gradient(rgba(255, 165, 0, 0.6), rgba(255, 165, 0, 0.6)),
+    url("../IMGS/MAPA_BRASIL.webp") no-repeat center center fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* Container principal */
+.dashboard-container {
+  max-width: 900px;
+  margin: 120px auto;
+  margin-bottom: 235px;
+  padding: 40px;
+  background: #fff;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-container h1 {
+  color: #1E3A8A;
+  margin-bottom: 10px;
+}
+
+.dashboard-container p {
+  color: #475569;
+
+}
+
+/* Seção de configurações */
+.settings-section {
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.settings-section h2 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  color: #0f172a;
+  border-left: 4px solid #F97316;
+  padding-left: 10px;
+}
+
+/* Formulário */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Cada item toggle */
+.toggle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-item label {
+  font-size: 15px;
+  color: #475569;
+  font-weight: 600;
+}
+
+/* Switch customizado */
+.toggle-switch {
+  width: 50px;
+  height: 25px;
+  appearance: none;
+  background: #cbd5e1;
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.toggle-switch:checked {
+  background: #3b82f6;
+}
+
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 19px;
+  height: 19px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-switch:checked::before {
+  transform: translateX(25px);
+}
+
+.channel-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* status à esquerda, botão à direita */
+  margin-bottom: 15px;
+}
+
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  width: 100px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  color: #fff;
+}
+
+/* Botão quando desligado */
+.btn-off {
+  background-color: #449d44;
+  /* vermelho */
+}
+
+.btn-off:hover {
+
+  background-color: #5cb85c;
+  transform: scale(1.05);
+}
+
+/* Botão quando ligado */
+.btn-on {
+  background-color: #c9302c;
+  /* verde */
+}
+
+.btn-on:hover {
+  background-color: #d9534f;
+  transform: scale(1.05);
+}
+
+.light-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.light-on {
+  background-color: green;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
+}
+
+.light-off {
+  background-color: red;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+/* Botão salvar */
+.settings-form button {
+  margin-top: 20px;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.settings-form button:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: scale(1.02);
+}

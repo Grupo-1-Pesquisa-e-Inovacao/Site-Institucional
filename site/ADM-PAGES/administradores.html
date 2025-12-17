@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="../CSS/navbar.css">
   <link rel="stylesheet" href="../CSS/user-area.css">
   <link rel="stylesheet" href="../CSS/admim.css">
+  <link rel="stylesheet" href="../CSS/toast.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+<body onload="readAdminUser()">
 
   <!-- NAVBAR -->
   <header class="navbar">
@@ -27,7 +28,7 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="dashboard-container">
     <h1>Usuários Administradores</h1>
-    <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Administrador</button>
+    <button class="action-btn" onclick="abrirModal()"><i class="fa-solid fa-user-plus"></i>Adicionar Administrador</button>
     <table class="user-table">
       <thead>
         <tr>
@@ -37,22 +38,61 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Maria Silva</td>
-          <td>maria@geoeduca.com</td>
-          <td>Coordenadora Geral</td>
-          <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
-        </tr>
-        <tr>
-          <td>João Oliveira</td>
-          <td>joao@geoeduca.com</td>
-          <td>Supervisor Técnico</td>
-          <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
-        </tr>
+      <tbody id="admin-user-table">
       </tbody>
     </table>
   </main>
+
+
+
+    <!-- MODAL DE CONFIRMAÇÃO DE DELETE -->
+  <div id="deleteModal" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Você tem certeza que gostaria de deletar?</h2>
+
+      <div class="modal-content">
+        <button class="modal-btn cancel" onclick="closeDeleteModal()">Não
+        </button>
+        <button class="modal-btn confirm" onclick="confirmDelete('admin')">Sim</button>
+      </div>
+    </div>
+  </div>
+
+    <!-- MODAL DE CONFIRMAÇÃO DE CRIAÇÃO -->
+  <div id="modalCriacaoConfirm" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Você tem certeza que gostaria de criar o novo administrador?</h2>
+
+      <div class="modal-content">
+        <button class="modal-btn confirm" onclick="createUser()">Sim</button>
+        <button class="modal-btn cancel" onclick="fecharModalDefinitivo()">Não</button>
+      </div>
+    </div>
+  </div>
+
+     <!-- MODAL DE CRIAÇÃO -->
+  <div id="modalCriacao" class="modal-generico">
+    <div class="modal-box">
+
+      <h2>Criação de Usuários Administradores</h2>
+
+      <div class="modal-content">
+        <h3>Nome do Administrador</h3>
+        <input id="adminNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="adminEmail" placeholder="Email">
+        <h3>Senha</h3>
+        <input id="adminSenha" placeholder="Senha" type="password">
+      </div>
+
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="fecharModalDefinitivo()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="fecharModal()">Confirmar</button>
+      </div>
+
+    </div>
+  </div>
+
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -61,5 +101,49 @@
     </div>
   </footer>
 
+  <!-- MODAL DE EDIÇÃO -->
+  <div id="modalEditar" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Editar Administrador</h2>
+      <div class="modal-content">
+        <input type="hidden" id="editId">
+        <h3>Nome</h3>
+        <input id="editNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="editEmail" placeholder="Email">
+        <h3>Senha (deixe em branco para manter)</h3>
+        <input id="editSenha" placeholder="Senha" type="password">
+        <h3>Secretaria</h3>
+        <select id="editSecretaria"><option value="">Carregando...</option></select>
+        <h3>Estado</h3>
+        <select id="editEstado"><option value="">Carregando...</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeEditModal()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="updateUser()">Salvar</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div id="toast"></div>
+  <div id="toastErro"></div>
+  <script src="../JS/toast.js"></script>
+  <script src="../JS/users.js"></script>
+  
 </body>
 </html>
+<script>
+  function abrirModal() {
+    document.getElementById("modalCriacao").style.display = "flex";
+  }
+  function fecharModalDefinitivo() {
+    document.getElementById("modalCriacao").style.display = "none";
+    document.getElementById("modalCriacaoConfirm").style.display = "none";
+  }
+  function fecharModal() {
+    document.getElementById("modalCriacaoConfirm").style.display = "flex";
+    document.getElementById("modalCriacao").style.display = "none";
+  }
+</script>

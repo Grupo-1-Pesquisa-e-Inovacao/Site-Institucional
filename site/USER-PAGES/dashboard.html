@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>GeoEduca - Dashboard </title>
@@ -14,16 +15,16 @@
     <header class="navbar">
         <div class="logo"></div>
         <nav>
-          <ul>
-            <li><a href="usuario.html">Início</a></li>
-            <li><a href="perfil.html">Meu Perfil</a></li>
-            <li><a href="dashboard.html" style="color: orange;">Dashboard</a></li>
-            <li><a href="configurações.html">Configurações</a></li>
-            <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
-          </ul>
+            <ul>
+                <li><a href="usuario.html">Início</a></li>
+                <li><a href="dashboard.html" style="color: orange;">Dashboard</a></li>
+                <li><a href="configurações.html">Configurações</a></li>
+                <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
+                </li>
+            </ul>
         </nav>
-      </header>
-      
+    </header>
+
 
     <div class="dashboard-container ">
 
@@ -31,12 +32,14 @@
 
             <div class="mapa-div" id="mapa">
                 <div class="legenda">
-                    <div><h2>MAPA BRASIL - ESTADOS MÉDIAS</h2></div>
+                    <div>
+                        <h2>MAPA - MENOS ALUNOS COM NOTA ABAIXO DE 500 (2025)</h2>
+                    </div>
                 </div>
                 <div class="mapa">
                     <div class="lista">
                         <ul>
-                            <li>Distrito Federal: 🟥</li> 
+                            <li>Distrito Federal: 🟥</li>
                             <li>Sergipe: 🟨</li>
                             <li>Alagoas: 🟨</li>
                             <li>Rio de Janeiro: 🟩</li>
@@ -48,17 +51,18 @@
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="450px" height="460px"
                         viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
                         <g>
-                            <a xlink:href="#Tocantins">
+                            <a onclick="atualizarEstado('Tocantins')">
                                 <title>Tocantins</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Tocantins"
-                                    d="M289.558,235.641
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Tocantins" d="M289.558,235.641
                             c16.104,0.575,44.973-31.647,44.835-45.259c-0.136-13.612-17.227-58.446-22.349-66.088c-5.122-7.628-37.905,2.506-37.905,2.506
                             S234.852,233.695,289.558,235.641z"></path>
                                 <text transform="matrix(1 0 0 1 287.0137 188.3208)" fill="#FFFFFF">TO</text>
                             </a>
-                            <a xlink:href="#Bahia">
-                                <title>Bahia</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Bahia" 
+                            <a onclick="atualizarEstado('Bahia')">
+                                <title>Bahia</title >
+                                <path  stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Bahia"
                                     d="M313.276,197.775
                             c2.084-2.739,3.506-7.012,6.464-8.764c1.641-0.973,3.232-4.684,4.271-5.163c2.304-1.014,12.161-25.143,20.706-22.513
                             c1.095,0.342,29.881,3.478,32.153,7.532c2.246-0.506,17.582-8.804,25.829-4.999c9.172,4.246,11.225,20.679,11.2,20.843
@@ -67,60 +71,65 @@
                             c1.148,4.959-0.821,8.6-1.808,13.42c-0.822,4.162-0.219,8.299-0.987,12.297c-0.271,1.286-4.407,5.723-5.559,7.148
                             c-1.616-1.426-63.952-37.248-73.1-36.265c1.149-3.738,2.438-9.559-0.741-12.723c-8.625-8.572-0.135-19.335-0.162-19.432
                             c-0.546-1.725-5.396-6.079-0.026-7.175c-3.175,0.959-1.944-4.027,0.875-3.012C316.726,200.733,314.044,200.527,313.276,197.775z">
-                                .</path>
+                                    .</path>
                                 <text transform="matrix(1 0 0 1 359.7324 210.1221)" fill="#FFFFFF">BA</text>
                             </a>
-                            <a xlink:href="#Sergipe">
+                            <a onclick="atualizarEstado('Sergipe')">
                                 <title>Sergipe</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Sergipe"
-                                    d="M408.561,191.735
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Sergipe" d="M408.561,191.735
                             c0.521-1.505,2.465-0.725,3.533-0.794c2.273-0.164,0.494-2.738,1.095-3.778c2.026-3.793-2.738-5.999-1.998-10.408
                             c4.024,1.931,9.448,3.397,12.408,6.89c1.343,1.533,5.504,2.656,5.832,4.847c-6.822,0.384-6.901,8.819-11.942,11.572
                             C413.545,202.212,407.055,193.721,408.561,191.735z"></path>
                                 <path class="circle" d="M417.324,182.854c6.214,0,11.266,5.035,11.266,11.262c0,6.208-5.052,11.261-11.266,11.261
-                            c-6.238,0-11.258-5.053-11.258-11.261C406.063,187.89,411.084,182.854,417.324,182.854z"></path>
+                            c-6.238,0-11.258-5.053-11.258-11.261C406.063,187.89,411.084,182.854,417.324,182.854z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 408.9121 198.6689)" fill="#FFFFFF">SE</text>
                             </a>
-                            <a xlink:href="#Pernambuco">
+                            <a onclick="atualizarEstado('Pernambuco')">
                                 <title>Pernambuco</title>
-                                .<path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Pernambuco"
-                                    d="M373.011,167.238
+                                .<path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Pernambuco" d="M373.011,167.238
                             c2.709-0.795,6.218-14.106,8.325-15.106c4.136-1.986,17.255-1.437,17.8,4.903c-0.437-0.068,8.189-2.273,7.479-1.466
                             c1.7-0.711,10.518-4.723,12.599-4.82c0.274-0.013,4.603,0.905,3.068,2.315c-0.464,0.439,4.219,3.698,10.789,3.45
                             c4.66-0.176,5.179-3.436,8.627-4.409c5.89-1.67,4.737,3.698,5.589,6.943c-1.182,2.684-1.646,5.586-2.74,8.285
                             c-1.533,3.792-9.804,9.791-13.39,12.119c-7.287,4.778-21.802-4.067-22.762-5.67c-0.602-0.985-2.55-5.121-3.178-5.107
                             c-0.629,0.356-1.04,0.861-1.287,1.519c-0.904-0.013-7.256-3.533-7.502-4.655c-4.769-1.151-5.425,6.108-8.957,6.19
-                            c0.219,0.108-8.244,6.681-7.506,3.314C383.556,170.4,374.241,168.566,373.011,167.238z"></path>
+                            c0.219,0.108-8.244,6.681-7.506,3.314C383.556,170.4,374.241,168.566,373.011,167.238z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 401.3984 165.8003)" fill="#FFFFFF">PE</text>
                             </a>
-                            <a xlink:href="#Alagoas">
+                            <a onclick="atualizarEstado('Alagoas')">
                                 <title>Alagoas</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Alagoas"
-                                    d="M413.953,169.018
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Alagoas" d="M413.953,169.018
                             c3.78,3.313,9.424,5.505,12.547,5.491c3.229-0.013,5.009-3.328,7.421-4.794c1.177-0.712,10.297-1.93,9.174,1.042
                             c-1.807,4.848-7.122,8.585-10.024,12.789c-2.792,2-3.423,7.093-6.354,1.864c-3.259,0.424-3.722-4.424-6.957-4.477
                             c-3.668-2.261-7.998-3.769-11.201-6.342C410.615,172.646,412.751,171.359,413.953,169.018z">
-                                .</path>
+                                    .</path>
                                 <path class="circle" d="M436.423,168.763c6.236,0,11.258,5.054,11.258,11.278c0,6.207-5.02,11.259-11.258,11.259
-                            c-6.241,0-11.263-5.052-11.263-11.259C425.16,173.816,430.182,168.763,436.423,168.763z"></path>
+                            c-6.241,0-11.263-5.052-11.263-11.259C425.16,173.816,430.182,168.763,436.423,168.763z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 429.7891 183.895)" fill="#FFFFFF">AL</text>
                             </a>
-                            <a xlink:href="#Rio Grande Do Norte">
+                            <a onclick="atualizarEstado('Rio Grande Do Norte')">
                                 <title>Rio Grande do Norte</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Rio Grande do Norte"
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Rio Grande do Norte"
                                     d="M404.698,138.795
                             c2.383-4.027,6.574-6.123,8.49-11.149c1.973-5.107,3.834-5.818,8.764-4.642c5.041,1.207,9.339,0.837,14.57,1.671
                             c7.534,1.193,6.848,10.968,9.206,16.516c-1.919,1.096-13.972,0.521-15.064-1.657c-1.041-2.067-2.904,7.107-5.094,7.3
                             c1.532-5.847-12.654,1.78-5.424-8.683c2.545-3.67-6.302-0.808-6.711,0.725C410.121,144.013,407.217,139.151,404.698,138.795z">
-                                .</path>
+                                    .</path>
                                 <path class="circle" d="M430.827,107.798c6.241,0,11.261,5.039,11.261,11.261c0,6.224-5.02,11.261-11.261,11.261
-                            c-6.209,0-11.26-5.037-11.26-11.261C419.567,112.837,424.618,107.798,430.827,107.798z"></path>
+                            c-6.209,0-11.26-5.037-11.26-11.261C419.567,112.837,424.618,107.798,430.827,107.798z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 422.541 123.9009)" fill="#FFFFFF">RN</text>
                             </a>
-                            <a xlink:href="#Ceara">
+                            <a onclick="atualizarEstado('Ceara')">
                                 <title>Ceará</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Ceará"
-                                    d="M372.379,104.409
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Ceará" d="M372.379,104.409
                             c0.437-1.368,2.961-3.627,1.043-5.025c12.106-1.328,17.581-0.849,27.66,6.723c4.026,3.054,6.822,5.574,10.571,9.147
                             c1.317,1.273,7.614,4.313,7.914,6.164c-0.054-0.316-5.396,3.696-5.997,5.217c-1.066,2.684-2.659,6.093-4.3,8.298
                             c0.025-0.055-6.903,3.957-3.532,4.217c-4.41,3.821-1.015,8.135-0.797,11.517c0.196,2.767-4.38,7.587-6.765,5.422
@@ -129,10 +138,10 @@
                             C373.035,102.314,374.815,105.971,372.379,104.409z">.</path>
                                 <text transform="matrix(1 0 0 1 386.8379 129.0347)" fill="#FFFFFF">CE</text>
                             </a>
-                            <a xlink:href="#Piaui">
+                            <a onclick="atualizarEstado('Piauí')">
                                 <title>Piauí</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Piauí"
-                                    d="M320.781,185.478
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Piauí" d="M320.781,185.478
                             c2.465-5.149-7.505-20.801-7.505-20.801s47.354-65.868,54.285-66.841c0.299-0.042,6.243,1.768,6.463,2.219
                             c0.438,0.863-0.821,5.244-0.685,6.587c0.275,2.629,2.879,6.587,2.328,8.684c-1.15,4.736-1.863,6.134,1.369,9.901
                             c2.794,3.245,0.325,10.16,2.544,14.269c-1.778,4.23,4.768,3.656,3.943,7.613c-0.655,3.163-5.424,7.655-1.176,10.312
@@ -141,10 +150,10 @@
                             C328.176,198.748,327.409,180.727,320.781,185.478z">.</path>
                                 <text transform="matrix(1 0 0 1 355.127 158.1045)" fill="#FFFFFF">PI</text>
                             </a>
-                            <a xlink:href="#Maranhao">
+                            <a onclick="atualizarEstado('Maranhão')">
                                 <title>Maranhão</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Maranhão"
-                                    d="M288.845,127.827
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Maranhão" d="M288.845,127.827
                             c4.108-2.726,31.195-48.985,31.386-50.395c1.235,0.397,6.084,7.435,7.562,5.025c0.493,0.013-0.328,2.15-0.547,2.396
                             c-0.054-0.135,2.189-2.286,2.52-2.436c0.521-0.233,1.948,1.903,3.451-0.726c5.642,1.575,1.314,14.31,9.121,11.694
                             c-1.147,0.384,1.452,0.74,0.848,1.905c5.095-6.587,8.488-0.027,15.337,1.491c2.025,0.466,6.243,0.575,8.162,0.207
@@ -158,20 +167,20 @@
                             C290.983,125.675,290.983,128.044,288.845,127.827z">.</path>
                                 <text transform="matrix(1 0 0 1 318.2754 126.7036)" fill="#FFFFFF">MA</text>
                             </a>
-                            <a xlink:href="#Amapa">
+                            <a onclick="atualizarEstado('Amapa')">
                                 <title>Amapá</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Amapá"
-                                    d="M225.198,39.089
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Amapá" d="M225.198,39.089
                             c3.274,1.165,3.985-1.315,6.572-1.74c3.616-0.603,5.683,2.725,9.037,2.067c4.055-0.78,7.093-8.025,7.314-11.598
                             c4.492-3.534,5.503-11.258,9.42-14.68c6.055,4.258,6.11,15.788,7.589,22.485c-0.164,0.083,6.57,7.998,7.944,8.682
                             c3.396,1.657,3.366,6.203,0.078,9.34c-3.777,3.587-7.449,34.275-7.449,34.275h-46.489c0,0,0.932-50.366,0-51.449
                             C221.814,36.458,223.334,38.417,225.198,39.089z">.</path>
                                 <text transform="matrix(1 0 0 1 245.9023 52.6099)" fill="#FFFFFF">AP</text>
                             </a>
-                            <a xlink:href="#Para">
+                            <a onclick="atualizarEstado('Pará')">
                                 <title>Pará</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Pará"
-                                    d="M173.378,50.619
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Pará" d="M173.378,50.619
                             c2.259,2.63,5.629-4.478,7.901-3.82c3.19,0.918,1.478-1.108,5.026-1.752c1.931,0.806,3.096,0.273,3.519-1.631
                             c0.535-1.26,1.453-1.726,2.725-1.384c1.768-1.684,13.558,3.603,14.68,0.384c0.629-1.821-4.287-5.709-0.302-6.997
                             c1.643-0.533,6.012,0.808,8.75-0.068c3.986-1.288,4.876,2.684,4.382,6.066c0.631,3.587,13.145,5.766,12.982,7.97
@@ -187,10 +196,10 @@
                             C319.302,76.912,319.74,78.76,319.139,77.664z">.</path>
                                 <text transform="matrix(1 0 0 1 232.7725 122.5137)" fill="#FFFFFF">PA</text>
                             </a>
-                            <a xlink:href="#Roraima">
+                            <a onclick="atualizarEstado('Roraima')">
                                 <title>Roraima</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Roraima"
-                                    d="M113.18,24.107
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Roraima" d="M113.18,24.107
                             c-0.972-2.753-7.861-5.889-6.999-8.984c0.068-0.232,13.229,6.053,12.79,2.808c0.398,1.329,1.219,1.889,2.439,1.685
                             c1.889-1.301,7.148,4.204,8.216,1.889c0.438-0.959-1.657-3.753,0.74-3.848c1.026,0.438,1.534,0.164,1.52-0.822
                             c0.835-1.752,3.575,0.219,4.793,0.083c0.767-1.056,10.625-3.026,9.037-5.094c1.37,0.438,4.574,0.808,4.63-1.547
@@ -200,9 +209,10 @@
                             s-12.517-52.736-20.335-54.063C115.261,36.417,111.523,25.682,113.18,24.107z">.</path>
                                 <text transform="matrix(1 0 0 1 136.2939 42.3862)" fill="#FFFFFF">RR</text>
                             </a>
-                            <a xlink:href="#Amazonas">
+                            <a onclick="atualizarEstado('Amazonas')">
                                 <title>Amazonas</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Amazonas"
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Amazonas"
                                     d="M10.078,136.412
                             c1.15-4.972,4.258-10.394,8.215-13.105c4.41-3.027,7.656-5.71,13.105-6.082c2.165-0.149,10.216-5.75,11.983-2.984
                             c3.711,5.765,4.998-3.739,5.574-7.025c1.726-9.667,3.697-19.322,4.86-29.086c-0.342-1.356-2.013-6.231-2.833-7.163
@@ -220,24 +230,26 @@
                             c-3.149,6.862-6.15,13.776-9.204,20.678c-2.437,5.505-14.843,23.471-11.105,28.442c4.806,6.395,9.339,30.183,11.324,29.934
                             c-6.162-0.26-48.079-10.625-51.652-8.105c-1.453,1.013-53.626,10.503-55.9,10.819c-6.369,0.875-18.09-7.272-23.719-10.136
                             c-8.601-4.381-16.61-8.981-26.088-11.05c-10.282-2.259-20.635-4.793-29.878-10.011C4.121,145.766,12.433,144.779,10.078,136.412z">
-                                .</path>
+                                    .</path>
                                 <text transform="matrix(1 0 0 1 98.1406 119.0591)" fill="#FFFFFF">AM</text>
                             </a>
-                            <a xlink:href="#Acre">
+                            <a onclick="atualizarEstado('Acre')">
                                 <title>Acre</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Acre"
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Acre"
                                     d="M3.656,148.545
                             c12.557,7.544,27.524,8.367,41.082,13.2c12.802,8.065,27.278,12.845,40.616,19.872c-2.834,1.205-7.587,4.382-9.983,6.395
                             c-2.93,2.45-1.3,2.04-4.628,1.957c-2.93-0.069-3.957,4.615-7.203,5.259c-2.999,0.603-7.161-1.958-10.995-1.697
                             c-1.905,0.136-11.969-0.056-12.64,0.603c0.313-3.642-0.385-7.299-0.165-10.941c0.096-1.439,1.998-6.533,1.245-7.451
                             c-6.82,3.149-8.339,7.19-16.733,7.013c-2.136-0.042-2.562-2.492-3.081-4.001c-1.247-3.572-7.218-3.422-10.559-3.778
                             c6.299-3.41-3.107-11.9-5.216-15.679c-0.52-0.918-3.588-4.655-3.629-5.957C1.642,150.174,6.612,151.968,3.656,148.545z">
-                                .</path>
+                                    .</path>
                                 <text transform="matrix(1 0 0 1 47.7017 184.9355)" fill="#FFFFFF">AC</text>
-                            </a><a xlink:href="#rondonia">
+                            </a>
+                            <a onclick="atualizarEstado('Rondônia')">
                                 <title>Rondônia</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Rondônia"
-                                    d="M83.34,180.232
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Rondônia" d="M83.34,180.232
                             c0.931-1.574,5.341-4.668,6.312-4.656c1.355-0.067,2.671,0.138,3.958,0.603c3.012,1.44,2.039-1.135,5.341-0.123
                             c-1.274-2.287,3.793-2.943,2.86-0.315c3.068,0.247,2.725-4.683,6.668-5.12c4.438-0.508,5.054-0.646,7.122-4.534
                             c0.135-0.246,2.628-5.519,2.752-5.025c2.191-6.491,14.585-0.878,15.638,3.355c0.397,1.615,1.834,3.137,3.642,4.369
@@ -248,10 +260,10 @@
                             c-0.384-6.081-1.028-1.986-3.382-1.903C94.336,180.686,85.957,181.671,83.34,180.232z"></path>
                                 <text transform="matrix(1 0 0 1 118.1299 195.3193)" fill="#FFFFFF">RO</text>
                             </a>
-                            <a xlink:href="#matogrosso">
+                            <a onclick="atualizarEstado('Mato Grosso')">
                                 <title>Mato Grosso</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Mato Grosso"
-                                    d="M142.237,173.962
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Mato Grosso" d="M142.237,173.962
                             c4-0.316-1.888-6.452,5-5.738c7.914,0.808,16.295,0.328,24.279,0.218c1.629-0.013,8.902,1.288,7.395-1.833
                             c-1.192-2.453,1.821-6.425,0.425-9.725c2.027-0.864,1.289-3.807,2.629-5.107c1.151-1.123,4.176,7.244,4.436,7.819
                             c1.097,2.451,0.398,5.478,1.932,7.654c1.41,1.987,4.574,2.136,5.889,4.259c3.136,5.136,10.845,4.137,17.13,4.657
@@ -265,9 +277,10 @@
                             C143.581,176.618,141.937,174.714,142.237,173.962z"></path>
                                 <text transform="matrix(1 0 0 1 200.0244 218.4175)" fill="#FFFFFF">MT</text>
                             </a>
-                            <a xlink:href="#matogrossodosul">
+                            <a onclick="atualizarEstado('Mato Grosso do Sul')">
                                 <title>Mato Grosso do Sul</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Mato Grosso do Sul"
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Mato Grosso do Sul"
                                     d="M183.198,294.536
                             c2.136-4.464,3.177-9.394,5.312-13.61c1.712-3.344-4.067-7.587-2.423-9.807c0.027-0.026,2.738,3.641,3.917,3.725
                             c3.204-1.534,4.807-2.272,6.984-5.228c2.615-3.59,10.832-3.014,14.051-0.305c1.259,1.041,3.068,2.107,4.668,2.574
@@ -280,9 +293,10 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 213.2939 306.7236)" fill="#FFFFFF">MS</text>
                             </a>
-                            <a xlink:href="#goias">
+                            <a onclick="atualizarEstado('Goiás')">
                                 <title>Goiás</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Goiás"
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Goiás"
                                     d="M237.768,270.519
                             c0.628-2.904,1.835-7.396,4.709-8.766c1.015-1.644,1.754-5.147,2.275-5.586c2.408-2.247,3.889-3.783,6.63-4.656
                             c3.723-1.205,3.338-5.342,4.846-8.165c1.504-2.845,4.736-1.15,5.942-3.382c1.479-2.834,0.741-6.161,2.189-8.874
@@ -299,29 +313,31 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 266.9111 254.2139)" fill="#FFFFFF">GO</text>
                             </a>
-                            <a xlink:href="#parana">
+                            <a onclick="atualizarEstado('Paraná')">
                                 <title>Paraná</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Paraná"
-                                    d="M222.225,363.694
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Paraná" d="M222.225,363.694
                             c1.807-2.138,1.889-4.881,2.424-7.479c0.301-1.453,0.465-7.86,1.369-8.736c2.3-0.684,2.3-3.315,2.726-5.204
                             c0.616-2.738,2.821-2.958,3.984-5.616c4.369-9.91,38.947-9.529,46.476-9.227c4.658,0.193,15.775,34.563,17.916,33.794
                             c-1.728,2.19-5.754,8.929-8.41,8.984c-4.054,0.057-14.215,14.68-14.215,14.68s-37.329-12.05-40.287-11.285
-                            c-3.875-1.449-2.698-6.491-6.054-8.216C226.663,364.623,222.498,367.8,222.225,363.694z"></path>
+                            c-3.875-1.449-2.698-6.491-6.054-8.216C226.663,364.623,222.498,367.8,222.225,363.694z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 248.4453 356.1045)" fill="#FFFFFF">PR</text>
                             </a>
-                            <a xlink:href="#santacatarina">
+                            <a onclick="atualizarEstado('Santa Catarina')">
                                 <title>Santa Catarina</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Santa Catarina"
-                                    d="M231.029,383.959
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Santa Catarina" d="M231.029,383.959
                             c1.669-3.338-0.284-10.516,4.573-10.569c6.631-0.109,13.639,3.559,20.402,3.888c1.317,0.055,5.231,2.163,4.357-1.15
                             c-1.095-4.164,3.945-1.863,5.67-3.179c2.274-1.724,8.187-4.106,11.311-1.367c1.423,1.809,20.05-5.395,13.284,3.946
                             c-1.368,1.395,0.713,10.789,0.466,10.734c-3.449,4.438,1.726,11.666-5.096,15.334c-2.901,1.536-7.284,7.779-9.64,9.995
                             C276.085,411.866,233.534,382.918,231.029,383.959z"></path>
                                 <text transform="matrix(1 0 0 1 266.9111 387.7646)" fill="#FFFFFF">SC</text>
                             </a>
-                            <a xlink:href="#riograndedosul">
+                            <a onclick="atualizarEstado('Rio Grande do Sul')">
                                 <title>Rio Grande do Sul</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Rio Grande do Sul"
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Rio Grande do Sul"
                                     d="M191.236,416.881
                             c0.52-2.684,7.38-8.409,9.477-10.351c0.37-0.359,8.599-10.08,9.174-8.329c-1.301-3.89,2.781-1.589,3.917-4.819
                             c0.26-0.521,7.04-4.821,7.109-4.795c1.436-0.191,6.721-3.695,7.421-3.257c1.204-2.028,8.927-1.479,8.653-0.824
@@ -333,10 +349,10 @@
                                 </path>
                                 <text transform="matrix(1 0 0 1 231.0313 414.4658)" fill="#FFFFFF">RS</text>
                             </a>
-                            <a onclick="filtroEstado(SãoPaulo)">
+                            <a onclick="atualizarEstado('São Paulo')">
                                 <title>São Paulo</title>
-                                <path id="São Paulo" stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" 
-                                    d="M239.3,330.554
+                                <path id="São Paulo" stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" d="M239.3,330.554
                             c3.26-4.356,9.56-5.039,11.531-10.792c1.369-3.942,3.889-8.818,6.135-13.036c1.561-2.957,7.749-7.121,10.517-8.65
                             c0.383-0.196,32.974-6.138,42.234-1.701c20.265,9.724,26.017,33.879,27.854,33.304c4.408-1.425,5.34,3.778,2.106,4.49
                             c-1.754,0.413-6.519,1.479-6.49,3.399c0.027,3.448,0.521,1.615-2.931,3.639c-2.189-1.42-3.34,4.111-4.763,3.426
@@ -344,13 +360,13 @@
                             c-0.466-1.369-2.658,0.385-4.025,0.082c-0.986-0.192,1.751-4.079-2.303-4.52c-1.369-0.164-3.753,0.303-4.929,0.084
                             c-2.903-0.547,0.108-2.41-0.439-3.862c-1.067-2.986-3.013-4.931-3.751-7.779c-0.52-1.945,0.165-7.531-3.615-7.395
                             c-0.848-2.956-6.628-1.451-9.066-1.862c-0.162,0.163-8.846-2.684-10.079-2.684c-1.616-0.029-6.791-3.396-7.121-0.274
-                            C247.982,330.386,239.876,331.21,239.3,330.554z"></path >
+                            C247.982,330.386,239.876,331.21,239.3,330.554z"></path>
                                 <text transform="matrix(1 0 0 1 280.6816 327.3193)" fill="#FFFFFF">SP</text>
                             </a>
-                            <a xlink:href="#minasgerais">
+                            <a onclick="atualizarEstado('Minas Gerais')">
                                 <title>Minas Gerais</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Minas Gerais"
-                                    d="M262.881,297.305
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Minas Gerais" d="M262.881,297.305
                             c-1.696-5.094,15.531-19.882,18.844-13.421c5.531-7.367,15.886,1.588,19.773-3.944c0.988-1.367,3.015-1.453,3.725-2.957
                             c0.326-0.711-0.493-2.793-0.056-3.888c1.369-3.398-4.873-2.355-0.109-6.603c4.547-4.053-1.917-4.739-1.204-8.186
                             c0.957-4.604,1.807-4.713,5.613-6.027c1.943-0.688,0.906-8.272,0.083-8.52c-0.108-2.699,1.974-2.546,3.782-1.617
@@ -365,13 +381,14 @@
                             c1.699-1.205,1.672-2.383-0.08-3.562c-1.04-1.095-1.205-2.303-0.521-3.672c-2.329-1.424-3.065-2.683-5.698-2.462
                             c-1.479,0.138-4.055,3.668-5.506,0.629c0.878,2.108-4.188,0.769-5.094,1.56c-2.354-1.202-1.779,2.028-2.384,3.069
                             c-0.137,0.22-1.014-2.904-1.065-2.961c-1.149-1.175-2.767,4.165-3.505-0.055c0.766-4.105-4.657-2.709-7.67-2.93
-                            c-4.708-0.353-5.53-1.613-9.858,0.631C262.993,300.562,262.336,299.274,262.881,297.305z"></path>
+                            c-4.708-0.353-5.53-1.613-9.858,0.631C262.993,300.562,262.336,299.274,262.881,297.305z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 328.4063 286.4561)" fill="#FFFFFF">MG</text>
                             </a>
-                            <a xlink:href="#riodejaneiro">
+                            <a onclick="atualizarEstado('Rio De Janiero')">
                                 <title>Rio de Janeiro</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Rio de Janeiro"
-                                    d="M332.886,337.429
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Rio de Janeiro" d="M332.886,337.429
                             c-1.26-2.768,8.409-4.795,7.89-6.71c-3.177-1.864-4.602,1.148-6.63-2.959c4.274-0.686,9.533-4.49,13.831-3.562
                             c0.548-0.219,4.902-1.753,4.96,0.167c2.546-1.566,5.479-2.412,8.105-3.837c2.246-1.206,0.932-8.218,3.725-9.643
                             c6.054-3.123,1.398,1.836,7.066,2.959c5.888,1.205,5.395,1.48,5.641,7.067c0.247,5.642-8.763,4.381-11.063,8.764
@@ -380,54 +397,61 @@
                             c-1.667-0.713-2.957-1.839-4.901-0.142c0.465,0.195-4.227-0.086-3.379-0.113c-0.521,1.727-3.814,0.699-3.879,3.045
                             C336.717,337.908,333.927,342.41,332.886,337.429z">.</path>
                                 <path class="circle" d="M355.094,318.613c6.209,0,11.263,5.021,11.263,11.259c0,6.208-5.056,11.264-11.263,11.264
-                            c-6.211,0-11.263-5.054-11.263-11.264C343.831,323.634,348.883,318.613,355.094,318.613z"></path>
+                            c-6.211,0-11.263-5.054-11.263-11.264C343.831,323.634,348.883,318.613,355.094,318.613z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 347.4648 334.6807)" fill="#FFFFFF">RJ</text>
                             </a>
-                            <a xlink:href="#espiritosanto">
+                            <a onclick="atualizarEstado('Espirito Santo')">
                                 <title>Espírito Santo</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Espírito Santo"
-                                    d="M367.119,308.834
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Espírito Santo" d="M367.119,308.834
                             c1.044-1.999-0.298-5.451,1.841-6.326c3.697-1.453,3.858-0.467,5.941-4.49c0.767-1.563,3.999-5.807,2.848-7.835
                             c-0.439-0.765-3.204-3.613-3.286-4.05c1.04-0.249,2.079-0.219,3.123,0.054c1.366-0.654-6.465-10.519,2.137-8.054
                             c-1.204-0.655-1.535-1.365-0.932-2.135c4.358-0.138,13.856,0.027,12.845,6.738c-0.577,3.835,0.933,8.079-0.577,11.804
                             c-0.218,0.576-5.861,8.954-5.831,8.954c0.985,3.289-5.18,5.808-6.054,8.165c-1.313,3.56-2.135,3.013-5.614,2.573
-                            c-1.64-0.274-3.202-0.768-4.736-1.451C368.819,311.297,369.424,309.055,367.119,308.834z"></path>
+                            c-1.64-0.274-3.202-0.768-4.736-1.451C368.819,311.297,369.424,309.055,367.119,308.834z">
+                                </path>
                                 <path class="circle" d="M381.917,284.723c6.21,0,11.261,5.055,11.261,11.262c0,6.212-5.051,11.261-11.261,11.261
-                            c-6.212,0-11.263-5.049-11.263-11.261C370.654,289.777,375.705,284.723,381.917,284.723z"></path>
+                            c-6.212,0-11.263-5.049-11.263-11.261C370.654,289.777,375.705,284.723,381.917,284.723z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 373.3047 300.4971)" fill="#FFFFFF">ES</text>
                             </a>
-                            <a xlink:href="#distritofederal">
+                            <a onclick="atualizarEstado('Distrito Federal')">
                                 <title>Distrito Federal</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Distrito Federal"
-                                    d="M292.461,246.197
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Distrito Federal" d="M292.461,246.197
                             c0,0,12.929-2.903,14.188,0c1.233,2.903,0.659,10.683-1.424,11.504c-2.08,0.849-14.296-1.806-14.023-3.313
                             C291.503,252.853,292.461,246.197,292.461,246.197z"></path>
                                 <path class="circle" d="M300.735,238.34c6.212,0,11.26,5.035,11.26,11.258c0,6.21-5.048,11.263-11.26,11.263
-                            c-6.209,0-11.261-5.053-11.261-11.263C289.475,243.377,294.523,238.34,300.735,238.34z"></path>
+                            c-6.209,0-11.261-5.053-11.261-11.263C289.475,243.377,294.523,238.34,300.735,238.34z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 292.4141 254.2139)" fill="#FFFFFF">DF</text>
                             </a>
-                            <a xlink:href="#paraiba" id="#paraiba">
+                            <a onclick="atualizarEstado('Paraíba')">
                                 <title>Paraíba</title>
-                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round" stroke-linejoin="round" id="Paraíba"
-                                    d="M401.575,141.096
+                                <path stroke="#FFFFFF" stroke-width="1.0404" stroke-linecap="round"
+                                    stroke-linejoin="round" id="Paraíba" d="M401.575,141.096
                             c2.081-3.081,16.791-6.82,19.117-4.616c0,1.918,7.259,1.686,10.133,2.712c-0.492,3.038,12.652,1.533,14.408,2.259
                             c1.421,0.589,3.833,11.983,1.421,12.202c-0.874-1.124-2.083-1.739-3.586-1.835c-2.957-0.027-2.546,1.863-4.383,3.108
                             c-2.626,1.767-6.571,1.917-9.558,2.109c-0.162,1.232-3.943,4.438-5.259,4.916c-3.122,1.149-2.657-2.727-5.095-3.602
                             c0.713-1.124,4.082-5.203,3.725-6.205c-1.423-3.846-12.051,5.52-14.981,3.506c-1.396-0.973-6.218,1.493-3.476-2.588
                             C405.574,150.776,400.398,142.889,401.575,141.096z"></path>
                                 <path class="circle" d="M433.797,133.597c6.237,0,11.26,5.051,11.26,11.261c0,6.226-5.022,11.262-11.26,11.262
-                            c-6.208,0-11.257-5.036-11.257-11.262C422.54,138.647,427.589,133.597,433.797,133.597z"></path>
+                            c-6.208,0-11.257-5.036-11.257-11.262C422.54,138.647,427.589,133.597,433.797,133.597z">
+                                </path>
                                 <text transform="matrix(1 0 0 1 425.2129 148.9893)" fill="#FFFFFF">PB</text>
                             </a>
                         </g>
                     </svg>
-                   
-                    
+
+
                 </div>
-                <div><p> 🟩 Média Acima de 700 | 🟨 Média entre 700 - 600 | 🟥 Média abaixo de 600 </p></div>
+                <div>
+                    <p> 🟩 Menos de 500 alunos | 🟨 Menos de 800 alunos| 🟥 Mais de 1100 alunos </p>
+                </div>
             </div>
 
-            <div class="map-under">
+            <div class="map-under" id="chartPizza">
             </div>
 
         </div>
@@ -438,72 +462,71 @@
                 <div class="logo-dash">
                     <h1 id="DASH_NOME">DASHBOARD - BRASIL</h1>
                     <div>
-                        <button class="button-editar">Favoritar</button>
-                        <button class="button-deletar">Desfavoritar</button>
+
                     </div>
                 </div>
 
-                        
-                    
-
-                        <div class="filtros" id="filtros_espace">
-                            
-                                    <div>
-                                        FILTRAR POR ESTADO
-                                        <select name="estado" id="estado-select">
-                                            <option value="">Selecione um estado</option>
-                                            <option value="AC">Acre</option>
-                                            <option value="AL">Alagoas</option>
-                                            <option value="AP">Amapá</option>
-                                            <option value="AM">Amazonas</option>
-                                            <option value="BA">Bahia</option>
-                                            <option value="CE">Ceará</option>
-                                            <option value="DF">Distrito Federal</option>
-                                            <option value="ES">Espírito Santo</option>
-                                            <option value="GO">Goiás</option>
-                                            <option value="MA">Maranhão</option>
-                                            <option value="MT">Mato Grosso</option>
-                                            <option value="MS">Mato Grosso do Sul</option>
-                                            <option value="MG">Minas Gerais</option>
-                                            <option value="PA">Pará</option>
-                                            <option value="PB">Paraíba</option>
-                                            <option value="PR">Paraná</option>
-                                            <option value="PE">Pernambuco</option>
-                                            <option value="PI">Piauí</option>
-                                            <option value="RJ">Rio de Janeiro</option>
-                                            <option value="RN">Rio Grande do Norte</option>
-                                            <option value="RS">Rio Grande do Sul</option>
-                                            <option value="RO">Rondônia</option>
-                                            <option value="RR">Roraima</option>
-                                            <option value="SC">Santa Catarina</option>
-                                            <option value="SP">São Paulo</option>
-                                            <option value="SE">Sergipe</option>
-                                            <option value="TO">Tocantins</option>
-                                        </select>
-                                    </div>
 
 
-                            <div onclick="filtroBrasil()" id="botao_reset" style="display: none;" class="botao-reset" ></div>
-                            
-                        </div>
+
+                <div class="filtros" id="filtros_espace">
+
+                    <div>
+                        FILTRAR POR ESTADO
+                        <select name="estado" id="estado-select">
+                            <option value="">Selecione um estado</option>
+                            <option value="Acre">Acre</option>
+                            <option value="Alagoas">Alagoas</option>
+                            <option value="Amapá">Amapá</option>
+                            <option value="Amazonas">Amazonas</option>
+                            <option value="Bahia">Bahia</option>
+                            <option value="Ceará">Ceará</option>
+                            <option value="Distrito Federal">Distrito Federal</option>
+                            <option value="Espírito Santo">Espírito Santo</option>
+                            <option value="Goiás">Goiás</option>
+                            <option value="Maranhão">Maranhão</option>
+                            <option value="Mato Grosso">Mato Grosso</option>
+                            <option value="Mato Grosso do Sul">Mato Grosso do Sul</option>
+                            <option value="Minas Gerais">Minas Gerais</option>
+                            <option value="Pará">Pará</option>
+                            <option value="Paraíba">Paraíba</option>
+                            <option value="Paraná">Paraná</option>
+                            <option value="Pernambuco">Pernambuco</option>
+                            <option value="Piauí">Piauí</option>
+                            <option value="Rio de Janeiro">Rio de Janeiro</option>
+                            <option value="Rio Grande do Norte">Rio Grande do Norte</option>
+                            <option value="Rio Grande do Sul">Rio Grande do Sul</option>
+                            <option value="Rondônia">Rondônia</option>
+                            <option value="Roraima">Roraima</option>
+                            <option value="Santa Catarina">Santa Catarina</option>
+                            <option value="São Paulo">São Paulo</option>
+                            <option value="Sergipe">Sergipe</option>
+                            <option value="Tocantins">Tocantins</option>
+                        </select>
+                    </div>
+
+
+                    <div onclick="resetar()" id="botao_reset" style="display: none;" class="botao-reset"></div>
+
+                </div>
 
             </div>
             <div class="kpi-container" id="KPI-PRINCIPAL">
                 <div class="kpi-card" id="KPI1">
                     <h3>Total de notas <br> acima de 900 pontos </h3>
-                    <p>4.870</p>
+                    <p></p>
                 </div>
                 <div class="kpi-card" id="KPI2">
                     <h3>Total de notas <br> abaixo de 500 pontos </h3>
-                    <p>123.989</p>
+                    <p></p>
                 </div>
                 <div class="kpi-card" id="KPI3">
                     <h3>Estado com menor média <br></h3>
-                    <p style="color: red;">ALAGOAS</p>
+                    <p style="color: red;"></p>
                 </div>
                 <div class="kpi-card" id="KPI4">
                     <h3>Estado com maior média <br></h3>
-                    <p style="color: green;">SÃO PAULO</p>
+                    <p style="color: green;"></p>
                 </div>
             </div>
 
@@ -520,12 +543,12 @@
 
     <div id="modalTelaCheia" class="modal-overlay" style="display:none;">
         <div class="modal-content">
-          <h2>Carregando Dashboard...</h2>
-          <p>Aguarde enquanto os gráficos são atualizados.</p>
-          <img src="./IMGS/loading.gif" alt="">
-    </div>
+            <h2>Carregando Dashboard...</h2>
+            <p>Aguarde enquanto os gráficos são atualizados.</p>
+            <img src="./IMGS/loading.gif" alt="">
+        </div>
 
-    <!-- Creditos to olx.com.br -->
+        <!-- Creditos to olx.com.br -->
 </body>
 
 </html>
@@ -534,586 +557,435 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 <script>
 
-        // VERIFICANDO VARIÁVEL SE É OU NÃO ADM
-        document.addEventListener("DOMContentLoaded", function () {
-        const isAdmin = sessionStorage.USUARIO_ADMIN; // sempre retorna string
+    modalcarregando()
+    let mediaGeral = 0;
+
+    // VERIFICANDO VARIÁVEL SE É OU NÃO ADM
+    document.addEventListener("DOMContentLoaded", function () {
+        const isAdmin = sessionStorage.USUARIO_ADMIN;
         console.log(isAdmin)
 
         if (Number(isAdmin) === 1) {
             adicionarAbaAdministracao();
         }
-        });
+    });
 
-        function adicionarAbaAdministracao() {
+    function adicionarAbaAdministracao() {
         const navList = document.querySelector(".navbar nav ul");
         const adminNavItem = document.createElement("li");
         adminNavItem.innerHTML = '<a href="../ADM-PAGES/admin.html">Administração</a>';
-        navList.insertBefore(adminNavItem, navList.lastElementChild); // insere antes do botão "Sair"
-        }
-
-
-    // INICIANDO GRAFICOS E VARIAVEIS
-
-    var dataNotas900 = [600, 580, 484, 455, 436, 391, 372, 267];
-
-    var dataMedia = [1789098, 8906143, 14876450];
-
-    var estados = [ "Alagoas",  "Acre", "Amapá", "Amazonas", "Bahia", "Ceará", "Distrito Federal", "Espírito Santo",
-        "Goiás", "Maranhão", "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", "Paraíba", "Paraná", "Pernambuco",
-        "Piauí", "Rio de Janeiro", "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", "Santa Catarina",
-        "São Paulo", "Sergipe", "Tocantins"];
-
-    var notasMedia = [610, 620, 630, 590, 570, 550, 650, 690, 565, 625, 670, 665, 695, 600, 4050, 700, 680, 645, 710, 665, 700, 500, 655, 695, 705, 300, 670];
-    var notasMediaRadom = [];
-
-    for (let i = 0; i < notasMedia.length; i++) {
-    notasMediaRadom.push(gerarNumeroAleatorio());
+        navList.insertBefore(adminNavItem, navList.lastElementChild); 
     }
 
-    var anos = ["2018", "2019", "2020", "2021", "2022"];
+    function carregarKPIs() {
+        console.log("BUSCANDO KPIS");
+        fetch("/dashboard/kpis")
+            .then(response => response.json())
+            .then(dados => {
+                document.querySelector("#KPI1 p").textContent = dados.totalAcima900;
+                document.querySelector("#KPI2 p").textContent = dados.totalAbaixo500;
+                document.querySelector("#KPI3 p").textContent = dados.estadoMenorMedia;
+                document.querySelector("#KPI4 p").textContent = dados.estadoMaiorMedia;
+            });
+    }
 
-    var mediaGeral = [500.6, 510.2, 520.5, 510.8, 530.0];
+    let chart1; 
+    let chart2;
 
+    function carregarGraficos() {
+    console.log("GERANDO GRAFICOS PRINCIPAIS");
 
-    var optionsChart1Frist = {
-        series: [{
-            name: 'Notas acima de 900 pontos',
-            data: dataNotas900
-        }],
-        chart: {
-            height: 455,
-            type: 'bar',
-            FontFace: '10'
-        },
-        xaxis: {
-            categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF']
-        },
-        yaxis: {
-            max: dataNotas900[0] + 100
-        },
-        title: {
-            text: 'Estados com mais nota acima de 900 pontos (TOP 10)',
-            align: 'center'
+    // Gráfico 1: Notas acima de 900
+    fetch("/dashboard/chart1")
+        .then(res => res.json())
+        .then(dados => {
+            var optionsChart1 = {
+                series: [{
+                    name: 'Notas acima de 900 pontos',
+                    data: dados.valores
+                }],
+                chart: { height: 455, type: 'bar' },
+                xaxis: { categories: dados.estados },
+                yaxis: { max: Math.max(...dados.valores) + 1 },
+                title: { text: 'Estados com mais nota acima de 900 pontos (TOP 10)', align: 'center' },
+                fill: { colors: ['#1E3A8A'] }
+            };
+            chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
+            chart1.render();
+        });
 
-        },
-        style: {
-            fontSize: '9px', // tamanho menor
-            fontWeight: 'bold'
-        },
-        fill: {
-            colors: ['#1E3A8A']
-            }
+    // Gráfico 2: Média geral ENEM por ano
+    fetch("/dashboard/chart2")
+        .then(res => res.json())
+        .then(dados => {
+            var optionsChart2 = {
+                chart: { type: 'line', height: 455 },
+                series: [{
+                    name: 'Média Geral ENEM',
+                    data: dados.medias
+                }],
+                xaxis: { categories: dados.anos, title: { text: 'Ano' } },
+                yaxis: {
+                    title: { text: 'Nota Média' },
+                    min: Math.min(...dados.medias) - 50,
+                    max: Math.max(...dados.medias) + 50
+                },
+                title: { text: 'Média geral do ENEM por ano', align: 'center' },
+                stroke: { curve: 'smooth' },
+                markers: { size: 6 },
+                fill: { colors: ['#1E3A8A'] }
+            };
+            const mediaGeral = dados.medias[dados.medias.length - 1];
+            console.log("Última média geral:", mediaGeral);
+            chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
+            chart2.render();
+        });
+}
 
-    };
-    var optionsChart2Frist  = {
-        chart: {
-            type: 'line',
-            height: 455
-        },
-        series: [{
-            name: 'Média Geral ENEM',
-            data: mediaGeral
-        }],
-        xaxis: {
-            categories: anos,
-            title: {
-                text: 'Ano'
-            }
-        },
-        yaxis: {
-            title: {
-                text: 'Nota Média'
-            },
-            min: valorMaisBaixo(mediaGeral),
-            max: valorMaisAlto(mediaGeral),
-        },
-        title: {
-            text: 'Média geral do ENEM por ano',
-            align: 'center'
-        },
-        stroke: {
-            curve: 'smooth'
-        },
-        markers: {
-            size: 6
-        },
-        tooltip: {
-            shared: true,
-            intersect: false
-        },
-        fill: {
-            colors: ['#1E3A8A']
-        }
-    };
-    var optionsConst = {
-        series: dataMedia,
-        chart: {
-            height: 330,
-            type: 'pie',
-        },
-        labels: ['Notas entre 800 e 1000 pontos', 'Notas entre 600 e 800 pontos', 'Notas abaixo de 600 pontos'],
-        title: {
-            text: 'Porcentagem de notas abaixo/acima/proximo da média',
-            align: 'center'
-        },
-        legend: {
-            position: 'bottom' // 👈 legenda embaixo
-        }
-    };
+    function carregarGraficoHorizontal() {
+        fetch("/dashboard/distribuicao")
+            .then(res => res.json())
+            .then(dados => {
+                // Se o backend retorna um objeto simples { acima700, entre600e700, abaixo600 }
 
-    var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1Frist);
-    var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2Frist);
-    var chartConst1 = new ApexCharts(document.querySelector(".map-under"), optionsConst);
+                const valores = [dados.acima700, dados.entre600e700, dados.abaixo600];
 
+                console.log(dados);
 
-    chart1.render();
-    chart2.render();
-    chartConst1.render();
-    mapaCor();
+                const optionsConst = {
+                    series: [{
+                        name: "Alunos",
+                        data: valores
+                    }],
+                    chart: {
+                        type: 'bar',
+                        height: 310
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: true,
+                            distributed: true
+                        }
+                    },
+                    colors: ['#68DD49', '#FFC107', '#C03113'],
+                    dataLabels: {
+                        enabled: false
+                    },
+                    xaxis: {
+                        categories: [
+                            'Entre 700 e 1000 PTS',
+                            'Entre 600 e 699 PTS',
+                            'Abaixo de 600 PTS'
+                        ],
+                        title: { text: 'Quantidade de alunos' }
+                    },
+                    title: {
+                        text: 'Distribuição de notas do ENEM',
+                        align: 'center'
+                    },
+                    legend: { show: false },
+                    tooltip: {
+                        y: {
+                            formatter: val => `${val} Alunos` // 👈 texto no tooltip
+                        }
+                    }
+                };
 
+                new ApexCharts(document.querySelector("#chartPizza"), optionsConst).render();
+            });
+    }
+
+    function mapaCor() {
+        fetch("/dashboard/buscarEstados")
+            .then(res => res.json())
+            .then(estados => {
+                const listaUl = document.querySelector(".lista ul");
+                listaUl.innerHTML = "";
+
+                // Lista de estados que devem aparecer na UL
+                const estadosLista = [
+                    "Distrito Federal",
+                    "Sergipe",
+                    "Alagoas",
+                    "Rio de Janeiro",
+                    "Espírito Santo"
+                ];
+
+                console.log("INICIANDO LISTAGEM");
+                console.log(estados)
+
+                const Q1 = 500;
+                const Q2 = 800;
+                const Q3 = 1100;
+
+                for (let i = 0; i < estados.length; i++) {
+                    var qtdAbaixo500 = estados[i].qtd_abaixo500;
+                    var EstadoID = estados[i].estado;
+
+                    console.log("=+=+=+=+=+=+=")
+                    console.log(EstadoID)
+                    console.log("Quantidade abaico de 500:", qtdAbaixo500)
+                    console.log("=+=+=+=+=+=+=")
+
+                    let cor = "";
+                    let emoji = "";
+
+                    if (qtdAbaixo500 <= Q1) {
+                        cor = "#68DD49"; // verde
+                        emoji = "🟩";
+                    } else if (qtdAbaixo500 <= Q2) {
+                        cor = "#FFC107"; // amarelo
+                        emoji = "🟨";
+                    } else if (qtdAbaixo500 <= Q3) {
+                        cor = "#FF8C00"; // laranja
+                        emoji = "🟧";
+                    } else {
+                        cor = "#C03113"; // vermelho
+                        emoji = "🟥";
+                    }
+
+                    // aplica cor no mapa
+                    document.getElementById(EstadoID).style.fill = cor;
+
+                    // adiciona na lista apenas se estiver na lista de destaque
+                    if (estadosLista.includes(EstadoID)) {
+                        console.log("Estado está na lista:", EstadoID);
+                        const li = document.createElement("li");
+                        li.textContent = `${EstadoID}: ${emoji}`;
+                        listaUl.appendChild(li);
+                    }
+                }
+            })
+            .catch(err => console.error(err));
+    }
+
+    function resetar(){
+        console.log('RESETANDO')
+        document.getElementById("estado-select").selectedIndex = 0;
+        document.getElementById('DASH_NOME').innerHTML = "DASHBOARD - BRASIL"
+
+        modalcarregando();
+        
+        limparKIPs()
+        chartKill()
+
+        carregarKPIs()
+        carregarGraficos()
+
+        botaoResetSumir()
+        resetEstado()
+    }
+
+    // Chama a função assim que a página carregar
+    window.addEventListener("DOMContentLoaded", carregarKPIs);
+    window.addEventListener("DOMContentLoaded", carregarGraficos);
+    window.addEventListener("DOMContentLoaded", carregarGraficoHorizontal);
+    window.addEventListener("DOMContentLoaded", mapaCor);
+
+    let debounceTimer;
+
+    //SEPARAÇÃO
+    //SEPARAÇÃO
+    //SEPARAÇÃO
+    //SEPARAÇÃO
+    //SEPARAÇÃO
 
     // Atualiza o título sempre que o usuário muda a seleção
-    let debounceTimer;
-    function atualizarDashboardDebounced() {
-        clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(atualizarDashboard, 200);
-    }
-    document.getElementById("estado-select").addEventListener("change", atualizarDashboardDebounced);
-    window.addEventListener("hashchange", atualizarEstado);
-    
+    document.getElementById("estado-select").addEventListener("change", function () {
+        atualizarEstado(this.value); 
+    });
 
-    function atualizarDashboard() {
-    console.log("Teste");
-    const estadoSelect = document.getElementById("estado-select");
-    const titulo = document.querySelector(".dashboard-filtros h1");
-
-    const estado = estadoSelect.options[estadoSelect.selectedIndex].text;
-
-    let novoTitulo = "DASHBOARD - BRASIL";
-
-    if (estadoSelect.value && estadoSelect.value !== "Selecione um estado") {
-        novoTitulo = `DASHBOARD - ${estado}`;
-        botaoResetAparecer();
-        filtroEstado(estado);
+    function atualizarEstado(estado) {
+        document.getElementById('DASH_NOME').innerHTML = `DASHBOARD - ${estado}`;
+        getKPIsPorEstado(estado)
+        filtroEstado(estado)
     }
 
-    titulo.textContent = novoTitulo;
-    }
+    function getKPIsPorEstado(estado) {
+    limparKIPs()
+        fetch(`/dashboard/getKPIsPorEstado?estado=${encodeURIComponent(estado)}`)
+            .then(res => res.json())
+            .then(dados => {
+                console.log("DADOS ESTADO:", dados)
 
-    function resetEstado() {
-        document.getElementById("estado-select").selectedIndex = 0;
-        atualizarDashboard();
-    }
 
-    function resetRegiao() {
-        document.getElementById("regiao-select").selectedIndex = 0;
-        atualizarDashboard();
-    }
 
-    function atualizarEstado() {
-        var estado = window.location.hash.substring(1);
+            document.getElementById('KPI1').innerHTML =
+                `<h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
+                <p style="color:orange;">${dados.percentualAcima700}%</p>`;
 
-        console.log("Estado selecionado:", estado);
+            var media = dados.mediaGeral;
+            let corMedia;
+            if (media < 600) corMedia = "red";
+            else if (media < 700) corMedia = "orange";
+            else corMedia = "green";
 
-        if (estado !== "") {
-            var estadoElement = document.getElementById(estado);
-            var mapaElement = document.getElementById("mapa");// ← CORRIGIDO
+            const percentual = dados.percentualMunicipiosAbaixo500;
+            const cor = corPorPercentual(percentual);
+
+            document.getElementById('KPI2').innerHTML = `
+                <h3>Porcentagem de Municípios com média inferior a 500</h3>
+                <p style="color: ${cor}; font-weight: bold;">
+                    ${percentual.toLocaleString("pt-BR")}%</p>
+            `;
+
+            document.getElementById('KPI3').innerHTML =
+                `<h3>Total de provas analisadas</h3>
+                <p>${(dados.totalProvas).toLocaleString("pt-BR")}</p>`;
+            
+
+            document.getElementById('KPI4').innerHTML =
+                `<h3>Média Geral das Notas (${estado})</h3>
+                 <p style="color:${corMedia};">${media}</p>`;
+
+
+         
+
+        })
+        .catch(err => console.error("Erro ao buscar KPIs:", err));
+}
+
+    function corPorPercentual(percentual) {
+        if (percentual >= 50) {
+            return "#e74c3c"; // vermelho
+        } else if (percentual >= 30) {
+            return "#e67e22"; // laranja
+        } else if (percentual >= 15) {
+            return "#f1c40f"; // amarelo
+        } else {
+            return "#2ecc71"; // verde
         }
-    }
-
-    // FILTROS DE ESTADO E REGIAO
-
-    function estadoKPIs(estado) {
-
-        var KipMédia = gerarNumeroAleatorio();
-
-        document.getElementById('KPI1').innerHTML =
-            `           <h3>Percentual de Alunos com Nota Acima de 700 (${estado})</h3>
-                     <p style="color:orange;">37%</p>`;
-
-
-        if(KipMédia < 600){
-            document.getElementById('KPI2').innerHTML =
-            `           <h3>Média Geral das Notas (${estado})</h3>
-                     <p style="color:red;">${KipMédia}</p>`;
-        }
-        else if(KipMédia > 600 && KipMédia < 699){
-            document.getElementById('KPI2').innerHTML =
-            `           <h3>Média Geral das Notas (${estado})</h3>
-                     <p style="color:orange;">${KipMédia}</p>`;
-        }
-        else if(KipMédia > 700){
-            document.getElementById('KPI2').innerHTML =
-            `           <h3>Média Geral das Notas (${estado})</h3>
-                     <p style="color:green;">${KipMédia}</p>`;
-        }
-
-
-        document.getElementById('KPI3').innerHTML =
-            `           <h3>Total de provas analisadas</h3>
-                     <p>${(gerarNumeroAleatorio() * 180).toLocaleString("pt-BR")}</p>`
-        document.getElementById('KPI4').innerHTML =
-            `           <h3>Total de alunos no estado</h3>
-                     <p>${(gerarNumeroAleatorio() * 560).toLocaleString("pt-BR")}</p>`;
-    }
-
-    function regiaoKPIs(regiao) {
-
-        document.getElementById('KPI1').innerHTML =
-            `           <h3>EU SOU UMA KPI DE REGIAO KKK</h3>
-                     <p>9.999,99</p>`;
-        document.getElementById('KPI2').innerHTML =
-            `           <h3>EU SOU UMA KPI DE REGIAO KKK!</h3>
-                     <p>9.999,99</p>`;
-        document.getElementById('KPI3').innerHTML =
-            `           <h3>Total de provas analisadas</h3>
-                     <p>${(gerarNumeroAleatorio() * 120).toLocaleString("pt-BR")}</p>`
-        document.getElementById('KPI4').innerHTML =
-            `           <h3>Total de alunos na região</h3>
-                     <p>${(gerarNumeroAleatorio() * 1134).toLocaleString("pt-BR")}</p>`;
     }
 
     function filtroEstado(estado) {
+        botaoResetAparecer();
         modalcarregando();
         limparKIPs();
-        estadoKPIs(estado)
         chartKill();
 
-        var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
-        var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
-        var mediaMunicipio = [378.5 , 388.1, 410.1, 405.5, 401.1 , 510.5 , 450.7 , 459.7 , 339.9 , 459.8]
+        fetch(`/dashboard/municipios?estado=${encodeURIComponent(estado)}`)
+            .then(res => res.json())
+            .then(municipios => {
+                console.log(municipios)
+                renderChartMunicipios(estado, municipios);
+            })
+            .catch(err => console.error("Erro ao buscar municípios:", err));
 
-        var optionsChart1Estado = {
-            chart: {
-                type: 'bar',
-                height: 455,
-                stacked: true
-            },
-            series: [
-                {
-                    name: 'Média por Município',
-                    data: mediaMunicipio.sort((a,b) => (a - b)) // valores de 0 a 1000
-                }
-            ],
-            xaxis: {
-                categories: ['Municipio 1', 'Municipio 2', 'Municipio 3', 'Municipio 4', 'Municipio 5', 'Municipio 6', 'Municipio 7','Municipio 8', 'Municipio 9', 'Municipio 10']
-            },
-            yaxis: {
-                title: { text: 'Nota' },
-                min: 0,
-            },
-            title: {
-                text: `Municipios com Menores Médias em ${estado} (TOP 10)`,
-                align: 'center'
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '70%'
-                }
-            },
-            fill: {
-            colors: ['#1E3A8A']
-            }
-        };
-        var optionsChart2Estado = {
-            chart: {
-                type: 'line',
-                height: 455,
-            },
-            series: [{
-                name: 'Média Geral ENEM ',
-                data: mediaTesteRandom
-            }],
-            xaxis: {
-                categories: anos,
-                title: {
-                    text: 'Ano'
-                }
-            },
-            yaxis: {
-                title: {
-                    text: 'Nota Média'
-                },
-                min: 0,
-                max: 1000
-            },
-            title: {
-                text: `Média geral do ENEM por ano (${estado})`,
-                align: 'center'
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            markers: {
-                size: 6
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            },
-            fill: {
-            colors: ['#1E3A8A']
-            }
-        };
-
-        chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1Estado);
-        chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2Estado);
-
-        chart1.render();
-        chart2.render();
-
-        return 0;
+        fetch(`/dashboard/mediaAno?estado=${encodeURIComponent(estado)}`)
+            .then(res => res.json())
+            .then(mediasAno => {
+                console.log(mediasAno)
+                renderChartMediaAnual(estado, mediasAno);
+            })
+            .catch(err => console.error("Erro ao buscar médias por ano:", err));
     }
 
-    function filtroRegiao(regiao) {
-        const regioes = {
-            Norte: ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins'],
-            Nordeste: ['Alagoas', 'Bahia', 'Ceará', 'Maranhão', 'Paraíba', 'Pernambuco', 'Piauí', 'Rio Grande do Norte', 'Sergipe'],
-            CentroOeste: ['Distrito Federal', 'Goiás', 'Mato Grosso', 'Mato Grosso do Sul'],
-            Sudeste: ['Espírito Santo', 'Minas Gerais', 'Rio de Janeiro', 'São Paulo'],
-            Sul: ['Paraná', 'Rio Grande do Sul', 'Santa Catarina']
-        };
+    function renderChartMunicipios(estado, dados) {
+    console.log("PLOTANDO GRAFICO 1 MUNICIPIOS")
+    console.log(estado,dados)
 
-        var regiaoArray = regioes[regiao]
-        console.log(regiaoArray)
-        
-        modalcarregando();
-        limparKIPs();
-        regiaoKPIs(regiao);
-        chartKill();
-
-        var TesteArray = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
-        var mediaTesteRandom = [gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio(), gerarNumeroAleatorio()]
-
-        var optionsChart1 = {
-            chart: {
-                type: 'bar',
-                height: 460,
-                stacked: true
-            },
-            series: [
-                {
-                    name: ` Estados com maiores médias em ${regiao} `,
-                    data: regiaoArray.map(() => gerarNumeroAleatorio()).sort((a,b) => (a<b))
-                }
-            ],
-            xaxis: {
-                categories: regiaoArray,
-            },
-            yaxis: {
-                title: { text: 'Nota' },
-                min: 0,
-            },
-            title: {
-                text: ` Estados com maiores médias em ${regiao} `,
-                align: 'center'
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '60%'
-                }
-            }
-        };
-        var optionsChart2 = {
-            chart: {
-                type: 'line',
-                height: 460,
-            },
-            series: [{
-                name: 'Média Geral ENEM ',
-                data: mediaTesteRandom
-            }],
-            xaxis: {
-                categories: anos,
-                title: {
-                    text: 'Ano'
-                }
-            },
-            yaxis: {
-                title: {
-                    text: 'Nota Média'
-                },
-                min: 0,
-                max: 1000
-            },
-            title: {
-                text: `Média geral do ENEM por ano (${regiao})`,
-                align: 'center'
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            markers: {
-                size: 6
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            }
-        };
-
-        var chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1);
-        var chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2);
-
-        chart1.render();
-        chart2.render();
-        return 0;
-
-    }
-   
-    function filtroBrasil() {
-    document.getElementById("estado-select").selectedIndex = 0;
-    modalcarregando();
-    chartKill();
-    console.log("AGUARDANDO 1 - RESETANDO KPIs");
-    kpiReset();
-    console.log("AGUARDANDO 2 - PLOTANDO GRAFICOS");
-    graficosBrasil();
-    console.log("AGUARDANDO 3 - SUMINDO BOTÃO");
-    botaoResetSumir();
+    const seriesData = [];
+    for (let i = 0; i < dados.length; i++) {
+        seriesData.push({
+        x: dados[i].nome_municipio,
+        y: parseFloat(dados[i].media_notas)
+        });
     }
 
-    function graficosBrasil() {
-        setTimeout(function() {
-        var optionsChart1BrasilNew = {
-            series: [{
-                name: 'Notas acima de 900 pontos',
-                data: dataNotas900
-            }],
-            chart: {
-                height: 455,
-                type: 'bar',
-                FontFace: '10'
-            },
-            xaxis: {
-                categories: ['São Paulo', 'Rio de Janeiro', "Mato Grosso", 'Alagoas', 'Bahia', 'Amazonas', 'Goias', 'DF']
-            },
-            yaxis: {
-                max: dataNotas900[0] + 100
-            },
-            title: {
-                text: 'Estados com mais nota acima de 900 pontos (TOP 10)',
-                align: 'center'
+    const options = {
+        chart: { type: 'bar', height: 455 },
+        title: {
+            text: "Médias do ENEM por Município (10 PIORES)",
+            align: "center"
+        },
+        series: [{
+            name: "Média ENEM",
+            data: seriesData
+        }],
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            type: 'category',
+            labels: {
+                show: true   
+            }
+        },
+        fill: { colors: ['#1E3A8A'] }
+    };
 
-            },
-            style: {
-                fontSize: '9px', // tamanho menor
-                fontWeight: 'bold'
-            },
-            fill: {
-            colors: ['#1E3A8A']
-            }
-        };
-        var optionsChart2BrasilNew = {
-            chart: {
-                type: 'line',
-                height: 455
-            },
-            series: [{
-                name: 'Média Geral ENEM',
-                data: mediaGeral
-            }],
-            xaxis: {
-                categories: anos,
-                title: {
-                    text: 'Ano'
-                }
-            },
-            yaxis: {
-                title: {
-                    text: 'Nota Média'
-                },
-                min: valorMaisBaixo(mediaGeral),
-                max: valorMaisAlto(mediaGeral),
-            },
-            title: {
-                text: 'Média geral do ENEM por ano',
-                align: 'center'
-            },
-            stroke: {
-                curve: 'smooth'
-            },
-            markers: {
-                size: 6
-            },
-            tooltip: {
-                shared: true,
-                intersect: false
-            },
-             fill: {
-            colors: ['#1E3A8A']
-            }
-        };
-        
-        chart1 = new ApexCharts(document.querySelector("#chart1"), optionsChart1BrasilNew);
-        chart2 = new ApexCharts(document.querySelector("#chart2"), optionsChart2BrasilNew);
+    const chart = new ApexCharts(document.querySelector("#chart1"), options);
+    chart.render();
+    }
+
+    function renderChartMediaAnual(estado, mediasAno) {
+    console.log("PLOTANDO GRAFICO 2 MUNICIPIOS")
+    console.log(estado, mediasAno)
     
-        chart1.render();
-        chart2.render();
-
-        document.getElementById("DASH_NOME").innerHTML = "DASHBOARD - BRASIL"
-            
-        }, 1000);
-   
-    }
-
+    const options = {
+        chart: { 
+            type: 'line', 
+            height: 455 
+        },
+        series: [{
+            name: 'Média Geral ENEM',
+            data: mediasAno.map(m => m.media)
+        }],
+        xaxis: {
+            categories: mediasAno.map(m => m.ano),
+            title: { text: 'Ano' }
+        },
+        yaxis: {
+            title: { text: 'Nota Média' },
+            min: Math.min(...mediasAno.map(m => m.media)) - 50,
+            max: Math.max(...mediasAno.map(m => m.media)) + 50
+        },
+        title: {
+            text: `Média geral do ENEM por ano (${estado})`,
+            align: 'center'
+        },
+        stroke: { curve: 'smooth' },
+        markers: { size: 6 },
+        colors: ['#1E3A8A']  // Mudei de 'fill' para 'colors'
+    };
+    
+    new ApexCharts(document.querySelector("#chart2"), options).render();
+}
     // FUNÇÕES PRINCIPAIS !
 
-    function modalcarregando(){
+    function modalcarregando() {
         document.getElementById("modalTelaCheia").style.display = "flex";
         setTimeout(() => {
-        document.getElementById("modalTelaCheia").style.display = "none";
-        }, 2500);
-    }
-
-    function gerarNumeroAleatorio() {
-        const min = 500;
-        const max = 800;
-        return Math.floor(Math.random() * (max - min + 1)) + min;
+            document.getElementById("modalTelaCheia").style.display = "none";
+        }, 500);
     }
 
     function chartKill() {
-
-        chart1.destroy();
-        chart2.destroy();
+        if (chart1) chart1.destroy();
+        if (chart2) chart2.destroy();
     }
 
     function limparKIPs() {
-        for (i = 1; i < 5; i++) {
-            document.getElementById('KPI' + i).innerHTML = '';
-        }
-    }
-
-    function kpiReset() {
         document.getElementById('KPI-PRINCIPAL').innerHTML = `
-            <div class="kpi-card" id="KPI1">
-            <h3>Total de notas <br> acima de 900 pontos </h3>
-            <p style="color: green;">4.870</p>
-            </div>
-            <div class="kpi-card" id="KPI2">
-            <h3>Total de notas <br> abaixo de 500 pontos </h3>
-            <p style="color: red;">123.989</p>
-            </div>
-            <div class="kpi-card" id="KPI3">
-            <h3>Estado com menor média <br></h3>
-            <p style="color: red;">ALAGOAS</p>
-            </div>
-            <div class="kpi-card" id="KPI4">
-            <h3>Estado com maior média <br></h3>
-            <p style="color: green;">SÃO PAULO</p>
-            </div>
+                <div class="kpi-card" id="KPI1">
+                    <h3>Total de notas <br> acima de 900 pontos </h3>
+                    <p></p>
+                </div>
+                <div class="kpi-card" id="KPI2">
+                    <h3>Total de notas <br> abaixo de 500 pontos </h3>
+                    <p></p>
+                </div>
+                <div class="kpi-card" id="KPI3">
+                    <h3>Estado com menor média <br></h3>
+                    <p style="color: red;"></p>
+                </div>
+                <div class="kpi-card" id="KPI4">
+                    <h3>Estado com maior média <br></h3>
+                    <p style="color: green;"></p>
+                </div>
         `;
-        }
+        
+    }
 
     function botaoResetAparecer() {
         document.getElementById("botao_reset").style.display = "inline";
@@ -1124,61 +996,4 @@
         ;
     }
 
-    function valorMaisAlto(mediaGeral) {
-        let valorDaVez = mediaGeral[0]; // Começa com o primeiro valor do array
-
-        for (let i = 1; i < mediaGeral.length; i++) {
-            if (mediaGeral[i] > valorDaVez) {
-                valorDaVez = mediaGeral[i];
-            }
-        }
-
-        return valorDaVez + 100;
-    }
-
-    function valorMaisBaixo(mediaGeral) {
-        let valorDaVez = mediaGeral[0]; // Começa com o primeiro valor do array
-
-        for (let i = 1; i < mediaGeral.length; i++) {
-            if (mediaGeral[i] < valorDaVez) {
-                valorDaVez = mediaGeral[i];
-            }
-        }
-
-        return valorDaVez - 100;
-    }
-
-    function mapaCor() {
-        const listaUl = document.querySelector(".lista ul");
-        listaUl.innerHTML = ""; // limpa a lista atual
-
-        const estadosLista = ["Distrito Federal", "Sergipe", "Alagoas", "Rio de Janeiro", "Espírito Santo"];
-
-        for (let i = 0; i < estados.length; i++) {
-            const NotaEstado = notasMediaRadom[i];
-            const EstadoID = estados[i];
-            let emoji = "";
-
-            if (NotaEstado < 600) {
-            document.getElementById(EstadoID).style.fill = "#c03113"; // vermelho
-            emoji = "🟥";
-            } else if (NotaEstado >= 600 && NotaEstado < 700) {
-            document.getElementById(EstadoID).style.fill = "#c0a213"; // amarelo
-            emoji = "🟨";
-            } else {
-            document.getElementById(EstadoID).style.fill = "#68dd49"; // verde
-            emoji = "🟩";
-            }
-
-            // Atualiza a lista apenas para os estados desejados
-            if (estadosLista.includes(EstadoID)) {
-            const li = document.createElement("li");
-            li.textContent = `${EstadoID}: ${emoji}`;
-            listaUl.appendChild(li);
-            }
-        }
-    }
-
-
-
-</script>        
+</script>

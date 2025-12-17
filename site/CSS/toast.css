@@ -1,0 +1,49 @@
+#toast {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  min-width: 200px;
+  padding: 12px 18px;
+  background: #4dc42f;
+  color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(500px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  font-family: "PT Sans", sans-serif;
+  font-size: 27px;
+  font-weight: bolder;
+  z-index: 99999;
+}
+
+#toastErro {
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  min-width: 200px;
+  padding: 12px 18px;
+  background: #d50502;
+  color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(500px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  font-family: "PT Sans", sans-serif;
+  font-size: 27px;
+  font-weight: bolder;
+  z-index: 99999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#toastErro.show {
+  opacity: 1;
+  transform: translateY(0);
+}

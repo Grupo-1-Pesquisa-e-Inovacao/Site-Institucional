@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,9 +9,11 @@
   <link rel="stylesheet" href="../CSS/navbar.css">
   <link rel="stylesheet" href="../CSS/user-area.css">
   <link rel="stylesheet" href="../CSS/admim.css">
+  <link rel="stylesheet" href="../CSS/toast.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-<body>
+
+<body onload="readUser()">
 
   <!-- NAVBAR -->
   <header class="navbar">
@@ -18,7 +21,7 @@
     <nav>
       <ul>
         <li><a href="admin.html">Início</a></li>
-        <li><a href="usuarios.html" style="color: orange;">Administração</a></li>
+        <li><a href="usuarios.html" style="color: orange;">Usuarios</a></li>
         <li><a href="../index.html" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Sair</a></li>
       </ul>
     </nav>
@@ -27,7 +30,7 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="dashboard-container">
     <h1>Usuários Comuns</h1>
-    <button class="action-btn"><i class="fa-solid fa-user-plus"></i> Adicionar Usuário</button>
+    <button class="action-btn" onclick="abrirModalUser()"><i class="fa-solid fa-user-plus"></i> Adicionar Usuário</button>
     <table class="user-table">
       <thead>
         <tr>
@@ -37,22 +40,68 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>Lucas Pereira</td>
-          <td>lucas@geoeduca.com</td>
-          <td>São Paulo</td>
-          <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
-        </tr>
-        <tr>
-          <td>Ana Costa</td>
-          <td>ana@geoeduca.com</td>
-          <td>Amazonas</td>
-          <td><button class="delete-btn">Deletar</button> <button class="edit-btn">Editar</button></td>
-        </tr>
+      <tbody id="common-user-table">
       </tbody>
     </table>
   </main>
+
+  <!-- MODAL DE CONFIRMAÇÃO DE DELETE -->
+  <div id="deleteModal" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Você tem certeza que gostaria de deletar?</h2>
+      <div class="modal-content">
+        <button class="modal-btn cancel" onclick="closeDeleteModal()">Não</button>
+        <button class="modal-btn confirm" onclick="confirmDelete('user')">Sim</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CRIAÇÃO DE USUÁRIO COMUM -->
+  <div id="modalCriacaoUser" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Criação de Usuário</h2>
+      <div class="modal-content">
+        <h3>Nome</h3>
+        <input id="userNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="userEmail" placeholder="Email">
+        <h3>Senha</h3>
+        <input id="userSenha" placeholder="Senha" type="password">
+        <h3>Secretaria</h3>
+        <select id="userSecretaria"><option value="">Carregando...</option></select>
+        <h3>Estado</h3>
+        <select id="userEstado"><option value="">Carregando...</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="fecharModalUser()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="createCommonUser()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE EDIÇÃO DE USUÁRIO (reaproveita os ids usados pelo users.js) -->
+  <div id="modalEditar" class="modal-generico" style="display: none;">
+    <div class="modal-box">
+      <h2>Editar Usuário</h2>
+      <div class="modal-content">
+        <input type="hidden" id="editId">
+        <h3>Nome</h3>
+        <input id="editNome" placeholder="Nome">
+        <h3>Email</h3>
+        <input id="editEmail" placeholder="Email">
+        <h3>Senha (deixe em branco para manter)</h3>
+        <input id="editSenha" placeholder="Senha" type="password">
+        <h3>Secretaria</h3>
+        <select id="editSecretaria"><option value="">Carregando...</option></select>
+        <h3>Estado</h3>
+        <select id="editEstado"><option value="">Carregando...</option></select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn cancel" onclick="closeEditModal()">Cancelar</button>
+        <button class="modal-btn confirm" onclick="updateUser()">Salvar</button>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -61,5 +110,11 @@
     </div>
   </footer>
 
+    <div id="toast"></div>
+    <div id="toastErro"></div>
+    <script src="../JS/toast.js"></script>
+  <script src="../JS/users.js"></script>
+
 </body>
+
 </html>
